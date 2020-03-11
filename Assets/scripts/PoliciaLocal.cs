@@ -5,10 +5,6 @@ using UnityEngine;
 public class PoliciaLocal : MonoBehaviour
 {
 	public GameObject player;
-<<<<<<< HEAD
-=======
-    public Camera Cam2d;
->>>>>>> develop
     public float speed;
 	
     // Update is called once per frame
