@@ -5,6 +5,7 @@ using UnityEngine;
 public class PoliciaEstat: MonoBehaviour
 {
 	public GameObject player;
+	public TextMesh lifestext;
     public Camera cam2d;
     public GameObject enemyIdle;
     public GameObject enemyRun;

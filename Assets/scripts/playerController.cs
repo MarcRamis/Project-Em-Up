@@ -7,7 +7,9 @@ public class playerController : MonoBehaviour
     public float speed = 2;
     public float timerdamage;
     public int life;
+	public int vidas;
     public Camera Cam2d;
+    public TextMesh lifestext;
 	public bool hitting;
     public bool damage;
 	public GameObject playerIdle;
@@ -24,6 +26,7 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		lifestext.text = "LIFES: "+vidas;
         playerMovement();
     }
 
@@ -107,6 +110,8 @@ public class playerController : MonoBehaviour
         if(life <= 0)
         {
             //playerDeath
+			vidas--;
+			life = 100;
         }
         //HIT 
 		if(Input.GetKey(KeyCode.Mouse0)) 
