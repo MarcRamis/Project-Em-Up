@@ -12,6 +12,7 @@ public class PoliciaEstat: MonoBehaviour
     public GameObject enemyTakingDamage;
     public GameObject enemyDeath;
     public float timerAttack;
+	public float timerdeath;
     public int vida;
     public float speed;
 	
@@ -28,7 +29,7 @@ public class PoliciaEstat: MonoBehaviour
                 this.transform.rotation = new Quaternion(0, 0, 0, 0);
             if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
-            if (Vector3.Distance(this.transform.position, player.transform.position) > 1 && Vector3.Distance(this.transform.position, player.transform.position) < 8)
+            if (Vector3.Distance(this.transform.position, player.transform.position) > 1 && Vector3.Distance(this.transform.position, player.transform.position) < 15)
             {
                 Vector3 move = (player.transform.position);
                 this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
@@ -36,7 +37,7 @@ public class PoliciaEstat: MonoBehaviour
                 enemyIdle.SetActive(false);
                 enemyRun.SetActive(true);
             }
-            else if (Vector3.Distance(this.transform.position, player.transform.position) >= 8)
+            else if (Vector3.Distance(this.transform.position, player.transform.position) >= 15)
             {
                 enemyRun.SetActive(false);
                 enemyIdle.SetActive(true);
@@ -66,11 +67,16 @@ public class PoliciaEstat: MonoBehaviour
         }
         else
         {
+			timerdeath -= Time.deltaTime;
             enemyIdle.SetActive(false);
             enemyTakingDamage.SetActive(false);
             enemyRun.SetActive(false);
             enemyAttack.SetActive(false);
             enemyDeath.SetActive(true);
+			if(timerdeath <= 0) 
+			{
+				Destroy(this.gameObject);
+			}
         }
     }
 }
