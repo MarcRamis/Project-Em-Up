@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     public float speed = 2;
+<<<<<<< HEAD
     public float timerdamage;
     public int life;
     public Camera Cam2d;
@@ -14,6 +15,13 @@ public class playerController : MonoBehaviour
 	public GameObject playerMove;
 	public GameObject playerHitNormal;
     public GameObject playerReceivesDamage;
+=======
+    public Camera Cam2d;
+	public bool hitting;
+	public GameObject playerIdle;
+	public GameObject playerMove;
+	public GameObject playerHitNormal;
+>>>>>>> develop
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +37,11 @@ public class playerController : MonoBehaviour
 
     void playerMovement()
     {
+<<<<<<< HEAD
 		if(hitting == false && damage == false) 
+=======
+		if(hitting == false) 
+>>>>>>> develop
 		{
         if (Input.GetKey(KeyCode.W) && this.transform.position.y < -1f)
         {
@@ -47,7 +59,11 @@ public class playerController : MonoBehaviour
             this.transform.Translate(new Vector3(0, -1, -1.2f) * Time.deltaTime * speed);
 
         }
+<<<<<<< HEAD
         if (Input.GetKey(KeyCode.D) && Cam2d.WorldToScreenPoint(this.transform.position).x < 1440)
+=======
+        if (Input.GetKey(KeyCode.D) && Cam2d.WorldToScreenPoint(this.transform.position).x < 1050)
+>>>>>>> develop
         {
             this.transform.Translate(Vector3.right * Time.deltaTime * speed);
             //SPRITE ROTATION RIGHT
@@ -76,7 +92,11 @@ public class playerController : MonoBehaviour
             playerMove.SetActive(false);
         }
 		}
+<<<<<<< HEAD
 		else if(damage == false)
+=======
+		else 
+>>>>>>> develop
 		{
 			if(Input.GetKey(KeyCode.Mouse0)) 
 			{
@@ -86,6 +106,7 @@ public class playerController : MonoBehaviour
 				playerHitNormal.SetActive(true);
 			}
 		}
+<<<<<<< HEAD
         else
         {
             timerdamage -= Time.deltaTime;
@@ -108,6 +129,8 @@ public class playerController : MonoBehaviour
         {
             //playerDeath
         }
+=======
+>>>>>>> develop
         //HIT 
 		if(Input.GetKey(KeyCode.Mouse0)) 
 		{
