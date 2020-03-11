@@ -51,7 +51,7 @@ public class PoliciaEstat: MonoBehaviour
                     player.GetComponent<playerController>().damage = true;
                     timerAttack = 2;
                 }
-                if (!Input.GetKey(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
+                if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
                 {
                     enemyTakingDamage.SetActive(false);
                     enemyRun.SetActive(false);
@@ -62,7 +62,7 @@ public class PoliciaEstat: MonoBehaviour
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(false);
                     enemyTakingDamage.SetActive(true);
-                    vida = 0;
+                    vida -= 30;
                 }
             }
         }
