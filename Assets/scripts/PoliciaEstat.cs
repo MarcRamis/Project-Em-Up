@@ -55,7 +55,7 @@ public class PoliciaEstat: MonoBehaviour
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(true);
                 }
-                else if(player.GetComponent<playerController>().damage == false)
+                else if(player.GetComponent<playerController>().damage == false && this.transform.rotation != player.GetComponent<playerController>().playerMove.transform.rotation)
                 {
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(false);
