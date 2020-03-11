@@ -47,7 +47,7 @@ public class playerController : MonoBehaviour
             this.transform.Translate(new Vector3(0, -1, -1.2f) * Time.deltaTime * speed);
 
         }
-        if (Input.GetKey(KeyCode.D) && Cam2d.WorldToScreenPoint(this.transform.position).x < 1440)
+        if (Input.GetKey(KeyCode.D) && Cam2d.WorldToScreenPoint(this.transform.position).x < 1300)
         {
             this.transform.Translate(Vector3.right * Time.deltaTime * speed);
             //SPRITE ROTATION RIGHT
