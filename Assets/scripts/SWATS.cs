@@ -5,13 +5,14 @@ using UnityEngine;
 public class SWATS : MonoBehaviour
 {
 	public GameObject player;
+    public Camera Cam2d;
     public float speed;
 	
     // Update is called once per frame
     void Update()
     {
         //Screen collision
-        /*
+        
         if (this.transform.position.y < -1.0f)
         {
             this.transform.Translate(new Vector3(0, 1, 1.2f) * Time.deltaTime * speed);
@@ -30,8 +31,10 @@ public class SWATS : MonoBehaviour
         {
             this.transform.Translate(Vector3.right * Time.deltaTime * speed);
         }
-        */
-        //Run from character
+        //
+
+        //Run from characte
+        /*
         if (Vector3.Distance(this.transform.position, player.transform.position) > 1) 
 		{
 			Vector3 move = (player.transform.position);
@@ -41,5 +44,6 @@ public class SWATS : MonoBehaviour
 		{
 			//attack
 		}
+        */
     }
 }
