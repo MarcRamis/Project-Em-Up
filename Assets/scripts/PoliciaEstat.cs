@@ -48,14 +48,20 @@ public class PoliciaEstat: MonoBehaviour
                 timerAttack -= Time.deltaTime;
                 if(timerAttack <= 0)
                 {
+                    enemyIdle.SetActive(false);
+                    enemyTakingDamage.SetActive(false);
+                    enemyRun.SetActive(false);
+                    enemyAttack.SetActive(true);
                     player.GetComponent<playerController>().damage = true;
+                    if(timerAttack <= -1)
                     timerAttack = 2;
                 }
                 if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
                 {
+                    enemyIdle.SetActive(true);
                     enemyTakingDamage.SetActive(false);
                     enemyRun.SetActive(false);
-                    enemyAttack.SetActive(true);
+                    enemyAttack.SetActive(false);
                 }
                 else if(player.GetComponent<playerController>().damage == false && this.transform.rotation != player.GetComponent<playerController>().playerMove.transform.rotation)
                 {

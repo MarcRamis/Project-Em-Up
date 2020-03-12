@@ -6,6 +6,7 @@ public class playerController : MonoBehaviour
 {
     public float speed = 2;
     public float timerdamage;
+    public float timerDeath = 5;
     public int life;
 	public int vidas;
     public Camera Cam2d;
@@ -16,6 +17,7 @@ public class playerController : MonoBehaviour
 	public GameObject playerMove;
 	public GameObject playerHitNormal;
     public GameObject playerReceivesDamage;
+    public GameObject playerDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +34,7 @@ public class playerController : MonoBehaviour
 
     void playerMovement()
     {
-		if(hitting == false && damage == false) 
+		if(hitting == false && damage == false && life > 0) 
 		{
         if (Input.GetKey(KeyCode.W) && this.transform.position.y < -1f)
         {
@@ -44,6 +46,7 @@ public class playerController : MonoBehaviour
             //SPRITE ROTATION LEFT
             playerIdle.transform.rotation = new Quaternion(0, 0, 0, 0);
             playerMove.transform.rotation = new Quaternion(0, 0, 0, 0);
+            playerReceivesDamage.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
         if (Input.GetKey(KeyCode.S) && this.transform.position.y > -3.0f)
         {
@@ -56,8 +59,8 @@ public class playerController : MonoBehaviour
             //SPRITE ROTATION RIGHT
             playerIdle.transform.rotation = new Quaternion(0, 180, 0, 0);
             playerMove.transform.rotation = new Quaternion(0, 180, 0, 0);
+            playerReceivesDamage.transform.rotation = new Quaternion(0, 180, 0, 0);
         }
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = 3;
@@ -110,8 +113,23 @@ public class playerController : MonoBehaviour
         if(life <= 0)
         {
             //playerDeath
-			vidas--;
-			life = 100;
+            playerIdle.SetActive(false);
+            playerMove.SetActive(false);
+            playerHitNormal.SetActive(false);
+            playerReceivesDamage.SetActive(false);
+            timerDeath -= Time.deltaTime;
+            if(timerDeath <= 0)
+            {
+                vidas--;
+                playerDeath.SetActive(false);
+                life = 100;
+                timerDeath = 5;
+            }
+            else
+            {
+                life = 0;
+                playerDeath.gameObject.SetActive(true);
+            }
         }
         //HIT 
 		if(Input.GetKey(KeyCode.Mouse0)) 
