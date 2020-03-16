@@ -13,6 +13,7 @@ public class playerController : MonoBehaviour
     public TextMesh lifestext;
 	public bool hitting;
     public bool damage;
+    public bool itemTaken;
 	public GameObject playerIdle;
 	public GameObject playerMove;
 	public GameObject playerHitNormal;

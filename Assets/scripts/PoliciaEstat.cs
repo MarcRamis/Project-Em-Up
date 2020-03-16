@@ -86,4 +86,12 @@ public class PoliciaEstat: MonoBehaviour
 			}
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0)
+        {
+            vida = 0;
+        }
+    }
 }
