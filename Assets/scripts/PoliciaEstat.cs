@@ -63,14 +63,16 @@ public class PoliciaEstat: MonoBehaviour
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(false);
                 }
-                else if(player.GetComponent<playerController>().damage == false && this.transform.rotation != player.GetComponent<playerController>().playerMove.transform.rotation)
+                else if(player.GetComponent<playerController>().damage == false && this.transform.rotation 
+                    != player.GetComponent<playerController>().playerMove.transform.rotation 
+                    && player.GetComponent<playerController>().hitTimer <= 0)   
                 {
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(false);
                     enemyTakingDamage.SetActive(true);
                     vida -= 30;
                 }
-            }
+            } 
         }
         else
         {

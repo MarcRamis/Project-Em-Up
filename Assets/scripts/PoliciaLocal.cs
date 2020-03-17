@@ -24,7 +24,6 @@ public class PoliciaLocal : MonoBehaviour
         if (this.transform.position.y > -3.0f)
         {
             this.transform.Translate(new Vector3(0, -1, -1.2f) * Time.deltaTime * speed);
-
         }
         if (Cam2d.WorldToScreenPoint(this.transform.position).x < 1050)
         {
