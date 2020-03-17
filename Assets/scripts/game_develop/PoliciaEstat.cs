@@ -12,6 +12,7 @@ public class PoliciaEstat: MonoBehaviour
     public GameObject enemyAttack;
     public GameObject enemyTakingDamage;
     public GameObject enemyDeath;
+    public GameObject scene;
     public float timerAttack;
 	public float timerdeath;
     public int vida;
@@ -84,6 +85,7 @@ public class PoliciaEstat: MonoBehaviour
             enemyDeath.SetActive(true);
 			if(timerdeath <= 0) 
 			{
+                scene.GetComponent<screen_collision>().enemyCounter -= 1;
 				Destroy(this.gameObject);
 			}
         }
