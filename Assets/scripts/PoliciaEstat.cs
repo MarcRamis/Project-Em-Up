@@ -89,8 +89,9 @@ public class PoliciaEstat: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0)
+        if(other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 && other.GetComponent<Barril>().taken == false)
         {
+            other.GetComponent<Barril>().destroyItem = true;
             vida = 0;
         }
     }
