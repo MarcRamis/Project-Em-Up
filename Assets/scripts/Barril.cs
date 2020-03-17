@@ -18,13 +18,13 @@ public class Barril : MonoBehaviour
     {
         if(destroyItem == false)
         {
-            if (Vector3.Distance(this.transform.position, player.transform.position) < 3 && Input.GetKey(KeyCode.K) && taken == false && player.GetComponent<playerController>().itemTaken == false && timeThrow <= 0 && player.GetComponent<playerController>().damage == false)
+            if (Vector3.Distance(this.transform.position, player.transform.position) < 3 && Input.GetKey(KeyCode.E) && taken == false && player.GetComponent<playerController>().itemTaken == false && timeThrow <= 0 && player.GetComponent<playerController>().damage == false)
             {
                 taken = true;
                 player.GetComponent<playerController>().itemTaken = true;
                 timeThrow = 0.2f;
             }
-            else if (!Input.GetKey(KeyCode.K) && player.GetComponent<playerController>().damage == false)
+            else if (!Input.GetKey(KeyCode.E) && player.GetComponent<playerController>().damage == false)
             {
                 taken = false;
                 if (player.GetComponent<playerController>().itemTaken == true)
