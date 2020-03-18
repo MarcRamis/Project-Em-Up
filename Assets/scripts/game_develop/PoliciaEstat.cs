@@ -15,9 +15,13 @@ public class PoliciaEstat: MonoBehaviour
     public GameObject scene;
     public float timerAttack;
 	public float timerdeath;
+    public bool enemyCollision;
     public int vida;
     public float speed;
-	
+
+    public GameObject EnemyCollision;
+    Vector3 move;
+
     // Update is called once per frame
     void Update()
     {
@@ -31,13 +35,26 @@ public class PoliciaEstat: MonoBehaviour
                 this.transform.rotation = new Quaternion(0, 0, 0, 0);
             if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
-            if (Vector3.Distance(this.transform.position, player.transform.position) > 1 && Vector3.Distance(this.transform.position, player.transform.position) < 15)
+            if (Vector3.Distance(this.transform.position, player.transform.position) > 2 && Vector3.Distance(this.transform.position, player.transform.position) < 15)
             {
-                Vector3 move = (player.transform.position);
-                this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
-                enemyAttack.SetActive(false);
-                enemyIdle.SetActive(false);
-                enemyRun.SetActive(true);
+                if(enemyCollision == false)
+                {
+                    Vector3 move = (player.transform.position);
+                    this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
+                    enemyAttack.SetActive(false);
+                    enemyIdle.SetActive(false);
+                    enemyRun.SetActive(true);
+                }
+                if(enemyCollision == true)
+                {
+                    move = (new Vector3(player.transform.position.x + 1000, player.transform.position.y, player.transform.position.z - 500));
+                    if(EnemyCollision.tag == "Enemy_Policia_estat")
+                    EnemyCollision.GetComponent<PoliciaEstat>().enemyCollision = false;
+                    EnemyCollision.transform.position -= ((move - transform.position).normalized * Time.deltaTime * speed*2);
+                    enemyAttack.SetActive(false);
+                    enemyIdle.SetActive(false);
+                    enemyRun.SetActive(true);
+                }
             }
             else if (Vector3.Distance(this.transform.position, player.transform.position) >= 15)
             {
@@ -55,7 +72,7 @@ public class PoliciaEstat: MonoBehaviour
                     enemyAttack.SetActive(true);
                     player.GetComponent<playerController>().damage = true;
                     if(timerAttack <= -1)
-                    timerAttack = 2;
+                    timerAttack = 5;
                 }
                 if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
                 {
@@ -97,6 +114,19 @@ public class PoliciaEstat: MonoBehaviour
         {
             other.GetComponent<Barril>().destroyItem = true;
             vida = 0;
+        }
+        if(other.tag == "Enemy_Policia_estat")
+        {
+            EnemyCollision = other.gameObject;
+            if(EnemyCollision.GetComponent<PoliciaEstat>().vida > 0)
+            enemyCollision = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Enemy_Policia_estat")
+        {
+            enemyCollision = false;
         }
     }
 }

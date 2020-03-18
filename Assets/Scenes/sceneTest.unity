@@ -6921,6 +6921,11 @@ PrefabInstance:
       propertyPath: vida
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2707600452462151095, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: scene
+      value: 
+      objectReference: {fileID: 872804431}
     - target: {fileID: 2707600452784381148, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
       propertyPath: m_Color.r

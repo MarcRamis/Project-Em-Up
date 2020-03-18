@@ -20,7 +20,7 @@ public class screen_collision : MonoBehaviour
         //Screen translation
         if (enemyCounter <= 0 && Cam2d.WorldToScreenPoint(player.transform.position).x > 0)
         {
-            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x + 0.01f, playerCamera.transform.position.y, playerCamera.transform.position.z);
+            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x + 0.05f, playerCamera.transform.position.y, playerCamera.transform.position.z);
         }
     }
 }

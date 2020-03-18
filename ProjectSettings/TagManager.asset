@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - barreel
+  - Enemy
+  - Enemy_Policia_estat
+  - Enemy_policia_local
   layers:
   - Default
   - TransparentFX

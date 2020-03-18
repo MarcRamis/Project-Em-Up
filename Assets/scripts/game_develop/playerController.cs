@@ -96,7 +96,7 @@ public class playerController : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0) && hitTimer <= 0)
             {
 
-                hitTimer = 0.35f;
+                hitTimer = 0.1f;
                 playerHitNormal.transform.rotation = playerMove.transform.rotation;
                 playerIdle.SetActive(false);
                 playerMove.SetActive(false);
