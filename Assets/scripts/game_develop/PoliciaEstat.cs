@@ -72,7 +72,7 @@ public class PoliciaEstat: MonoBehaviour
                     enemyAttack.SetActive(true);
                     player.GetComponent<playerController>().damage = true;
                     if(timerAttack <= -1)
-                    timerAttack = 5;
+                    timerAttack = 2;
                 }
                 if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
                 {
@@ -110,7 +110,9 @@ public class PoliciaEstat: MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 && other.GetComponent<Barril>().taken == false && other.GetComponent<Barril>().destroyItem == false)
+        if(other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 && other.GetComponent<Barril>().taken == false 
+            && other.GetComponent<Barril>().destroyItem == false && ( other.GetComponent<Barril>().right == true 
+            || other.GetComponent<Barril>().left == true ) )
         {
             other.GetComponent<Barril>().destroyItem = true;
             vida = 0;

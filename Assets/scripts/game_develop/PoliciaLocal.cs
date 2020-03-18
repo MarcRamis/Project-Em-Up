@@ -72,7 +72,7 @@ public class PoliciaLocal : MonoBehaviour
                     enemyAttack.SetActive(true);
                     player.GetComponent<playerController>().damage = true;
                     if (timerAttack <= -1)
-                        timerAttack = 5;
+                        timerAttack = 2;
                 }
                 if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
                 {

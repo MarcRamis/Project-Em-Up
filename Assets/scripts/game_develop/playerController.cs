@@ -14,6 +14,7 @@ public class playerController : MonoBehaviour
 	public bool hitting;
     public bool damage;
     public bool itemTaken;
+    public GameObject itemTakenGO;
 	public GameObject playerIdle;
 	public GameObject playerMove;
 	public GameObject playerHitNormal;
@@ -96,7 +97,7 @@ public class playerController : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0) && hitTimer <= 0)
             {
 
-                hitTimer = 0.1f;
+                hitTimer = 0.35f;
                 playerHitNormal.transform.rotation = playerMove.transform.rotation;
                 playerIdle.SetActive(false);
                 playerMove.SetActive(false);
