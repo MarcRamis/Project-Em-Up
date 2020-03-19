@@ -47,10 +47,13 @@ public class PoliciaLocal : MonoBehaviour
                 }
                 if (enemyCollision == true)
                 {
-                    move = (new Vector3(player.transform.position.x + 1000, player.transform.position.y, player.transform.position.z - 500));
+                    move = (new Vector3(this.transform.position.x - 1000, player.transform.position.y, player.transform.position.z));
                     if (EnemyCollision.tag == "Enemy_Policia_estat")
                         EnemyCollision.GetComponent<PoliciaEstat>().enemyCollision = false;
-                    EnemyCollision.transform.position -= ((move - transform.position).normalized * Time.deltaTime * speed);
+                    if (rotVectorEnemy.x - rotVectorEnemy2.x < 0)
+                        EnemyCollision.transform.position -= ((move - transform.position).normalized * Time.deltaTime * speed * 2);
+                    else if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
+                        EnemyCollision.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed * 2);
                     enemyAttack.SetActive(false);
                     enemyIdle.SetActive(false);
                     enemyRun.SetActive(true);
@@ -70,9 +73,12 @@ public class PoliciaLocal : MonoBehaviour
                     enemyTakingDamage.SetActive(false);
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(true);
-                    player.GetComponent<playerController>().damage = true;
-                    if (timerAttack <= -1)
-                        timerAttack = 2;
+                    if (player.GetComponent<playerController>().inmunnity <= 0)
+                    {
+                        player.GetComponent<playerController>().damage = true;
+                        if (timerAttack <= 0)
+                            timerAttack = 2;
+                    }
                 }
                 if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
                 {

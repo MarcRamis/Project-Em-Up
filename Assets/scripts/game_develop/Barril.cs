@@ -19,10 +19,16 @@ public class Barril : MonoBehaviour
     {
         if(destroyItem == false)
         {
+            if(thrown == true && left == false && right == false && timerDestroy > 0 && !Input.GetKey(KeyCode.Mouse1))
+            {
+                thrown = false;
+                timeThrow = 0;
+            }
             if (Vector3.Distance(this.transform.position, player.transform.position) < 3 && Input.GetKeyDown(KeyCode.Mouse1) 
                 && taken == false && player.GetComponent<playerController>().itemTaken == false 
                 && timeThrow <= 0 && player.GetComponent<playerController>().damage == false)
             {
+                thrown = false;
                 taken = true;
                 player.GetComponent<playerController>().itemTaken = true;
                 player.GetComponent<playerController>().itemTakenGO = this.gameObject;

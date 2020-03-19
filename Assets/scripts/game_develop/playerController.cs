@@ -22,6 +22,7 @@ public class playerController : MonoBehaviour
     public GameObject playerDeath;
 
     public float hitTimer = 0;
+    public float inmunnity = 0.8f;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,19 @@ public class playerController : MonoBehaviour
     {
 		if(hitting == false && damage == false && life > 0) 
 		{
+            if(inmunnity > 0)
+            {
+                inmunnity -= Time.deltaTime;
+                playerIdle.GetComponent<SpriteRenderer>().color = Color.green;
+                playerMove.GetComponent<SpriteRenderer>().color = Color.green;
+                playerHitNormal.GetComponent<SpriteRenderer>().color = Color.green;
+            }
+            else if(playerIdle.GetComponent<SpriteRenderer>().color == Color.green)
+            {
+                playerIdle.GetComponent<SpriteRenderer>().color = Color.white;
+                playerMove.GetComponent<SpriteRenderer>().color = Color.white;
+                playerHitNormal.GetComponent<SpriteRenderer>().color = Color.white;
+            }
             if (Input.GetKey(KeyCode.W) && this.transform.position.y < -1f)
             {
                 this.transform.Translate(new Vector3(0, 1, 1.2f) * Time.deltaTime * speed);
@@ -96,7 +110,6 @@ public class playerController : MonoBehaviour
 		{
             if (Input.GetKey(KeyCode.Mouse0) && hitTimer <= 0)
             {
-
                 hitTimer = 0.35f;
                 playerHitNormal.transform.rotation = playerMove.transform.rotation;
                 playerIdle.SetActive(false);
@@ -113,7 +126,8 @@ public class playerController : MonoBehaviour
             {
                 life -= 10;
                 playerReceivesDamage.SetActive(false);
-                timerdamage = 1;
+                inmunnity = 0.8f;
+                timerdamage = 0.2f;
                 damage = false;
             }
             else

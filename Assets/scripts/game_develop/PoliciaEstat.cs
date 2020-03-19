@@ -15,12 +15,14 @@ public class PoliciaEstat: MonoBehaviour
     public GameObject scene;
     public float timerAttack;
 	public float timerdeath;
+    public float timerDamage = 0.3f;
     public bool enemyCollision;
     public int vida;
     public float speed;
 
     public GameObject EnemyCollision;
     Vector3 move;
+    public bool enemytakesDamage;
 
     // Update is called once per frame
     void Update()
@@ -47,10 +49,13 @@ public class PoliciaEstat: MonoBehaviour
                 }
                 if(enemyCollision == true)
                 {
-                    move = (new Vector3(player.transform.position.x + 1000, player.transform.position.y, player.transform.position.z - 500));
+                    move = (new Vector3(this.transform.position.x - 1000, player.transform.position.y, player.transform.position.z));
                     if(EnemyCollision.tag == "Enemy_Policia_estat")
                     EnemyCollision.GetComponent<PoliciaEstat>().enemyCollision = false;
-                    EnemyCollision.transform.position -= ((move - transform.position).normalized * Time.deltaTime * speed*2);
+                    if (rotVectorEnemy.x - rotVectorEnemy2.x < 0)
+                        EnemyCollision.transform.position -= ((move - transform.position).normalized * Time.deltaTime * speed*2);
+                    else if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
+                        EnemyCollision.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed * 2);
                     enemyAttack.SetActive(false);
                     enemyIdle.SetActive(false);
                     enemyRun.SetActive(true);
@@ -70,9 +75,12 @@ public class PoliciaEstat: MonoBehaviour
                     enemyTakingDamage.SetActive(false);
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(true);
-                    player.GetComponent<playerController>().damage = true;
-                    if(timerAttack <= -1)
-                    timerAttack = 2;
+                    if(player.GetComponent<playerController>().inmunnity <= 0)
+                    {
+                        player.GetComponent<playerController>().damage = true;
+                        if (timerAttack <= 0)
+                        timerAttack = 2;
+                    }
                 }
                 if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
                 {
@@ -85,10 +93,23 @@ public class PoliciaEstat: MonoBehaviour
                     != player.GetComponent<playerController>().playerMove.transform.rotation 
                     && player.GetComponent<playerController>().hitTimer <= 0)   
                 {
-                    enemyRun.SetActive(false);
-                    enemyAttack.SetActive(false);
-                    enemyTakingDamage.SetActive(true);
+                    enemytakesDamage = true;
                     vida -= 30;
+                }
+                if(enemytakesDamage == true)
+                {
+                    if(timerDamage > 0)
+                    {
+                        timerDamage -= Time.deltaTime;
+                        enemyRun.SetActive(false);
+                        enemyAttack.SetActive(false);
+                        enemyTakingDamage.SetActive(true);
+                    }
+                    else
+                    {
+                        enemytakesDamage = false;
+                        timerDamage = 0.3f;
+                    }
                 }
             } 
         }
