@@ -101,6 +101,7 @@ public class PoliciaEstat: MonoBehaviour
                     if(timerDamage > 0)
                     {
                         timerDamage -= Time.deltaTime;
+                        enemyIdle.SetActive(false);
                         enemyRun.SetActive(false);
                         enemyAttack.SetActive(false);
                         enemyTakingDamage.SetActive(true);
