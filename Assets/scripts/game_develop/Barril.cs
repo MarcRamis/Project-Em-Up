@@ -19,11 +19,14 @@ public class Barril : MonoBehaviour
     {
         if(destroyItem == false)
         {
+            //Arregla un glich que ens passava quan llencaves un barril a prop d'un altre, el llençat es quedava en mode "thrown" y explotava quan un enemic s'apropava.
             if(thrown == true && left == false && right == false && timerDestroy > 0 && !Input.GetKey(KeyCode.Mouse1))
             {
                 thrown = false;
                 timeThrow = 0;
             }
+
+            //El personatge ha agafat el barril mantenint botó dret del mouse pero encara no l'ha llençat.
             if (Vector3.Distance(this.transform.position, player.transform.position) < 3 && Input.GetKeyDown(KeyCode.Mouse1) 
                 && taken == false && player.GetComponent<playerController>().itemTaken == false 
                 && timeThrow <= 0 && player.GetComponent<playerController>().damage == false)
@@ -32,9 +35,10 @@ public class Barril : MonoBehaviour
                 taken = true;
                 player.GetComponent<playerController>().itemTaken = true;
                 player.GetComponent<playerController>().itemTakenGO = this.gameObject;
-                timeThrow = 0.2f;            
+                timeThrow = 0.2f;
             }
 
+            //El personatge deixa de tenir el barril i el llença.
             else if (!Input.GetKey(KeyCode.Mouse1) && player.GetComponent<playerController>().damage == false 
                 && player.GetComponent<playerController>().itemTakenGO == this.gameObject)
             {
@@ -44,6 +48,7 @@ public class Barril : MonoBehaviour
                     this.transform.GetChild(0).gameObject.SetActive(true);
             }
 
+            //Si el personatge rep mal mentres transporta un barril, el deixa caure.
             else if (player.GetComponent<playerController>().damage == true && taken == true
                 && player.GetComponent<playerController>().itemTakenGO == this.gameObject)
             {
@@ -56,12 +61,14 @@ public class Barril : MonoBehaviour
                 taken = false;
             }
 
+            //Transporta la posició del barril cap al personatge.
             if (taken == true)
             {
                 this.transform.position = new Vector3(player.transform.position.x, 
                     player.transform.position.y + 1, player.transform.position.z);
             }
 
+            //Aplica el moviment del barril un cop llançat y controla que sigui cap a la dreta o cap a l'esquerra dins d'un temps delimitat per timeThrow.
             else if (player.GetComponent<playerController>().itemTaken == true 
                 && player.GetComponent<playerController>().itemTakenGO == this.gameObject)
             {
@@ -74,7 +81,10 @@ public class Barril : MonoBehaviour
                  
                     thrown = false;
                 }
+
                 timeThrow -= Time.deltaTime;
+
+                //Mentres timeThrow sigui major a 0, el barril estarà en moviment.
                 if (timeThrow > 0)
                 {
                     //RIGHT
@@ -86,6 +96,8 @@ public class Barril : MonoBehaviour
                         this.transform.position = new Vector3(this.transform.position.x - 0.5f, player.transform.position.y - 0.5f, 
                             player.transform.position.z);
                 }
+
+                //Quan timeThrow sigui menor o igual a 0 es pararà.
                 else if (timeThrow <= 0)
                 {
                     right = false;
@@ -96,6 +108,7 @@ public class Barril : MonoBehaviour
             }
         }
 
+        //Codi per destruir el barril i eliminar l'sprite de l'escena després d'un temps definit per timerDestroy
         else
         {
             player.GetComponent<playerController>().itemTaken = false;
