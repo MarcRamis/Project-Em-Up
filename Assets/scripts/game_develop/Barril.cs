@@ -92,7 +92,8 @@ public class Barril : MonoBehaviour
 
         else
         {
-            player.GetComponent<playerController>().itemTakenGO = null;
+            player.GetComponent<playerController>().itemTaken = false;
+            //player.GetComponent<playerController>().itemTakenGO = null;
             timerDestroy -= Time.deltaTime;
             this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
             barreelDestroy.SetActive(true);
