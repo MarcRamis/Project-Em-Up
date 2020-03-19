@@ -37,6 +37,7 @@ public class PoliciaEstat: MonoBehaviour
                 this.transform.rotation = new Quaternion(0, 0, 0, 0);
             if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
+
             if (Vector3.Distance(this.transform.position, player.transform.position) > 2 && Vector3.Distance(this.transform.position, player.transform.position) < 15)
             {
                 if(enemyCollision == false)

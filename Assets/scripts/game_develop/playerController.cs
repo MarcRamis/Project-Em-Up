@@ -33,7 +33,6 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //HIT TIMER
         if (hitTimer > 0)
             hitTimer -= Time.deltaTime;
 
@@ -58,27 +57,31 @@ public class playerController : MonoBehaviour
                 playerMove.GetComponent<SpriteRenderer>().color = Color.white;
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.white;
             }
+            //Moviment cap amunt amb la Key: W
             if (Input.GetKey(KeyCode.W) && this.transform.position.y < -1f)
             {
                 this.transform.Translate(new Vector3(0, 1, 1.2f) * Time.deltaTime * speed);
             }
+            //Moviment cap a l'esquerra amb la Key: A
             if (Input.GetKey(KeyCode.A) && Cam2d.WorldToScreenPoint(this.transform.position).x > 20)
             {
               this.transform.Translate(Vector3.left * Time.deltaTime * speed);
-                //SPRITE ROTATION LEFT
+                //Sprite que fa rotar al player cap a l'esquerra.
                 playerIdle.transform.rotation = new Quaternion(0, 0, 0, 0);
                 playerMove.transform.rotation = new Quaternion(0, 0, 0, 0);
                 playerReceivesDamage.transform.rotation = new Quaternion(0, 0, 0, 0);
             }
+            //Moviment cap abaix amb la Key: S
             if (Input.GetKey(KeyCode.S) && this.transform.position.y > -3.0f)
             {
                 this.transform.Translate(new Vector3(0, -1, -1.2f) * Time.deltaTime * speed);
 
             }
+            //Moviment cap a la dreta amb la Key: D
             if (Input.GetKey(KeyCode.D) && Cam2d.WorldToScreenPoint(this.transform.position).x < 1300)
             {
                 this.transform.Translate(Vector3.right * Time.deltaTime * speed);
-                //SPRITE ROTATION RIGHT
+                //Sprite que fa rotar al player cap a la dreta.
                 playerIdle.transform.rotation = new Quaternion(0, 180, 0, 0);
                 playerMove.transform.rotation = new Quaternion(0, 180, 0, 0);
                 playerReceivesDamage.transform.rotation = new Quaternion(0, 180, 0, 0);
@@ -92,7 +95,7 @@ public class playerController : MonoBehaviour
                 speed = 2;
             }
             
-            //ANIMATION
+            //Animació
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 playerIdle.SetActive(false);
@@ -159,8 +162,8 @@ public class playerController : MonoBehaviour
                 playerDeath.gameObject.SetActive(true);
             }
         }
-        //HIT 
-		if(Input.GetKey(KeyCode.Mouse0)) 
+        //HIT  == CLICK DRET del mouse. 
+        if (Input.GetKey(KeyCode.Mouse0)) 
 		{
 			hitting = true;
 		}
@@ -169,7 +172,7 @@ public class playerController : MonoBehaviour
 			hitting = false;
 			playerHitNormal.SetActive(false);
 		}
-        //RUN
+        //RUN : SHIFT
 		if(Input.GetKey(KeyCode.LeftShift)) 
 		{
 			speed = 4;
