@@ -56,6 +56,8 @@ public class PoliciaEstat: MonoBehaviour
                     move = (new Vector3(this.transform.position.x - 1000, player.transform.position.y, player.transform.position.z));
                     if(EnemyCollision.tag == "Enemy_Policia_estat")
                     EnemyCollision.GetComponent<PoliciaEstat>().enemyCollision = false;
+                    if(EnemyCollision.tag == "Enemy_policia_local")
+                    EnemyCollision.GetComponent<PoliciaLocal>().enemyCollision = false;
                     if (rotVectorEnemy.x - rotVectorEnemy2.x < 0)
                         EnemyCollision.transform.position -= ((move - transform.position).normalized * Time.deltaTime * speed*2);
                     else if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
@@ -88,7 +90,7 @@ public class PoliciaEstat: MonoBehaviour
                         timerAttack = 2;
                     }
                 }
-                //aquí ees queda en l'espera del cooldown 'timerAttack' per atacar
+                //aquí es queda a l'espera del cooldown 'timerAttack' per atacar
                 if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
                 {
                     enemyIdle.SetActive(true);
@@ -157,11 +159,23 @@ public class PoliciaEstat: MonoBehaviour
             if(EnemyCollision.GetComponent<PoliciaEstat>().vida > 0)
             enemyCollision = true;
         }
+        //Detecta si està col.lisionant amb un policia local
+        if (other.tag == "Enemy_policia_local")
+        {
+            EnemyCollision = other.gameObject;
+            if (EnemyCollision.GetComponent<PoliciaLocal>().vida > 0)
+                enemyCollision = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         //Detecta si ha deixat de col.lisionar amb un policia estat
         if (other.tag == "Enemy_Policia_estat")
+        {
+            enemyCollision = false;
+        }
+        //Detecta si ha deixat de col.lisionar amb un policia local
+        if (other.tag == "Enemy_policia_local")
         {
             enemyCollision = false;
         }

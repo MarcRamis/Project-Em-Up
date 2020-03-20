@@ -21,6 +21,8 @@ public class PoliciaLocal : MonoBehaviour
 
     public GameObject EnemyCollision;
     Vector3 move;
+    public bool enemytakesDamage;
+    public float timerDamage;
 
     // Update is called once per frame
     void Update()
@@ -55,6 +57,8 @@ public class PoliciaLocal : MonoBehaviour
                     move = (new Vector3(this.transform.position.x - 1000, player.transform.position.y, player.transform.position.z));
                     if (EnemyCollision.tag == "Enemy_Policia_estat")
                         EnemyCollision.GetComponent<PoliciaEstat>().enemyCollision = false;
+                    if (EnemyCollision.tag == "Enemy_policia_local")
+                        EnemyCollision.GetComponent<PoliciaLocal>().enemyCollision = false;
                     if (rotVectorEnemy.x - rotVectorEnemy2.x < 0)
                         EnemyCollision.transform.position -= ((move - transform.position).normalized * Time.deltaTime * speed * 2);
                     else if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
@@ -87,7 +91,7 @@ public class PoliciaLocal : MonoBehaviour
                             timerAttack = 2;
                     }
                 }
-                //aquí ees queda en l'espera del cooldown 'timerAttack' per atacar
+                //aquí es queda a l'espera del cooldown 'timerAttack' per atacar
                 if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
                 {
                     enemyIdle.SetActive(true);
@@ -100,11 +104,24 @@ public class PoliciaLocal : MonoBehaviour
                     != player.GetComponent<playerController>().playerMove.transform.rotation
                     && player.GetComponent<playerController>().hitTimer <= 0)
                 {
-                    enemyIdle.SetActive(false);
-                    enemyRun.SetActive(false);
-                    enemyAttack.SetActive(false);
-                    enemyTakingDamage.SetActive(true);
+                    enemytakesDamage = true;
                     vida -= 50;
+                }
+                if (enemytakesDamage == true)
+                {
+                    if (timerDamage > 0)
+                    {
+                        timerDamage -= Time.deltaTime;
+                        enemyIdle.SetActive(false);
+                        enemyRun.SetActive(false);
+                        enemyAttack.SetActive(false);
+                        enemyTakingDamage.SetActive(true);
+                    }
+                    else
+                    {
+                        enemytakesDamage = false;
+                        timerDamage = 0.3f;
+                    }
                 }
             }
         }
@@ -140,11 +157,23 @@ public class PoliciaLocal : MonoBehaviour
             if (EnemyCollision.GetComponent<PoliciaEstat>().vida > 0)
                 enemyCollision = true;
         }
+        //Detecta si està col.lisionant amb un policia local
+        if (other.tag == "Enemy_policia_local")
+        {
+            EnemyCollision = other.gameObject;
+            if (EnemyCollision.GetComponent<PoliciaLocal>().vida > 0)
+                enemyCollision = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         //Detecta si ha deixat de col.lisionar amb un policia estat
         if (other.tag == "Enemy_Policia_estat")
+        {
+            enemyCollision = false;
+        }
+        //Detecta si ha deixat de col.lisionar amb un policia local
+        if (other.tag == "Enemy_policia_local")
         {
             enemyCollision = false;
         }

@@ -362,7 +362,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1085fa0540fe64545bdb4e9c99187815, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -600,8 +600,8 @@ MonoBehaviour:
   player: {fileID: 442655586}
   Cam2d: {fileID: 1984596393}
   speed: 2
-  health: 200
-  timerMove: 5
+  health: 0
+  timerMove: 0
   isTimeToMove: 0
 --- !u!54 &57869843
 Rigidbody:
@@ -701,6 +701,8 @@ MonoBehaviour:
   vida: 100
   speed: 2
   EnemyCollision: {fileID: 0}
+  enemytakesDamage: 0
+  timerDamage: 0.3
 --- !u!136 &69341877
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1575,7 +1577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 769782e6c6327b54699adba51de1c9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCounter: 2
+  enemyCounter: 1
   camera: {fileID: 1162830591}
 --- !u!4 &168496735
 Transform:
@@ -3718,6 +3720,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 1162830591}
+    - target: {fileID: 7124976708472851122, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab769124921899c4896d6b3f483896b1, type: 3}
 --- !u!4 &420075635 stripped
@@ -4038,6 +4045,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124976708472851122, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab769124921899c4896d6b3f483896b1, type: 3}
@@ -4710,7 +4722,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1085fa0540fe64545bdb4e9c99187815, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5771,6 +5783,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7124976708472851122, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab769124921899c4896d6b3f483896b1, type: 3}
 --- !u!4 &705822161 stripped
@@ -6424,6 +6441,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124976708472851122, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab769124921899c4896d6b3f483896b1, type: 3}
@@ -7277,6 +7299,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 1162830591}
+    - target: {fileID: 7124976708472851122, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab769124921899c4896d6b3f483896b1, type: 3}
 --- !u!4 &832261339 stripped
@@ -7459,6 +7486,8 @@ MonoBehaviour:
   vida: 100
   speed: 2
   EnemyCollision: {fileID: 0}
+  enemytakesDamage: 0
+  timerDamage: 0.3
 --- !u!1 &866668470
 GameObject:
   m_ObjectHideFlags: 0
@@ -9246,6 +9275,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7124976708472851122, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab769124921899c4896d6b3f483896b1, type: 3}
 --- !u!4 &1173659523 stripped
@@ -10397,6 +10431,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7124976708472851122, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab769124921899c4896d6b3f483896b1, type: 3}
 --- !u!4 &1276065488 stripped
@@ -10843,7 +10882,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1085fa0540fe64545bdb4e9c99187815, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -11931,6 +11970,8 @@ MonoBehaviour:
   vida: 100
   speed: 2
   EnemyCollision: {fileID: 0}
+  enemytakesDamage: 0
+  timerDamage: 0.3
 --- !u!1 &1530965341
 GameObject:
   m_ObjectHideFlags: 0
@@ -12607,6 +12648,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 1162830591}
+    - target: {fileID: 7124976708472851122, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab769124921899c4896d6b3f483896b1, type: 3}
 --- !u!4 &1592031163 stripped
@@ -13425,6 +13471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124976708472851122, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab769124921899c4896d6b3f483896b1, type: 3}
@@ -14675,6 +14726,8 @@ MonoBehaviour:
   vida: 100
   speed: 2
   EnemyCollision: {fileID: 0}
+  enemytakesDamage: 0
+  timerDamage: 0.3
 --- !u!1 &1861259271
 GameObject:
   m_ObjectHideFlags: 0
@@ -15492,7 +15545,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1085fa0540fe64545bdb4e9c99187815, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
