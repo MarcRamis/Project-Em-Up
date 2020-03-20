@@ -188,7 +188,7 @@ public class playerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "bullet")
+        if(other.tag == "bullet" && inmunnity <= 0)
         {
             damage = true;
             life -= 20;

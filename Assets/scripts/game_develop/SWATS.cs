@@ -6,13 +6,17 @@ public class SWATS : MonoBehaviour
 {
     //Variables per controlar les físiques del jugador.
     public GameObject player;
-    public GameObject playerIdle;
-
+    public GameObject enemyIdle;
+    public GameObject enemyDamage;
+    public GameObject enemyDeath;
+    public GameObject screen;
 
     public Camera Cam2d;
 
     public float speed = 2f;
     public float speedShoot = 0f;
+    public float timerDamage = 0.8f;
+    public float timerDeath = 3;
     public int health;
 
     //Variables per manetjar la bala
@@ -27,6 +31,8 @@ public class SWATS : MonoBehaviour
 
     //Booleans per controlar les direccions
     public bool right, left;
+
+    public bool damage;
 
     Vector3 move;
 
@@ -67,14 +73,12 @@ public class SWATS : MonoBehaviour
             }
 
             //Colisió de càmera amb les x i de l'objecte amb les y.
-            if ( ( Cam2d.WorldToScreenPoint(this.transform.position).x > 20 && Cam2d.WorldToScreenPoint(this.transform.position).x < 1300 ) 
-                && ( this.transform.position.y < - 1 && this.transform.position.y > -3 ) )
+            if (Vector3.Distance(this.transform.position, player.transform.position) < 10 && health > 0)
             {
-                this.transform.position = Vector3.Lerp(this.transform.position,
-                    new Vector3(this.transform.position.x, player.transform.position.y, player.transform.position.z), Time.deltaTime * speed);
+                this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, player.transform.position.y, player.transform.position.z), Time.deltaTime * speed);
 
                 //Si la distancia entre el jugador i l'enemic es menor al valor indicat, el contador es major o igual que el contador de temps i no s'ha creat cap bala.
-                if (Vector3.Distance(this.transform.position, player.transform.position) < 20 && shootTimer >= 3.0f && bulletAux == null)
+                if (Vector3.Distance(this.transform.position, player.transform.position) < 20 && Vector3.Distance(this.transform.position, player.transform.position) > 2 && shootTimer >= 3.0f && bulletAux == null)
                 {
                     bulletAux = Instantiate(bulletPrefab, bullet.transform.position, bullet.transform.rotation); //Crear bala
                 }
@@ -90,7 +94,7 @@ public class SWATS : MonoBehaviour
                     bulletAux.transform.Translate(new Vector3(15, 0, 0) * Time.deltaTime);
                 }
 
-                if (bulletAux != null && (Cam2d.WorldToScreenPoint(bulletAux.transform.position).x < -200 || Cam2d.WorldToScreenPoint(bulletAux.transform.position).x > 1500) )
+                if (bulletAux != null && Vector3.Distance(this.transform.position, bulletAux.transform.position) > 15)
                 {
                     Destroy(bulletAux);
                 }
@@ -98,21 +102,51 @@ public class SWATS : MonoBehaviour
                 //Resetetjar el timer
                 if (shootTimer >= 6.0f) shootTimer = 0.0f;
 
-                if (Vector3.Distance(this.transform.position, player.transform.position) < 3 && Input.GetKey(KeyCode.Mouse0) 
-                    && player.GetComponent<playerController>().damage == false)
+                if (Vector3.Distance(this.transform.position, player.transform.position) < 3 && player.GetComponent<playerController>().hitTimer <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false && damage == false)
                 {
-
+                    damage = true;
+                    enemyIdle.SetActive(false);
+                    enemyDamage.SetActive(true);
                 }
-
-            }
-
-            else if ( (this.transform.position.y > -1 || this.transform.position.y < -3) || 
-                (Cam2d.WorldToScreenPoint(bulletAux.transform.position).x < 0 || Cam2d.WorldToScreenPoint(bulletAux.transform.position).x > 1360) )
-            {
-                this.transform.Translate(new Vector3(0, 0, 0) * Time.deltaTime * speed);
+                else if (damage == false)
+                {
+                    enemyIdle.SetActive(true);
+                    enemyDamage.SetActive(false);
+                }
+                if(damage == true)
+                {
+                    timerDamage -= Time.deltaTime;
+                    if(timerDamage <= 0)
+                    {
+                        damage = false;
+                        health -= 20;
+                        timerDamage = 0.8f;
+                    }
+                }
             }
         }
-     
+        else
+        {
+            timerDeath -= Time.deltaTime;
+            enemyIdle.SetActive(false);
+            enemyDamage.SetActive(false);
+            enemyDeath.SetActive(true);
+            if (timerDeath <= 0)
+            {
+                screen.GetComponent<screen_collision>().enemyCounter -= 1;
+                Destroy(this.gameObject);
+            }
+        }
+
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 && other.GetComponent<Barril>().taken == false && other.GetComponent<Barril>().destroyItem == false && (other.GetComponent<Barril>().right == true || other.GetComponent<Barril>().left == true))
+        {
+            other.GetComponent<Barril>().destroyItem = true;
+            health = 0;
+        }
+    }
+
 }
