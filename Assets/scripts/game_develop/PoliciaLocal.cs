@@ -99,6 +99,7 @@ public class PoliciaLocal : MonoBehaviour
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(false);
                 }
+
                 //en el càs de que li peguin dintre del rang rebrà mal i se li resta la vida
                 else if (player.GetComponent<playerController>().damage == false && this.transform.rotation
                     != player.GetComponent<playerController>().playerMove.transform.rotation
@@ -107,6 +108,7 @@ public class PoliciaLocal : MonoBehaviour
                     enemytakesDamage = true;
                     vida -= 50;
                 }
+
                 if (enemytakesDamage == true)
                 {
                     if (timerDamage > 0)
@@ -117,6 +119,7 @@ public class PoliciaLocal : MonoBehaviour
                         enemyAttack.SetActive(false);
                         enemyTakingDamage.SetActive(true);
                     }
+
                     else
                     {
                         enemytakesDamage = false;
