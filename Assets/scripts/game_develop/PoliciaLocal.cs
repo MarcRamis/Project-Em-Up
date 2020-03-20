@@ -28,15 +28,19 @@ public class PoliciaLocal : MonoBehaviour
         //Follow character
         Vector3 rotVectorEnemy = cam2d.WorldToScreenPoint(this.transform.position);
         Vector3 rotVectorEnemy2 = cam2d.WorldToScreenPoint(player.transform.position);
-
+        
+        //Activa totes les mecàniques del enemic sempre i quant tingui vida
         if (vida > 0)
         {
+            //agafa la rotació de l'enemic i el jugador dintre del marge de la càmera per avaluar a quina direcció deu mirar l'enemic per encarar-se cap el jugador
             if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
                 this.transform.rotation = new Quaternion(0, 0, 0, 0);
             if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
+            //activa les mecàniques de perseguir al jugador sempre i quant estigui dintre d'un rang
             if (Vector3.Distance(this.transform.position, player.transform.position) > 2 && Vector3.Distance(this.transform.position, player.transform.position) < 15)
             {
+                //persegueix al jugador en el càs de no col.lisionar amb cap enemic
                 if (enemyCollision == false)
                 {
                     Vector3 move = (player.transform.position);
@@ -45,6 +49,7 @@ public class PoliciaLocal : MonoBehaviour
                     enemyIdle.SetActive(false);
                     enemyRun.SetActive(true);
                 }
+                //s'aparta en el càs de col.lisionar amb un enemic
                 if (enemyCollision == true)
                 {
                     move = (new Vector3(this.transform.position.x - 1000, player.transform.position.y, player.transform.position.z));
@@ -59,11 +64,13 @@ public class PoliciaLocal : MonoBehaviour
                     enemyRun.SetActive(true);
                 }
             }
+            //Es para en el càs d'estar molt lluny el jugador, i es queda en espera
             else if (Vector3.Distance(this.transform.position, player.transform.position) >= 15)
             {
                 enemyRun.SetActive(false);
                 enemyIdle.SetActive(true);
             }
+            //aquí s'activa el càs de que estigui molt a prop, això fa que s'activi el mecanisme de infringir mal al jugador o rebre mal
             else
             {
                 timerAttack -= Time.deltaTime;
@@ -80,6 +87,7 @@ public class PoliciaLocal : MonoBehaviour
                             timerAttack = 2;
                     }
                 }
+                //aquí ees queda en l'espera del cooldown 'timerAttack' per atacar
                 if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
                 {
                     enemyIdle.SetActive(true);
@@ -87,6 +95,7 @@ public class PoliciaLocal : MonoBehaviour
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(false);
                 }
+                //en el càs de que li peguin dintre del rang rebrà mal i se li resta la vida
                 else if (player.GetComponent<playerController>().damage == false && this.transform.rotation
                     != player.GetComponent<playerController>().playerMove.transform.rotation
                     && player.GetComponent<playerController>().hitTimer <= 0)
@@ -99,6 +108,7 @@ public class PoliciaLocal : MonoBehaviour
                 }
             }
         }
+        //En el càs de no tenir vida mor
         else
         {
             timerdeath -= Time.deltaTime;
@@ -114,14 +124,16 @@ public class PoliciaLocal : MonoBehaviour
             }
         }
     }
-
+    //Detecta col.lisions al.lienes
     private void OnTriggerEnter(Collider other)
     {
+        //mort per un cop de barril
         if (other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 && other.GetComponent<Barril>().taken == false)
         {
             other.GetComponent<Barril>().destroyItem = true;
             vida = 0;
         }
+        //Detecta si està col.lisionant amb un policia estat
         if (other.tag == "Enemy_Policia_estat")
         {
             EnemyCollision = other.gameObject;
@@ -131,6 +143,7 @@ public class PoliciaLocal : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        //Detecta si ha deixat de col.lisionar amb un policia estat
         if (other.tag == "Enemy_Policia_estat")
         {
             enemyCollision = false;

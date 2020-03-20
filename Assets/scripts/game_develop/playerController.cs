@@ -44,6 +44,7 @@ public class playerController : MonoBehaviour
     {
 		if(hitting == false && damage == false && life > 0) 
 		{
+            //Sisatema d'inmunitat que s'activa al respawn o rebre mal
             if(inmunnity > 0)
             {
                 inmunnity -= Time.deltaTime;
@@ -51,6 +52,7 @@ public class playerController : MonoBehaviour
                 playerMove.GetComponent<SpriteRenderer>().color = Color.green;
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.green;
             }
+            //torna a la normalitat quant s'acaba el tamps de inmunitat
             else if(playerIdle.GetComponent<SpriteRenderer>().color == Color.green)
             {
                 playerIdle.GetComponent<SpriteRenderer>().color = Color.white;
@@ -125,6 +127,7 @@ public class playerController : MonoBehaviour
         else
         {
             timerdamage -= Time.deltaTime;
+            //s'activa l'inmunitat al jugador després de l'animació de rebre mal
             if(timerdamage <= 0)
             {
                 life -= 10;
@@ -162,7 +165,7 @@ public class playerController : MonoBehaviour
                 playerDeath.gameObject.SetActive(true);
             }
         }
-        //HIT  == CLICK DRET del mouse. 
+        //HIT  == CLICK ESQUERRA del mouse. 
         if (Input.GetKey(KeyCode.Mouse0)) 
 		{
 			hitting = true;
