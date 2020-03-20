@@ -170,13 +170,8 @@ public class PoliciaLocal : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        //Detecta si ha deixat de col.lisionar amb un policia estat
-        if (other.tag == "Enemy_Policia_estat")
-        {
-            enemyCollision = false;
-        }
-        //Detecta si ha deixat de col.lisionar amb un policia local
-        if (other.tag == "Enemy_policia_local")
+        //Detecta si ha deixat de col.lisionar amb un policia estat o policia local
+        if (other.tag == "Enemy_Policia_estat" || other.tag == "Enemy_policia_local")
         {
             enemyCollision = false;
         }

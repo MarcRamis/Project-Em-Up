@@ -605,9 +605,11 @@ MonoBehaviour:
   bullet: {fileID: 436819179}
   bulletPrefab: {fileID: 4339428542768030976, guid: 161797be508dbee479b6daaf0c8a6682,
     type: 3}
-  bulletInstance: {fileID: 0}
+  bulletAux: {fileID: 0}
   timerMove: 0
   isTimeToMove: 0
+  right: 0
+  left: 0
 --- !u!54 &57869843
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -632,7 +634,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57869839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.02, y: -2.08, z: 1.94}
+  m_LocalPosition: {x: 6.2, y: -2.08, z: 1.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 706575619}
@@ -4257,7 +4259,7 @@ MonoBehaviour:
   speed: 2
   timerdamage: 0
   timerDeath: 5
-  life: 100
+  life: 200
   vidas: 3
   Cam2d: {fileID: 1984596393}
   lifestext: {fileID: 762138032}
@@ -17513,5 +17515,15 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 442655586}
+    - target: {fileID: 4212128634501247091, guid: 88ba94de80cf5a84e9852b699c347b54,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4212128634501247091, guid: 88ba94de80cf5a84e9852b699c347b54,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ba94de80cf5a84e9852b699c347b54, type: 3}

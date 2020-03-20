@@ -8,9 +8,10 @@ public class SWATS : MonoBehaviour
     public Camera Cam2d;
 
     public float speed = 2f;
-    public float speedShoot = 0.2f;
+    public float speedShoot = 0f;
     public int health;
 
+    //Variables per manetjar la bala
     public GameObject bullet;
     public GameObject bulletPrefab;
     public GameObject bulletAux;
@@ -19,13 +20,12 @@ public class SWATS : MonoBehaviour
     public float timerMove = 0f;
     public bool isTimeToMove = false;
 
-    //Direccions
+    //Booleans per controlar les direccions
     public bool right, left;
 
     Vector3 move;
 
     // Update is called once per frame
-
     void Update()
     {
 
@@ -39,38 +39,58 @@ public class SWATS : MonoBehaviour
             if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
             {
                 this.transform.rotation = new Quaternion(0, 0, 0, 0);
-                bullet.transform.rotation = new Quaternion(0, 0, 90, 0); //Això encara no importa perquè la bala es una capsula i per tant té la mateixa forma.
-                right = false;
-                left = true;
+                bullet.transform.rotation = new Quaternion(0, 0, 180, 0); //Això encara no importa perquè la bala es una capsula i per tant té la mateixa forma.
+                right = true;
+                left = false;
             }
                 
             if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
             {
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
-                bullet.transform.rotation = new Quaternion(0, 0, -90, 0); //Això encara no importa perquè la bala es una capsula i per tant té la mateixa forma.
-                right = true;
-                left = false;
+                bullet.transform.rotation = new Quaternion(0, 0, -180, 0); //Això encara no importa perquè la bala es una capsula i per tant té la mateixa forma.
+                right = false;
+                left = true;
             }
 
             //Colisió de càmera amb les x i de l'objecte amb les y.
             if ( ( Cam2d.WorldToScreenPoint(this.transform.position).x > 20 && Cam2d.WorldToScreenPoint(this.transform.position).x < 1300 ) 
                 && ( this.transform.position.y < - 1 && this.transform.position.y > -3 ) )
             {
-                //Es calcula la distància entre el jugador (u objecte que escollim com a jugador) i aquest objecte. 
-                //Si es menor que 3 i major que el contador utilitzat fugeix d'ell
-                if (Vector3.Distance(this.transform.position, player.transform.position) > 3)
+                if (Vector3.Distance(this.transform.position, player.transform.position) < 10)
                 {
                     if (bulletAux == null)
                         bulletAux = Instantiate(bulletPrefab, bullet.transform.position, bullet.transform.rotation); //Crear bala
 
-                    if (right == true)
-                        bulletAux.transform.Translate(Vector3.right * (Time.deltaTime * speedShoot));
-                    
-                    if (left == true)
-                        bulletAux.transform.Translate(Vector3.left * (Time.deltaTime * speedShoot));
-                    //this.transform.position -= ((new Vector3(player.transform.position.x - this.transform.position.x, player.transform.position.y - this.transform.position.y, this.transform.position.z)).normalized * Time.deltaTime * speed);
+                    if (right == true && Vector3.Distance(this.transform.position, player.transform.position) < 3)
+                    {
+                        this.transform.position -= ((new Vector3(player.transform.position.x - this.transform.position.x, player.transform.position.y 
+                            - this.transform.position.y, this.transform.position.z)).normalized * Time.deltaTime * speed);
+                    }
+                    if (left == true && Vector3.Distance(this.transform.position, player.transform.position) < 3)
+                    {
+                        this.transform.position += ((new Vector3(player.transform.position.x - this.transform.position.x, player.transform.position.y
+                            - this.transform.position.y, this.transform.position.z)).normalized * Time.deltaTime * speed);
+                    }
+
+                }
+
+                if (left == true && bulletAux != null)
+                {
+                    bulletAux.transform.Translate(new Vector3(-15, 0, 0) * Time.deltaTime);
+                }
+
+                else if (right == true && bulletAux != null)
+                {
+                    bulletAux.transform.Translate(new Vector3(15, 0, 0) * Time.deltaTime);
+                }
+
+
+                if (bulletAux != null && (Cam2d.WorldToScreenPoint(bulletAux.transform.position).x < 0 || Cam2d.WorldToScreenPoint(bulletAux.transform.position).x > 1360) )
+                {
+                    Destroy(bulletAux);
                 }
             }
+
             else if (this.transform.position.y > -1 || this.transform.position.y < -3)
             {
                 //this.transform.position += ((new Vector3(3.02f, -2.08f, this.transform.position.z) * Time.deltaTime * speed));
