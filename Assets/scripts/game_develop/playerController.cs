@@ -191,6 +191,7 @@ public class playerController : MonoBehaviour
         if(other.tag == "bullet")
         {
             damage = true;
+            life -= 20;
         }
     }
 
