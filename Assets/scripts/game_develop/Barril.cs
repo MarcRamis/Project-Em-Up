@@ -27,7 +27,7 @@ public class Barril : MonoBehaviour
             }
 
             //El personatge agafa el barril mantenint botó dret del mouse pero encara no l'ha llençat.
-            if (Vector3.Distance(this.transform.position, player.transform.position) < 3 && Input.GetKeyDown(KeyCode.Mouse1) 
+            if (Vector3.Distance(this.transform.position, player.transform.position) < 1 && Input.GetKeyDown(KeyCode.Mouse1) 
                 && taken == false && player.GetComponent<playerController>().itemTaken == false 
                 && timeThrow <= 0 && player.GetComponent<playerController>().damage == false)
             {

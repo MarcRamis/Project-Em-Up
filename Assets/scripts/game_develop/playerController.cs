@@ -186,4 +186,12 @@ public class playerController : MonoBehaviour
 		}
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "bullet")
+        {
+            damage = true;
+        }
+    }
+
 }
