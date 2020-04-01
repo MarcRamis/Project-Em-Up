@@ -119,7 +119,7 @@ public class SWATS : MonoBehaviour
                     if(timerDamage <= 0)
                     {
                         damage = false;
-                        health -= 20;
+                        health -= 50;
                         timerDamage = 0.8f;
                     }
                 }

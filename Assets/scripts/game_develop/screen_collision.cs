@@ -8,7 +8,8 @@ public class screen_collision : MonoBehaviour
     public GameObject player;
     public GameObject playerCamera;
     public int enemyCounter = 0;
-
+    public float newPosX;
+    public float speed = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +18,12 @@ public class screen_collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Condició per evaluar quant es té que moure la pantalla o parar-se
-        if (enemyCounter <= 0 && Cam2d.WorldToScreenPoint(player.transform.position).x > 1300/3)
+        //Condició per evaluar quan es té que moure la pantalla o parar-se
+        if (enemyCounter <= 0 && Cam2d.WorldToScreenPoint(player.transform.position).x > 1300 / 2)
         {
-            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x + 0.02f, playerCamera.transform.position.y, playerCamera.transform.position.z);
+            newPosX = Mathf.Lerp(playerCamera.transform.position.x, player.transform.position.x, speed * Time.deltaTime);
+
+            playerCamera.transform.position = new Vector3(newPosX, playerCamera.transform.position.y, playerCamera.transform.position.z);
         }
     }
 }
