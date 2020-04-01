@@ -72,7 +72,7 @@ public class SWATS : MonoBehaviour
                 }
             }
 
-            //Colisió de càmera amb les x i de l'objecte amb les y.
+            //Distància entre SWAT i jugador.
             if (Vector3.Distance(this.transform.position, player.transform.position) < 10 && health > 0)
             {
                 this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, player.transform.position.y, player.transform.position.z), Time.deltaTime * speed);
@@ -102,7 +102,7 @@ public class SWATS : MonoBehaviour
                 //Resetetjar el timer
                 if (shootTimer >= 6.0f) shootTimer = 0.0f;
 
-                if (Vector3.Distance(this.transform.position, player.transform.position) < 3 && player.GetComponent<playerController>().hitTimer <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false && damage == false)
+                if (Vector3.Distance(this.transform.position, player.transform.position) < 1 && player.GetComponent<playerController>().hitTimer <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false && damage == false)
                 {
                     damage = true;
                     enemyIdle.SetActive(false);

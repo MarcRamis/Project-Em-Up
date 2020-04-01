@@ -20,7 +20,7 @@ public class screen_collision : MonoBehaviour
         //Condició per evaluar quant es té que moure la pantalla o parar-se
         if (enemyCounter <= 0 && Cam2d.WorldToScreenPoint(player.transform.position).x > 1300/3)
         {
-            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x + 0.05f, playerCamera.transform.position.y, playerCamera.transform.position.z);
+            playerCamera.transform.position = new Vector3(playerCamera.transform.position.x + 0.02f, playerCamera.transform.position.y, playerCamera.transform.position.z);
         }
     }
 }
