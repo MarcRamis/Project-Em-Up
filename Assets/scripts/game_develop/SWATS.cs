@@ -102,7 +102,7 @@ public class SWATS : MonoBehaviour
                 //Resetetjar el timer
                 if (shootTimer >= 6.0f) shootTimer = 0.0f;
 
-                if (Vector3.Distance(this.transform.position, player.transform.position) < 1 && player.GetComponent<playerController>().hitTimer <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false && damage == false)
+                if (Vector3.Distance(this.transform.position, player.transform.position) < 1 && player.GetComponent<playerController>().hitTimer <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false && damage == false && (this.transform.position.y - player.transform.position.y) > -0.18f && (this.transform.position.y - player.transform.position.y) < 0.18f)
                 {
                     damage = true;
                     enemyIdle.SetActive(false);

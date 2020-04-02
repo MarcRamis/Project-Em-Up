@@ -18,6 +18,7 @@ public class PoliciaLocal : MonoBehaviour
     public bool enemyCollision;
     public int vida;
     public float speed;
+    public float changeSide;
 
     public GameObject EnemyCollision;
     Vector3 move;
@@ -60,18 +61,30 @@ public class PoliciaLocal : MonoBehaviour
                 //s'aparta en el càs de col.lisionar amb un enemic
                 if (enemyCollision == true)
                 {
-                    move = (new Vector3(this.transform.position.x - 1000, player.transform.position.y, player.transform.position.z));
-                    if (EnemyCollision.tag == "Enemy_Policia_estat")
+                    if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
+                        move = (new Vector3(this.transform.position.x - 1000, player.transform.position.y, player.transform.position.z));
+                    if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
+                        move = (new Vector3(this.transform.position.x + 1000, player.transform.position.y, player.transform.position.z));
+                    if (EnemyCollision != null && EnemyCollision.tag == "Enemy_Policia_estat")
                         EnemyCollision.GetComponent<PoliciaEstat>().enemyCollision = false;
-                    if (EnemyCollision.tag == "Enemy_policia_local")
+                    if (EnemyCollision != null && EnemyCollision.tag == "Enemy_policia_local")
                         EnemyCollision.GetComponent<PoliciaLocal>().enemyCollision = false;
-                    if (rotVectorEnemy.x - rotVectorEnemy2.x < 0)
-                        EnemyCollision.transform.position -= ((move - transform.position).normalized * Time.deltaTime * speed * 2);
-                    else if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
-                        EnemyCollision.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed * 2);
+                    EnemyCollision.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed * Random.Range(1, 5));
                     enemyAttack.SetActive(false);
                     enemyIdle.SetActive(false);
                     enemyRun.SetActive(true);
+                    if (changeSide > 0)
+                    {
+                        changeSide -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        enemyCollision = false;
+                    }
+                }
+                else
+                {
+                    changeSide = 0.8f;
                 }
             }
             //Es para en el càs d'estar molt lluny el jugador, i es queda en espera
@@ -90,11 +103,16 @@ public class PoliciaLocal : MonoBehaviour
                     enemyTakingDamage.SetActive(false);
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(true);
-                    if (player.GetComponent<playerController>().inmunnity <= 0)
+                    if (player.GetComponent<playerController>().inmunnity <= 0 && (this.transform.position.y - player.transform.position.y) > -0.18f && (this.transform.position.y - player.transform.position.y) < 0.18f)
                     {
                         player.GetComponent<playerController>().damage = true;
                         if (timerAttack <= 0)
                             timerAttack = 2;
+                    }
+                    else if (player.GetComponent<playerController>().life > 0)
+                    {
+                        move = (new Vector3(this.transform.position.x, player.transform.position.y, player.transform.position.z));
+                        this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
                     }
                 }
                 //aquí es queda a l'espera del cooldown 'timerAttack' per atacar
@@ -109,7 +127,9 @@ public class PoliciaLocal : MonoBehaviour
                 //en el càs de que li peguin dintre del rang rebrà mal i se li resta la vida
                 else if (player.GetComponent<playerController>().damage == false && this.transform.rotation
                     != player.GetComponent<playerController>().playerMove.transform.rotation
-                    && player.GetComponent<playerController>().hitTimer <= 0)
+                    && player.GetComponent<playerController>().hitTimer <= 0 
+                    && (this.transform.position.y - player.transform.position.y) > -0.18f 
+                    && (this.transform.position.y - player.transform.position.y) < 0.18f)
                 {
                     enemytakesDamage = true;
                     vida -= 50;
@@ -172,14 +192,6 @@ public class PoliciaLocal : MonoBehaviour
             EnemyCollision = other.gameObject;
             if (EnemyCollision.GetComponent<PoliciaLocal>().vida > 0)
                 enemyCollision = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        //Detecta si ha deixat de col.lisionar amb un policia estat o policia local
-        if (other.tag == "Enemy_Policia_estat" || other.tag == "Enemy_policia_local")
-        {
-            enemyCollision = false;
         }
     }
 }
