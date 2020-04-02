@@ -810,6 +810,7 @@ MonoBehaviour:
   enemyCollision: 0
   vida: 100
   speed: 2
+  changeSide: 0.8
   EnemyCollision: {fileID: 0}
   enemytakesDamage: 0
   timerDamage: 0.3
@@ -3901,11 +3902,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1199478487}
     m_Modifications:
-    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151092, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
       propertyPath: m_Name
@@ -3915,6 +3911,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy_Policia_estat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151099, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
@@ -4217,11 +4218,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1199478487}
     m_Modifications:
-    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151092, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
       propertyPath: m_Name
@@ -4231,6 +4227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy_Policia_estat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151099, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
@@ -6262,11 +6263,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1754409746}
     m_Modifications:
-    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151092, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
       propertyPath: m_Name
@@ -6276,6 +6272,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy_Policia_estat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151099, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
@@ -6842,11 +6843,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1367473163}
     m_Modifications:
-    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151092, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
       propertyPath: m_Name
@@ -6856,6 +6852,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy_Policia_estat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151099, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
@@ -7908,11 +7909,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1754409746}
     m_Modifications:
-    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151092, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
       propertyPath: m_Name
@@ -7922,6 +7918,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy_Policia_estat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151099, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
@@ -8249,6 +8250,7 @@ MonoBehaviour:
   enemyCollision: 0
   vida: 100
   speed: 2
+  changeSide: 0.8
   EnemyCollision: {fileID: 0}
   enemytakesDamage: 0
   timerDamage: 0.3
@@ -9876,11 +9878,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1754409746}
     m_Modifications:
-    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151092, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
       propertyPath: m_Name
@@ -9890,6 +9887,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy_Policia_estat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151099, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
@@ -10945,11 +10947,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1199478487}
     m_Modifications:
-    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151092, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
       propertyPath: m_Name
@@ -10959,6 +10956,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy_Policia_estat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151099, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
@@ -12722,6 +12724,7 @@ MonoBehaviour:
   enemyCollision: 0
   vida: 100
   speed: 2
+  changeSide: 0.8
   EnemyCollision: {fileID: 0}
   enemytakesDamage: 0
   timerDamage: 0.3
@@ -13330,11 +13333,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1367473163}
     m_Modifications:
-    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151092, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
       propertyPath: m_Name
@@ -13344,6 +13342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy_Policia_estat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151099, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
@@ -14376,11 +14379,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1367473163}
     m_Modifications:
-    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151092, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
       propertyPath: m_Name
@@ -14390,6 +14388,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy_Policia_estat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707600452784381147, guid: ab769124921899c4896d6b3f483896b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2707600452462151099, guid: ab769124921899c4896d6b3f483896b1,
         type: 3}
@@ -15874,6 +15877,7 @@ MonoBehaviour:
   enemyCollision: 0
   vida: 100
   speed: 2
+  changeSide: 0.8
   EnemyCollision: {fileID: 0}
   enemytakesDamage: 0
   timerDamage: 0.3

@@ -79,6 +79,7 @@ public class PoliciaEstat : MonoBehaviour
                         EnemyCollision.GetComponent<PoliciaEstat>().enemyCollision = false;
                     if (EnemyCollision != null && EnemyCollision.tag == "Enemy_policia_local")
                         EnemyCollision.GetComponent<PoliciaLocal>().enemyCollision = false;
+                    if(EnemyCollision != null)
                     EnemyCollision.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed * Random.Range(1, 8));
                     enemyAttack.SetActive(false);
                     if (enemytakesDamage == true)
@@ -122,7 +123,7 @@ public class PoliciaEstat : MonoBehaviour
                     enemyTakingDamage.SetActive(false);
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(true);
-                    if (player.GetComponent<playerController>().inmunnity <= 0 && (this.transform.position.y - player.transform.position.y) > -0.18f && (this.transform.position.y - player.transform.position.y) < 0.18f)
+                    if (player.GetComponent<playerController>().life > 0 && player.GetComponent<playerController>().inmunnity <= 0 && (this.transform.position.y - player.transform.position.y) > -0.18f && (this.transform.position.y - player.transform.position.y) < 0.18f)
                     {
                         player.GetComponent<playerController>().damage = true;
                         if (timerAttack <= 0)
@@ -143,8 +144,9 @@ public class PoliciaEstat : MonoBehaviour
                     enemyAttack.SetActive(false);
                 }
                 //en el càs de que li peguin dintre del rang rebrà mal i se li resta la vida
-                else if (player.GetComponent<playerController>().damage == false && this.transform.rotation
-                    != player.GetComponent<playerController>().playerMove.transform.rotation
+                else if (player.GetComponent<playerController>().life > 0 
+                    && player.GetComponent<playerController>().damage == false 
+                    && this.transform.rotation != player.GetComponent<playerController>().playerMove.transform.rotation
                     && player.GetComponent<playerController>().hitTimer <= 0
                     && (this.transform.position.y - player.transform.position.y) > -0.18f 
                     && (this.transform.position.y - player.transform.position.y) < 0.18f)
