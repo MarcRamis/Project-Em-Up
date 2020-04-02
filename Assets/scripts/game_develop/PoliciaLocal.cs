@@ -55,14 +55,26 @@ public class PoliciaLocal : MonoBehaviour
                 {
                     this.transform.position += ((move2 - transform.position).normalized * Time.deltaTime * speed);
                     enemyAttack.SetActive(false);
-                    enemyIdle.SetActive(false);
-                    enemyRun.SetActive(true);
+                    if (enemytakesDamage == true)
+                    {
+                        enemyIdle.SetActive(false);
+                        enemyRun.SetActive(false);
+                    }
+                    else
+                    {
+                        enemyTakingDamage.SetActive(false);
+                        enemyIdle.SetActive(false);
+                        enemyRun.SetActive(true);
+                    }
                 }
                 //s'aparta en el càs de col.lisionar amb un enemic
                 if (enemyCollision == true)
                 {
-                    if (enemyTakingDamage.active == true)
-                        enemyTakingDamage.SetActive(false);
+                    if(enemytakesDamage == true)
+                    {
+                        enemyIdle.SetActive(false);
+                        enemyRun.SetActive(false);
+                    }
                     if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
                         move = (new Vector3(this.transform.position.x - 1000, player.transform.position.y, player.transform.position.z));
                     if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
@@ -71,7 +83,7 @@ public class PoliciaLocal : MonoBehaviour
                         EnemyCollision.GetComponent<PoliciaEstat>().enemyCollision = false;
                     if (EnemyCollision != null && EnemyCollision.tag == "Enemy_policia_local")
                         EnemyCollision.GetComponent<PoliciaLocal>().enemyCollision = false;
-                    EnemyCollision.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed * Random.Range(1, 5));
+                    EnemyCollision.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed * Random.Range(1, 8));
                     enemyAttack.SetActive(false);
                     enemyIdle.SetActive(false);
                     enemyRun.SetActive(true);
