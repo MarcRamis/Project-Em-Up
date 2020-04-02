@@ -62,6 +62,8 @@ public class PoliciaEstat : MonoBehaviour
                 //s'aparta en el càs de col.lisionar amb un enemic
                 if (enemyCollision == true)
                 {
+                    if (enemyTakingDamage.active == true)
+                        enemyTakingDamage.SetActive(false);
                     if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
                         move = (new Vector3(this.transform.position.x - 1000, player.transform.position.y, player.transform.position.z));
                     if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
