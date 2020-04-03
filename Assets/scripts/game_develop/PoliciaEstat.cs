@@ -24,7 +24,6 @@ public class PoliciaEstat : MonoBehaviour
 
     public GameObject EnemyCollision;
     Vector3 move;
-    Vector3 move2;
     public bool enemytakesDamage;
 
     // Update is called once per frame
@@ -40,21 +39,21 @@ public class PoliciaEstat : MonoBehaviour
             if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
             {
                 this.transform.rotation = new Quaternion(0, 0, 0, 0);
-                move2 = new Vector3(player.transform.position.x + 1, player.transform.position.y, player.transform.position.z);
+                move = new Vector3(player.transform.position.x + 1, player.transform.position.y, player.transform.position.z);
             }
             if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
             {
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
-                move2 = new Vector3(player.transform.position.x - 1, player.transform.position.y, player.transform.position.z);
+                move = new Vector3(player.transform.position.x - 1, player.transform.position.y, player.transform.position.z);
             }
             //activa les mecàniques de perseguir al jugador sempre i quant estigui dintre d'un rang
-            if (Vector3.Distance(this.transform.position, player.transform.position) > 1.2f && Vector3.Distance(this.transform.position, player.transform.position) < 15)
+            if (Vector3.Distance(this.transform.position, player.transform.position) > 1.5f && Vector3.Distance(this.transform.position, player.transform.position) < 15)
             {
                 //persegueix al jugador en el càs de no col.lisionar amb cap enemic
                 if (enemyCollision == false)
                 {
-                    move2 = (player.transform.position);
-                    this.transform.position += ((move2 - transform.position).normalized * Time.deltaTime * speed);
+                    move = (player.transform.position);
+                    this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
                     enemyAttack.SetActive(false);
                     if (enemytakesDamage == true)
                     {
@@ -72,15 +71,15 @@ public class PoliciaEstat : MonoBehaviour
                 if (enemyCollision == true)
                 {
                     if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
-                        move = (new Vector3(this.transform.position.x - 1000, player.transform.position.y, player.transform.position.z));
+                        move = (new Vector3(this.transform.position.x - 1000, this.transform.position.y, this.transform.position.z));
                     if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
-                        move = (new Vector3(this.transform.position.x + 1000, player.transform.position.y, player.transform.position.z));
+                        move = (new Vector3(this.transform.position.x + 1000, this.transform.position.y, this.transform.position.z));
                     if (EnemyCollision != null && EnemyCollision.tag == "Enemy_Policia_estat")
                         EnemyCollision.GetComponent<PoliciaEstat>().enemyCollision = false;
                     if (EnemyCollision != null && EnemyCollision.tag == "Enemy_policia_local")
                         EnemyCollision.GetComponent<PoliciaLocal>().enemyCollision = false;
                     if(EnemyCollision != null)
-                    EnemyCollision.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed * Random.Range(1, 8));
+                    EnemyCollision.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed * Random.Range(1, 3));
                     enemyAttack.SetActive(false);
                     if (enemytakesDamage == true)
                     {
