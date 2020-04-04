@@ -113,7 +113,15 @@ public class playerController : MonoBehaviour
         //HIT
 		else if(damage == false)
 		{
-            if (Input.GetKey(KeyCode.Mouse0) && hitTimer <= 0)
+            inmunnity -= Time.deltaTime;
+            if (inmunnity <= 0)
+            {
+                playerIdle.SetActive(false);
+                playerMove.SetActive(false);
+                playerHitNormal.SetActive(true);
+            }
+
+            if (Input.GetKey(KeyCode.Mouse0) && hitTimer <= 0 && inmunnity > 0)
             {
                 hitTimer = 0.35f;
                 playerHitNormal.transform.rotation = playerMove.transform.rotation;
@@ -121,8 +129,6 @@ public class playerController : MonoBehaviour
                 playerMove.SetActive(false);
                 playerHitNormal.SetActive(true);
             }
-         
-
         }
         else
         {
@@ -166,7 +172,7 @@ public class playerController : MonoBehaviour
             }
         }
         //HIT  == CLICK ESQUERRA del mouse. 
-        if (Input.GetKey(KeyCode.Mouse0)) 
+        if (Input.GetKeyDown(KeyCode.Mouse0)) 
 		{
 			hitting = true;
 		}

@@ -145,7 +145,7 @@ public class PoliciaLocal : MonoBehaviour
                 }
 
                 //en el càs de que li peguin dintre del rang rebrà mal i se li resta la vida
-                else if (player.GetComponent<playerController>().damage == false 
+                else if (Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false 
                     && player.GetComponent<playerController>().life > 0
                     && this.transform.rotation != player.GetComponent<playerController>().playerMove.transform.rotation
                     && player.GetComponent<playerController>().hitTimer <= 0 
