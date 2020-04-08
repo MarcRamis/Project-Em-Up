@@ -15,9 +15,10 @@ public class area : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(this.transform.position, camera.transform.position) <= 10)
+        print(this.transform.position.x - camera.transform.position.x);
+        if ((this.transform.position.x - camera.transform.position.x) <= 0)
         {
-            camera.GetComponent<screen_collision>().enemyCounter = enemyCounter;
+            camera.GetComponent<screen_collision>().enemyCounter += enemyCounter;
             Destroy(this.gameObject);
         }
     }
