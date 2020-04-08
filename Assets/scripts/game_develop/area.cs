@@ -15,7 +15,6 @@ public class area : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(this.transform.position.x - camera.transform.position.x);
         if ((this.transform.position.x - camera.transform.position.x) <= 0)
         {
             camera.GetComponent<screen_collision>().enemyCounter += enemyCounter;

@@ -75,7 +75,8 @@ public class SWATS : MonoBehaviour
             //Distància entre SWAT i jugador.
             if (Vector3.Distance(this.transform.position, player.transform.position) < 10 && health > 0)
             {
-                this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, player.transform.position.y, player.transform.position.z), Time.deltaTime * speed);
+                
+                //this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, player.transform.position.y, player.transform.position.z), Time.deltaTime * speed);
 
                 //Si la distancia entre el jugador i l'enemic es menor al valor indicat, el contador es major o igual que el contador de temps i no s'ha creat cap bala.
                 if (Vector3.Distance(this.transform.position, player.transform.position) < 20 && Vector3.Distance(this.transform.position, player.transform.position) > 2 && shootTimer >= 3.0f && bulletAux == null)
