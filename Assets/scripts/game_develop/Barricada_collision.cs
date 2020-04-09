@@ -4,30 +4,41 @@ using UnityEngine;
 
 public class Barricada_collision : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject player;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-    }
-
-    void onTriggerStay(Collider other)
-    {
-        if (other.tag == "Player")
+        if(Vector3.Distance(this.transform.position, player.transform.position) < 1)
         {
-            if(Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
-                other.transform.position = new Vector3(other.transform.position.x - 1, other.transform.position.y, other.transform.position.z);
+                player.transform.position = new Vector3(player.transform.position.x - 0.1f, player.transform.position.y, player.transform.position.z);
+                player.GetComponent<playerController>().D = false;
+                player.GetComponent<playerController>().A = true;
             }
-
-            else if (Input.GetKey(KeyCode.A) )
+            else if (Input.GetKey(KeyCode.A))
             {
-                other.transform.position = new Vector3(other.transform.position.x + 1, other.transform.position.y, other.transform.position.z);
+                player.transform.position = new Vector3(player.transform.position.x + 0.1f, player.transform.position.y, player.transform.position.z);
+                player.GetComponent<playerController>().D = true;
+                player.GetComponent<playerController>().A = false;
             }
+            if (Input.GetKey(KeyCode.W))
+            {
+                player.GetComponent<playerController>().W = false;
+                player.GetComponent<playerController>().S = true;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                player.GetComponent<playerController>().W = true;
+                player.GetComponent<playerController>().S = false;
+            }
+        }
+        else
+        {
+            player.GetComponent<playerController>().W = true;
+            player.GetComponent<playerController>().A = true;
+            player.GetComponent<playerController>().S = true;
+            player.GetComponent<playerController>().D = true;
         }
     }
 }

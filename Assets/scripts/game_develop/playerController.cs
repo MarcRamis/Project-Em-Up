@@ -21,6 +21,11 @@ public class playerController : MonoBehaviour
     public GameObject playerReceivesDamage;
     public GameObject playerDeath;
 
+    public bool W;
+    public bool A;
+    public bool S;
+    public bool D;
+
     public float hitTimer = 0;
     public float inmunnity = 0.8f;
 
@@ -60,12 +65,12 @@ public class playerController : MonoBehaviour
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.white;
             }
             //Moviment cap amunt amb la Key: W
-            if (Input.GetKey(KeyCode.W) && this.transform.position.y < -1f)
+            if (Input.GetKey(KeyCode.W) && this.transform.position.y < -1f && W == true)
             {
                 this.transform.Translate(new Vector3(0, 1, 1.2f) * Time.deltaTime * speed);
             }
             //Moviment cap a l'esquerra amb la Key: A
-            if (Input.GetKey(KeyCode.A) && Cam2d.WorldToScreenPoint(this.transform.position).x > 20)
+            if (Input.GetKey(KeyCode.A) && Cam2d.WorldToScreenPoint(this.transform.position).x > 20 && A == true)
             {
               this.transform.Translate(Vector3.left * Time.deltaTime * speed);
                 //Sprite que fa rotar al player cap a l'esquerra.
@@ -74,13 +79,13 @@ public class playerController : MonoBehaviour
                 playerReceivesDamage.transform.rotation = new Quaternion(0, 0, 0, 0);
             }
             //Moviment cap abaix amb la Key: S
-            if (Input.GetKey(KeyCode.S) && this.transform.position.y > -3.0f)
+            if (Input.GetKey(KeyCode.S) && this.transform.position.y > -3.0f && S == true)
             {
                 this.transform.Translate(new Vector3(0, -1, -1.2f) * Time.deltaTime * speed);
 
             }
             //Moviment cap a la dreta amb la Key: D
-            if (Input.GetKey(KeyCode.D) && Cam2d.WorldToScreenPoint(this.transform.position).x < 1300)
+            if (Input.GetKey(KeyCode.D) && Cam2d.WorldToScreenPoint(this.transform.position).x < 1300 && D == true)
             {
                 this.transform.Translate(Vector3.right * Time.deltaTime * speed);
                 //Sprite que fa rotar al player cap a la dreta.
