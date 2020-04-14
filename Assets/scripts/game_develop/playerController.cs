@@ -31,8 +31,7 @@ public class playerController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {        
     }
 
     // Update is called once per frame
@@ -64,15 +63,22 @@ public class playerController : MonoBehaviour
                 playerMove.GetComponent<SpriteRenderer>().color = Color.white;
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.white;
             }
+            if((!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) && (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
+            {
+                this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+
             //Moviment cap amunt amb la Key: W
             if (Input.GetKey(KeyCode.W) && this.transform.position.y < -1f && W == true)
             {
-                this.transform.Translate(new Vector3(0, 1, 1.2f) * Time.deltaTime * speed);
+                //this.GetComponent<Rigidbody>().MovePosition(this.GetComponent<Rigidbody>().position + new Vector3(0, 0.05f, 0.05f));
+                this.GetComponent<Rigidbody>().velocity = speed * new Vector3(0, 0.5f, 0.5f);
             }
             //Moviment cap a l'esquerra amb la Key: A
             if (Input.GetKey(KeyCode.A) && Cam2d.WorldToScreenPoint(this.transform.position).x > 20 && A == true)
             {
-              this.transform.Translate(Vector3.left * Time.deltaTime * speed);
+                //this.GetComponent<Rigidbody>().MovePosition(this.GetComponent<Rigidbody>().position + new Vector3(-0.05f,0,0));
+                this.GetComponent<Rigidbody>().velocity = speed * Vector3.left;
                 //Sprite que fa rotar al player cap a l'esquerra.
                 playerIdle.transform.rotation = new Quaternion(0, 0, 0, 0);
                 playerMove.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -81,13 +87,14 @@ public class playerController : MonoBehaviour
             //Moviment cap abaix amb la Key: S
             if (Input.GetKey(KeyCode.S) && this.transform.position.y > -3.0f && S == true)
             {
-                this.transform.Translate(new Vector3(0, -1, -1.2f) * Time.deltaTime * speed);
-
+                //this.GetComponent<Rigidbody>().MovePosition(this.GetComponent<Rigidbody>().position + new Vector3(0, -0.05f, -0.05f));
+                this.GetComponent<Rigidbody>().velocity = speed * new Vector3(0, -0.5f, -0.5f);
             }
             //Moviment cap a la dreta amb la Key: D
             if (Input.GetKey(KeyCode.D) && Cam2d.WorldToScreenPoint(this.transform.position).x < 1300 && D == true)
             {
-                this.transform.Translate(Vector3.right * Time.deltaTime * speed);
+                //this.GetComponent<Rigidbody>().MovePosition(this.GetComponent<Rigidbody>().position + new Vector3(0.05f, 0, 0));
+                this.GetComponent<Rigidbody>().velocity = speed * Vector3.right;
                 //Sprite que fa rotar al player cap a la dreta.
                 playerIdle.transform.rotation = new Quaternion(0, 180, 0, 0);
                 playerMove.transform.rotation = new Quaternion(0, 180, 0, 0);
@@ -162,6 +169,7 @@ public class playerController : MonoBehaviour
             playerMove.SetActive(false);
             playerHitNormal.SetActive(false);
             playerReceivesDamage.SetActive(false);
+            this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             timerDeath -= Time.deltaTime;
             if(timerDeath <= 0)
             {

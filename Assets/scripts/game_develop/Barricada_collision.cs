@@ -12,13 +12,11 @@ public class Barricada_collision : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.D))
             {
-                player.transform.position = new Vector3(player.transform.position.x - 0.1f, player.transform.position.y, player.transform.position.z);
                 player.GetComponent<playerController>().D = false;
                 player.GetComponent<playerController>().A = true;
             }
             else if (Input.GetKey(KeyCode.A))
             {
-                player.transform.position = new Vector3(player.transform.position.x + 0.1f, player.transform.position.y, player.transform.position.z);
                 player.GetComponent<playerController>().D = true;
                 player.GetComponent<playerController>().A = false;
             }
