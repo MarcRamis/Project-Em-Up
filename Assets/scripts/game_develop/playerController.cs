@@ -168,7 +168,7 @@ public class playerController : MonoBehaviour
                 //playerHitNormal.SetActive(true);
             }
 
-            if (Input.GetKey(KeyCode.Mouse0) && hitTimer <= 0 && inmunnity > 0)
+            if (Input.GetKey(KeyCode.Mouse0) && hitTimer <= 0 && inmunnity > 0 && life > 0 && damage == false)
             {
                 hitTimer = 0.35f;
                 playerHitNormal.transform.rotation = playerMove.transform.rotation;
