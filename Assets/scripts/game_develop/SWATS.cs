@@ -9,6 +9,7 @@ public class SWATS : MonoBehaviour
     public GameObject enemyIdle;
     public GameObject enemyDamage;
     public GameObject enemyDeath;
+    public GameObject enemyShoot;
     public GameObject screen;
 
     public Camera Cam2d;
@@ -31,10 +32,14 @@ public class SWATS : MonoBehaviour
 
     //Booleans per controlar les direccions
     public bool right, left;
-
     public bool damage;
 
     Vector3 move;
+
+    void Start()
+    {
+        enemyShoot.SetActive(true);
+    }
 
     // Update is called once per frame
     void Update()
@@ -45,19 +50,21 @@ public class SWATS : MonoBehaviour
 
         if (health > 0)
         {
-            shootTimer += Time.deltaTime;
+            //shootTimer += Time.deltaTime;
 
             //Direccions respecte a l'enemic 
             if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
             {
                 this.transform.rotation = new Quaternion(0, 0, 0, 0);
-                bullet.transform.rotation = new Quaternion(0, 0, 90, 0); //Això encara no importa perquè la bala es una capsula i per tant té la mateixa forma.
+                bullet.transform.rotation = new Quaternion(0, 0, 90, 0);
 
+                /*
                 if (bulletAux == null)
                 {
                     right = true;
                     left = false;
                 }
+                */
             }
                 
             if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
@@ -65,21 +72,34 @@ public class SWATS : MonoBehaviour
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
                 bullet.transform.rotation = new Quaternion(0, 0, -90, 0); //Això encara no importa perquè la bala es una capsula i per tant té la mateixa forma.
 
+                /*
                 if (bulletAux == null)
                 {
                     right = false;
                     left = true;
                 }
+                */
+            }
+
+            if (Vector3.Distance(this.transform.position, player.transform.position) >1)
+            {
+                enemyShoot.SetActive(true);
+                enemyIdle.SetActive(false);
+
+            }
+            else
+            {
+                enemyIdle.SetActive(true);
+                enemyShoot.SetActive(false);
             }
 
             //Distància entre SWAT i jugador.
-            if (Vector3.Distance(this.transform.position, player.transform.position) < 10 && health > 0)
+            if (Vector3.Distance(this.transform.position, player.transform.position) < 15 && health > 0)
             {
-                
-                //this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, player.transform.position.y, player.transform.position.z), Time.deltaTime * speed);
-
                 //Si la distancia entre el jugador i l'enemic es menor al valor indicat, el contador es major o igual que el contador de temps i no s'ha creat cap bala.
-                if (Vector3.Distance(this.transform.position, player.transform.position) < 20 && Vector3.Distance(this.transform.position, player.transform.position) > 2 && shootTimer >= 3.0f && bulletAux == null)
+                /*
+                if (Vector3.Distance(this.transform.position, player.transform.position) < 20 
+                ç&& Vector3.Distance(this.transform.position, player.transform.position) > 2 && shootTimer >= 3.0f && bulletAux == null)
                 {
                     bulletAux = Instantiate(bulletPrefab, bullet.transform.position, bullet.transform.rotation); //Crear bala
                 }
@@ -99,19 +119,21 @@ public class SWATS : MonoBehaviour
                 {
                     Destroy(bulletAux);
                 }
+                
 
                 //Resetetjar el timer
                 if (shootTimer >= 6.0f) shootTimer = 0.0f;
+                */
 
-                if (Vector3.Distance(this.transform.position, player.transform.position) < 1 && player.GetComponent<playerController>().hitTimer <= 0 && Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false && damage == false && (this.transform.position.y - player.transform.position.y) > -0.18f && (this.transform.position.y - player.transform.position.y) < 0.18f)
+                if (Vector3.Distance(this.transform.position, player.transform.position) < 1 && player.GetComponent<playerController>().hitTimer <= 0 
+                    && Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false 
+                    && damage == false && (this.transform.position.y - player.transform.position.y) > -0.18f && (this.transform.position.y - player.transform.position.y) < 0.18f)
                 {
                     damage = true;
-                    enemyIdle.SetActive(false);
                     enemyDamage.SetActive(true);
                 }
                 else if (damage == false)
                 {
-                    enemyIdle.SetActive(true);
                     enemyDamage.SetActive(false);
                 }
                 if(damage == true)

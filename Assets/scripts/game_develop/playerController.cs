@@ -121,13 +121,11 @@ public class playerController : MonoBehaviour
                 //Moviment cap abaix amb la Key: S
                 if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && this.transform.position.y > -3.0f && S == true)
                 {
-                    //this.GetComponent<Rigidbody>().MovePosition(this.GetComponent<Rigidbody>().position + new Vector3(0, -0.05f, -0.05f));
                     this.GetComponent<Rigidbody>().velocity = speed * new Vector3(0, -0.5f, -0.5f);
-                }
+                } 
                 //Moviment cap a la dreta amb la Key: D
                 if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W) && Cam2d.WorldToScreenPoint(this.transform.position).x < 1300 && D == true)
                 {
-                    //this.GetComponent<Rigidbody>().MovePosition(this.GetComponent<Rigidbody>().position + new Vector3(0.05f, 0, 0));
                     this.GetComponent<Rigidbody>().velocity = speed * Vector3.right;
                     //Sprite que fa rotar al player cap a la dreta.
                     playerIdle.transform.rotation = new Quaternion(0, 180, 0, 0);

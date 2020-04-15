@@ -56,7 +56,7 @@ public class PoliciaLocal : MonoBehaviour
                     enemyAttack.SetActive(false);
                     if (enemytakesDamage == true)
                     {
-                        enemyIdle.SetActive(false);
+                        enemyIdle.SetActive(false); 
                         enemyRun.SetActive(false);
                     }
                     else
