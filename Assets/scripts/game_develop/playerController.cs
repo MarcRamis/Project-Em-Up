@@ -12,6 +12,8 @@ public class playerController : MonoBehaviour
     public Camera Cam2d;
     public TextMesh lifestext;
 	public bool hitting;
+    private bool hitAnim;
+    public float hitAnimTimer;
     public bool damage;
     public bool itemTaken;
     public GameObject itemTakenGO;
@@ -163,7 +165,7 @@ public class playerController : MonoBehaviour
             {
                 playerIdle.SetActive(false);
                 playerMove.SetActive(false);
-                playerHitNormal.SetActive(true);
+                //playerHitNormal.SetActive(true);
             }
 
             if (Input.GetKey(KeyCode.Mouse0) && hitTimer <= 0 && inmunnity > 0)
@@ -172,7 +174,7 @@ public class playerController : MonoBehaviour
                 playerHitNormal.transform.rotation = playerMove.transform.rotation;
                 playerIdle.SetActive(false);
                 playerMove.SetActive(false);
-                playerHitNormal.SetActive(true);
+                //playerHitNormal.SetActive(true);
             }
         }
         else
@@ -191,7 +193,7 @@ public class playerController : MonoBehaviour
             {
                 playerIdle.SetActive(false);
                 playerMove.SetActive(false);
-                playerHitNormal.SetActive(false);
+                //playerHitNormal.SetActive(false);
                 playerReceivesDamage.SetActive(true);
             }
         }
@@ -200,7 +202,7 @@ public class playerController : MonoBehaviour
             //playerDeath
             playerIdle.SetActive(false);
             playerMove.SetActive(false);
-            playerHitNormal.SetActive(false);
+            //playerHitNormal.SetActive(false);
             playerReceivesDamage.SetActive(false);
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             timerDeath -= Time.deltaTime;
@@ -218,14 +220,16 @@ public class playerController : MonoBehaviour
             }
         }
         //HIT  == CLICK ESQUERRA del mouse. 
-        if (Input.GetKeyDown(KeyCode.Mouse0)) 
+        if (Input.GetKeyDown(KeyCode.Mouse0) && hitAnimTimer <= 0) 
 		{
 			hitting = true;
+            hitAnim = true;
+            hitAnimTimer = 0.5f;
 		}
 		else 
 		{
 			hitting = false;
-			playerHitNormal.SetActive(false);
+			//playerHitNormal.SetActive(false);
 		}
         //RUN : SHIFT
 		if(Input.GetKey(KeyCode.LeftShift)) 
@@ -236,6 +240,22 @@ public class playerController : MonoBehaviour
 		{
 			speed = 2;
 		}
+        if(hitAnim == true)
+        {
+            playerHitNormal.transform.rotation = playerIdle.transform.rotation;
+            hitAnimTimer -= Time.deltaTime;
+            if (hitAnimTimer <= 0)
+            {
+                playerHitNormal.SetActive(false);
+                hitAnim = false;
+            }
+            else
+            {
+                playerHitNormal.SetActive(true);
+                playerIdle.SetActive(false);
+                playerMove.SetActive(false);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
