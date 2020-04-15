@@ -251,6 +251,7 @@ public class playerController : MonoBehaviour
             }
             else
             {
+                this.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 playerHitNormal.SetActive(true);
                 playerIdle.SetActive(false);
                 playerMove.SetActive(false);
