@@ -12,7 +12,7 @@ public class playerController : MonoBehaviour
     public Camera Cam2d;
     public TextMesh lifestext;
 	public bool hitting;
-    private bool hitAnim;
+    public bool hitAnim;
     public float hitAnimTimer;
     public bool damage;
     public bool itemTaken;
@@ -218,7 +218,7 @@ public class playerController : MonoBehaviour
             }
         }
         //HIT  == CLICK ESQUERRA del mouse. 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && hitAnimTimer <= 0) 
+        if (Input.GetKeyDown(KeyCode.Mouse0) && hitAnimTimer <= 0 && life > 0) 
 		{
 			hitting = true;
             hitAnim = true;
@@ -238,7 +238,7 @@ public class playerController : MonoBehaviour
 		{
 			speed = 2;
 		}
-        if(hitAnim == true)
+        if(hitAnim == true && life > 0)
         {
             playerHitNormal.transform.rotation = playerIdle.transform.rotation;
             hitAnimTimer -= Time.deltaTime;
@@ -249,11 +249,31 @@ public class playerController : MonoBehaviour
             }
             else
             {
-                this.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                playerHitNormal.SetActive(true);
-                playerIdle.SetActive(false);
-                playerMove.SetActive(false);
+                if(damage == false)
+                {
+                    this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    playerHitNormal.SetActive(true);
+                    playerIdle.SetActive(false);
+                    playerMove.SetActive(false);
+                }
+                else
+                {
+                    this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    playerHitNormal.SetActive(false);
+                    playerIdle.SetActive(false);
+                    playerMove.SetActive(false);
+                    playerReceivesDamage.SetActive(true);
+                }
             }
+        }
+        else if(hitAnim == true)
+        {
+            playerIdle.SetActive(false);
+            playerMove.SetActive(false);
+            playerHitNormal.SetActive(false);
+            playerDeath.SetActive(true);
+            hitAnimTimer = 0;
+            hitAnim = false;
         }
     }
 
