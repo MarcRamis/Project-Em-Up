@@ -4,43 +4,52 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Camera Cam2d;
+    public GameObject Cam2d;
     public GameObject player;
 
-    //Contador de temps per disparar
-    public float shootTimer;
-
     //Bullet components
-    public GameObject bullet;
-    public GameObject bulletPrefab;
-    public GameObject bulletAux;
     public float bulletSpeed;
+
+    Vector3 bulletDirection;
 
     // Start is called before the first frame update
     void Start()
     {
-        bulletSpeed = 2.0f;
-        shootTimer = 0;
+        player = GameObject.Find("Player");
+        Cam2d = GameObject.Find("2dcamera");
+
+        this.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+
+        bulletDirection = player.transform.position - this.transform.position;
+        bulletDirection /= bulletDirection.magnitude;
     }
 
     // Update is called once per frame
     void Update()
     {
-        shootTimer += Time.deltaTime;
+        MoveBullet();
 
-        if (shootTimer >= 3.0f && Vector3.Distance(this.transform.position, player.transform.position) > 1)
+        if (Cam2d.GetComponent<Camera>().WorldToScreenPoint(this.transform.position).x < -100 || Cam2d.GetComponent<Camera>().WorldToScreenPoint(this.transform.position).x > 1500)
         {
-            bulletAux = Instantiate(bulletPrefab, bullet.transform.position, bullet.transform.rotation); //Crear bala
+            DestroyBullet();
+        }
+    }
 
-            bulletAux.transform.position += ((player.transform.position - transform.position).normalized * Time.deltaTime * bulletSpeed);
-        }
-        
-        if (Cam2d.WorldToScreenPoint(this.transform.position).x < 20 || Cam2d.WorldToScreenPoint(this.transform.position).x > 1300)
+    void DestroyBullet()
+    {
+        Destroy(this.gameObject);
+    }
+
+    void MoveBullet()
+    {
+        this.transform.position += bulletDirection * (Time.deltaTime * bulletSpeed);
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
         {
-            Destroy(bulletAux);
+            DestroyBullet();
         }
-        
-        //Resetetjar el timer
-        if (shootTimer >= 6.0f) shootTimer = 0.0f;
     }
 }

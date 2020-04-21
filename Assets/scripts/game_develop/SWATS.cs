@@ -50,35 +50,19 @@ public class SWATS : MonoBehaviour
 
         if (health > 0)
         {
-            //shootTimer += Time.deltaTime;
+            shootTimer += Time.deltaTime;
 
             //Direccions respecte a l'enemic 
             if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
             {
                 this.transform.rotation = new Quaternion(0, 0, 0, 0);
                 bullet.transform.rotation = new Quaternion(0, 0, 90, 0);
-
-                /*
-                if (bulletAux == null)
-                {
-                    right = true;
-                    left = false;
-                }
-                */
             }
                 
             if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
             {
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
                 bullet.transform.rotation = new Quaternion(0, 0, -90, 0); //Això encara no importa perquè la bala es una capsula i per tant té la mateixa forma.
-
-                /*
-                if (bulletAux == null)
-                {
-                    right = false;
-                    left = true;
-                }
-                */
             }
 
             if (Vector3.Distance(this.transform.position, player.transform.position) >1)
@@ -96,34 +80,11 @@ public class SWATS : MonoBehaviour
             //Distància entre SWAT i jugador.
             if (Vector3.Distance(this.transform.position, player.transform.position) < 15 && health > 0)
             {
-                //Si la distancia entre el jugador i l'enemic es menor al valor indicat, el contador es major o igual que el contador de temps i no s'ha creat cap bala.
-                /*
-                if (Vector3.Distance(this.transform.position, player.transform.position) < 20 
-                ç&& Vector3.Distance(this.transform.position, player.transform.position) > 2 && shootTimer >= 3.0f && bulletAux == null)
+                if (shootTimer >= 3.0f)
                 {
-                    bulletAux = Instantiate(bulletPrefab, bullet.transform.position, bullet.transform.rotation); //Crear bala
+                    bulletAux = Instantiate(bulletPrefab, bullet.transform.position, bullet.transform.rotation);
+                    shootTimer = 0.0f;
                 }
-
-                //Si la direcció es left i només s'ha disparat una bala, es dispara una altra.
-                if (left == true && bulletAux != null)
-                {
-                    bulletAux.transform.Translate(new Vector3(-15, 0, 0) * Time.deltaTime);
-                }
-
-                else if (right == true && bulletAux != null)
-                {
-                    bulletAux.transform.Translate(new Vector3(15, 0, 0) * Time.deltaTime);
-                }
-
-                if (bulletAux != null && Vector3.Distance(this.transform.position, bulletAux.transform.position) > 15)
-                {
-                    Destroy(bulletAux);
-                }
-                
-
-                //Resetetjar el timer
-                if (shootTimer >= 6.0f) shootTimer = 0.0f;
-                */
 
                 if (Vector3.Distance(this.transform.position, player.transform.position) < 1 && player.GetComponent<playerController>().hitTimer <= 0 
                     && Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false 
