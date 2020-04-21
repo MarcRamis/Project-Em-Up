@@ -215,6 +215,7 @@ public class playerController : MonoBehaviour
             {
                 life = 0;
                 playerDeath.gameObject.SetActive(true);
+                this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
         }
         //HIT  == CLICK ESQUERRA del mouse. 
@@ -284,6 +285,7 @@ public class playerController : MonoBehaviour
             damage = true;
             life -= 20;
         }
+        if(other.gameObject.tag == "bullet")
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
-
 }
