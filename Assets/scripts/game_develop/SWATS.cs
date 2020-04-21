@@ -26,13 +26,9 @@ public class SWATS : MonoBehaviour
     public GameObject bulletAux;
     public float shootTimer = 0.0f;
 
-    //Variables per detectar quan es mou l'enemic
-    public float timerMove = 0f;
-    public bool isTimeToMove = false;
-
-    //Booleans per controlar les direccions
-    public bool right, left;
+    //Booleans per controlar els estats
     public bool damage;
+    public bool playerIsClose;
 
     Vector3 move;
 
@@ -52,69 +48,80 @@ public class SWATS : MonoBehaviour
         {
             shootTimer += Time.deltaTime;
 
-            //Direccions respecte a l'enemic 
+            //Direccions respecte a la direcció del jugador 
             if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
             {
                 this.transform.rotation = new Quaternion(0, 0, 0, 0);
-                bullet.transform.rotation = new Quaternion(0, 0, 90, 0);
             }
-                
             if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
             {
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
-                bullet.transform.rotation = new Quaternion(0, 0, -90, 0); //Això encara no importa perquè la bala es una capsula i per tant té la mateixa forma.
-            }
-
-            if (Vector3.Distance(this.transform.position, player.transform.position) >1)
-            {
-                enemyShoot.SetActive(true);
-                enemyIdle.SetActive(false);
-
-            }
-            else
-            {
-                enemyIdle.SetActive(true);
-                enemyShoot.SetActive(false);
             }
 
             //Distància entre SWAT i jugador.
-            if (Vector3.Distance(this.transform.position, player.transform.position) < 15 && health > 0)
+            if (Vector3.Distance(this.transform.position, player.transform.position) < 15 
+                && Vector3.Distance(this.transform.position, player.transform.position) >= 3.5f)
             {
+                playerIsClose = false;
                 if (shootTimer >= 3.0f)
                 {
                     bulletAux = Instantiate(bulletPrefab, bullet.transform.position, bullet.transform.rotation);
                     shootTimer = 0.0f;
                 }
+            }
+            else if(Vector3.Distance(this.transform.position, player.transform.position) < 3.5f)
+            {
+                playerIsClose = true;
+            }
 
-                if (Vector3.Distance(this.transform.position, player.transform.position) < 1 && player.GetComponent<playerController>().hitTimer <= 0 
-                    && Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false 
-                    && damage == false && (this.transform.position.y - player.transform.position.y) > -0.18f && (this.transform.position.y - player.transform.position.y) < 0.18f)
+            // Condicions per controlar el dany infringit
+            if (Vector3.Distance(this.transform.position, player.transform.position) < 1
+                && player.GetComponent<playerController>().hitTimer <= 0
+                && Input.GetKeyDown(KeyCode.Mouse0)
+                && player.GetComponent<playerController>().damage == false
+                && damage == false && (this.transform.position.y - player.transform.position.y) > -0.18f
+                && (this.transform.position.y - player.transform.position.y) < 0.18f)
+            {
+                damage = true;
+                enemyDamage.SetActive(true);
+            }
+            else if (damage == false)
+            {
+                enemyDamage.SetActive(false);
+            }
+            if (damage == true)
+            {
+                timerDamage -= Time.deltaTime;
+                if (timerDamage <= 0)
                 {
-                    damage = true;
-                    enemyDamage.SetActive(true);
-                }
-                else if (damage == false)
-                {
-                    enemyDamage.SetActive(false);
-                }
-                if(damage == true)
-                {
-                    timerDamage -= Time.deltaTime;
-                    if(timerDamage <= 0)
-                    {
-                        damage = false;
-                        health -= 50;
-                        timerDamage = 0.8f;
-                    }
+                    damage = false;
+                    health -= 50;
+                    timerDamage = 0.8f;
                 }
             }
+
+            // Condicions per controlar les anim es que el jugador està a prop
+            if (!playerIsClose && !damage)
+            {
+                enemyShoot.SetActive(true);
+                enemyIdle.SetActive(false);
+
+            }
+            else if (playerIsClose && !damage)
+            {
+                enemyIdle.SetActive(true);
+                enemyShoot.SetActive(false);
+            }
         }
+
         else
         {
             timerDeath -= Time.deltaTime;
             enemyIdle.SetActive(false);
             enemyDamage.SetActive(false);
+            enemyShoot.SetActive(false);
             enemyDeath.SetActive(true);
+            
             if (timerDeath <= 0)
             {
                 screen.GetComponent<screen_collision>().enemyCounter -= 1;
@@ -126,7 +133,8 @@ public class SWATS : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 && other.GetComponent<Barril>().taken == false && other.GetComponent<Barril>().destroyItem == false && (other.GetComponent<Barril>().right == true || other.GetComponent<Barril>().left == true))
+        if(other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 
+            && other.GetComponent<Barril>().taken == false && other.GetComponent<Barril>().destroyItem == false)
         {
             other.GetComponent<Barril>().destroyItem = true;
             health = 0;
