@@ -112,6 +112,11 @@ public class SWATS : MonoBehaviour
                 enemyIdle.SetActive(true);
                 enemyShoot.SetActive(false);
             }
+            else
+            {
+                enemyIdle.SetActive(false);
+                enemyShoot.SetActive(false);
+            } 
         }
 
         else

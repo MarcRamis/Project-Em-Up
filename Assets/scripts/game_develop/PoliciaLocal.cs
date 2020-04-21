@@ -195,7 +195,7 @@ public class PoliciaLocal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //mort per un cop de barril
-        if (other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 && other.GetComponent<Barril>().taken == false)
+        if (other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 && other.GetComponent<Barril>().taken == false && other.GetComponent<Barril>().destroyItem == false && (other.GetComponent<Barril>().right == true || other.GetComponent<Barril>().left == true))
         {
             other.GetComponent<Barril>().destroyItem = true;
             vida = 0;

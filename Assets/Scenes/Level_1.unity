@@ -8656,38 +8656,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
---- !u!1 &700932579 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6818957819778328652, guid: 55382806bfd53d44dad1d5593acaca2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 700932578}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &700932580 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6818957819391785640, guid: 55382806bfd53d44dad1d5593acaca2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 700932578}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &700932581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 700932579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b0f78faf7dd384abdfd3301df8c981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cam2d: {fileID: 1730121791}
-  player: {fileID: 935069430}
-  shootTimer: 0
-  bullet: {fileID: 700932580}
-  bulletPrefab: {fileID: 4339428542768030976, guid: 161797be508dbee479b6daaf0c8a6682,
-    type: 3}
-  bulletAux: {fileID: 0}
-  bulletSpeed: 0
 --- !u!1 &703634480
 GameObject:
   m_ObjectHideFlags: 0
@@ -14430,38 +14398,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
---- !u!1 &1123541361 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6818957819778328652, guid: 55382806bfd53d44dad1d5593acaca2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1123541360}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1123541362 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6818957819391785640, guid: 55382806bfd53d44dad1d5593acaca2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1123541360}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1123541363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123541361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b0f78faf7dd384abdfd3301df8c981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cam2d: {fileID: 1730121791}
-  player: {fileID: 935069430}
-  shootTimer: 0
-  bullet: {fileID: 1123541362}
-  bulletPrefab: {fileID: 4339428542768030976, guid: 161797be508dbee479b6daaf0c8a6682,
-    type: 3}
-  bulletAux: {fileID: 0}
-  bulletSpeed: 0
 --- !u!1 &1126671058
 GameObject:
   m_ObjectHideFlags: 0
@@ -20470,32 +20406,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1561245012 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6818957819778328652, guid: 55382806bfd53d44dad1d5593acaca2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2077153441}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1561245013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561245012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b0f78faf7dd384abdfd3301df8c981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cam2d: {fileID: 1730121791}
-  player: {fileID: 935069430}
-  shootTimer: 0
-  bullet: {fileID: 2085928039}
-  bulletPrefab: {fileID: 4339428542768030976, guid: 161797be508dbee479b6daaf0c8a6682,
-    type: 3}
-  bulletAux: {fileID: 0}
-  bulletSpeed: 0
 --- !u!1 &1570846478
 GameObject:
   m_ObjectHideFlags: 0
@@ -23001,38 +22911,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
---- !u!1 &1738400240 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6818957819778328652, guid: 55382806bfd53d44dad1d5593acaca2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1738400239}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1738400241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6818957819391785640, guid: 55382806bfd53d44dad1d5593acaca2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1738400239}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1738400242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738400240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b0f78faf7dd384abdfd3301df8c981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cam2d: {fileID: 1730121791}
-  player: {fileID: 935069430}
-  shootTimer: 0
-  bullet: {fileID: 1738400241}
-  bulletPrefab: {fileID: 4339428542768030976, guid: 161797be508dbee479b6daaf0c8a6682,
-    type: 3}
-  bulletAux: {fileID: 0}
-  bulletSpeed: 0
 --- !u!1 &1740645605
 GameObject:
   m_ObjectHideFlags: 0
@@ -29110,12 +28988,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2085928039 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6818957819391785640, guid: 55382806bfd53d44dad1d5593acaca2b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2077153441}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2090497477
 GameObject:
   m_ObjectHideFlags: 0
