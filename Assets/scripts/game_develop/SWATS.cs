@@ -8,8 +8,10 @@ public class SWATS : MonoBehaviour
     public GameObject player;
     public GameObject enemyIdle;
     public GameObject enemyDamage;
+    public GameObject enemyRun;
     public GameObject enemyDeath;
     public GameObject enemyShoot;
+    public GameObject enemyAttack;
     public GameObject screen;
 
     public Camera Cam2d;
@@ -19,6 +21,7 @@ public class SWATS : MonoBehaviour
     public float timerDamage = 0.8f;
     public float timerDeath = 3;
     public int health;
+    public float timerAttack = 2.0f;
 
     //Variables per manetjar la bala
     public GameObject bullet;
@@ -30,11 +33,16 @@ public class SWATS : MonoBehaviour
     public bool damage;
     public bool playerIsClose;
 
+    public bool isClose;
+    public float moveWhenIsClose;
+
     Vector3 move;
 
     void Start()
     {
         enemyShoot.SetActive(true);
+
+        moveWhenIsClose = 0.0f;
     }
 
     // Update is called once per frame
@@ -58,7 +66,7 @@ public class SWATS : MonoBehaviour
                 this.transform.rotation = new Quaternion(0, 180, 0, 0);
             }
 
-            //Distància entre SWAT i jugador.
+            // Condicions per controlar quan el jugador està a prop o en foraa
             if (Vector3.Distance(this.transform.position, player.transform.position) < 15 
                 && Vector3.Distance(this.transform.position, player.transform.position) >= 3.5f)
             {
@@ -72,10 +80,48 @@ public class SWATS : MonoBehaviour
             else if(Vector3.Distance(this.transform.position, player.transform.position) < 3.5f)
             {
                 playerIsClose = true;
+                isClose = true;
+
+                if (moveWhenIsClose >= 1.0f) 
+                {
+                    move = (player.transform.position);
+                    this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
+                }
+
+                timerAttack -= Time.deltaTime;
+
+                if (timerAttack <= 0)
+                {
+                    enemyIdle.SetActive(false);
+                    enemyDamage.SetActive(false);
+                    enemyRun.SetActive(false);
+                    enemyAttack.SetActive(true);
+
+                    if (player.GetComponent<playerController>().life > 0 
+                        && player.GetComponent<playerController>().inmunnity <= 0 
+                        && (this.transform.position.y - player.transform.position.y) > -0.18f 
+                        && (this.transform.position.y - player.transform.position.y) < 0.18f)
+                    {
+                        if (player.GetComponent<playerController>().cover == false)
+                            player.GetComponent<playerController>().damage = true;
+
+                        if (timerAttack <= 0)
+                            timerAttack = 2;
+                    }
+                    else if (player.GetComponent<playerController>().life > 0)
+                    {
+                        move = (new Vector3(this.transform.position.x, player.transform.position.y, player.transform.position.z));
+                        this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
+                    }
+                }
+            }
+            if (isClose)
+            {
+                moveWhenIsClose += Time.deltaTime;
             }
 
             // Condicions per controlar el dany infringit
-            if (Vector3.Distance(this.transform.position, player.transform.position) < 1
+            if (Vector3.Distance(this.transform.position, player.transform.position) < 2
                 && player.GetComponent<playerController>().hitTimer <= 0
                 && Input.GetKeyDown(KeyCode.Mouse0)
                 && player.GetComponent<playerController>().damage == false
