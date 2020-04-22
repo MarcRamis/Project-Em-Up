@@ -70,6 +70,9 @@ public class SWATS : MonoBehaviour
             if (Vector3.Distance(this.transform.position, player.transform.position) < 15 
                 && Vector3.Distance(this.transform.position, player.transform.position) >= 3.5f)
             {
+                enemyRun.SetActive(false);
+                enemyIdle.SetActive(false);
+                enemyAttack.SetActive(false);
                 playerIsClose = false;
                 if (shootTimer >= 3.0f)
                 {
@@ -82,10 +85,17 @@ public class SWATS : MonoBehaviour
                 playerIsClose = true;
                 isClose = true;
 
-                if (moveWhenIsClose >= 1.0f) 
+                if (moveWhenIsClose >= 1.0f && Vector3.Distance(this.transform.position, player.transform.position) > 1) 
                 {
+                    enemyRun.SetActive(true);
+                    enemyIdle.SetActive(false);
                     move = (player.transform.position);
                     this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
+                }
+                else if(timerAttack > 0)
+                {
+                    enemyRun.SetActive(false);
+                    enemyIdle.SetActive(true);
                 }
 
                 timerAttack -= Time.deltaTime;
@@ -94,6 +104,7 @@ public class SWATS : MonoBehaviour
                 {
                     enemyIdle.SetActive(false);
                     enemyDamage.SetActive(false);
+                    enemyShoot.SetActive(false);
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(true);
 
@@ -113,6 +124,10 @@ public class SWATS : MonoBehaviour
                         move = (new Vector3(this.transform.position.x, player.transform.position.y, player.transform.position.z));
                         this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
                     }
+                }
+                else
+                {
+                    enemyAttack.SetActive(false);
                 }
             }
             if (isClose)
