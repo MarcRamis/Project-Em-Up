@@ -18,6 +18,7 @@ public class enablePopup : MonoBehaviour
         if ((this.transform.position.x - camera.transform.position.x) <= 10)
         {
             popup.SetActive(true);
+            Destroy(this);
         }
     }
 }

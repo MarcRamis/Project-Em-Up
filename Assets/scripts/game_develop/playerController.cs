@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour
     public float hitAnimTimer;
     public bool damage;
     public bool itemTaken;
+    public bool cover;
     public GameObject itemTakenGO;
 	public GameObject playerIdle;
 	public GameObject playerMove;
@@ -50,9 +51,13 @@ public class playerController : MonoBehaviour
 
     void playerMovement()
     {
-		if(hitting == false && damage == false && life > 0) 
+		if(hitting == false && damage == false && life > 0 && cover == false) 
 		{
-            //Sisatema d'inmunitat que s'activa al respawn o rebre mal
+            if (Input.GetKey(KeyCode.E) && inmunnity <= 0)
+            {
+                cover = true;
+            }
+            //Sistema d'inmunitat que s'activa al respawn o rebre mal
             if(inmunnity > 0)
             {
                 inmunnity -= Time.deltaTime;
@@ -61,7 +66,7 @@ public class playerController : MonoBehaviour
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.green;
             }
             //torna a la normalitat quant s'acaba el tamps de inmunitat
-            else if(playerIdle.GetComponent<SpriteRenderer>().color == Color.green)
+            else if(playerIdle.GetComponent<SpriteRenderer>().color == Color.green || playerIdle.GetComponent<SpriteRenderer>().color == Color.yellow)
             {
                 playerIdle.GetComponent<SpriteRenderer>().color = Color.white;
                 playerMove.GetComponent<SpriteRenderer>().color = Color.white;
@@ -156,7 +161,7 @@ public class playerController : MonoBehaviour
 		}
 
         //HIT
-		else if(damage == false)
+		else if(damage == false && cover == false)
 		{
             inmunnity -= Time.deltaTime;
             if (inmunnity <= 0)
@@ -175,7 +180,7 @@ public class playerController : MonoBehaviour
                 //playerHitNormal.SetActive(true);
             }
         }
-        else
+        else if(cover == false)
         {
             timerdamage -= Time.deltaTime;
             //s'activa l'inmunitat al jugador després de l'animació de rebre mal
@@ -194,6 +199,19 @@ public class playerController : MonoBehaviour
                 //playerHitNormal.SetActive(false);
                 playerReceivesDamage.SetActive(true);
             }
+        }
+        else
+        {
+            playerMove.SetActive(false);
+            playerIdle.SetActive(true);
+            playerIdle.GetComponent<SpriteRenderer>().color = Color.yellow;
+            this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            if (!Input.GetKey(KeyCode.E)) 
+            {
+                cover = false;
+                playerIdle.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+
         }
         if(life <= 0)
         {
@@ -219,7 +237,7 @@ public class playerController : MonoBehaviour
             }
         }
         //HIT  == CLICK ESQUERRA del mouse. 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && hitAnimTimer <= 0 && life > 0) 
+        if (Input.GetKeyDown(KeyCode.Mouse0) && hitAnimTimer <= 0 && life > 0 && cover == false) 
 		{
 			hitting = true;
             hitAnim = true;

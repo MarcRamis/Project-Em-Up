@@ -80,7 +80,8 @@ public class SWATS : MonoBehaviour
                 && Input.GetKeyDown(KeyCode.Mouse0)
                 && player.GetComponent<playerController>().damage == false
                 && damage == false && (this.transform.position.y - player.transform.position.y) > -0.18f
-                && (this.transform.position.y - player.transform.position.y) < 0.18f)
+                && (this.transform.position.y - player.transform.position.y) < 0.18f
+                && player.GetComponent<playerController>().cover == false)
             {
                 damage = true;
                 enemyDamage.SetActive(true);
