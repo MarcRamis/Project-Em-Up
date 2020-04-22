@@ -1828,7 +1828,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207063202}
-  m_Text: "\n\n\n\n Enter to close popup\n\n "
+  m_Text: "\n\n\n\n Enter to continue\n\n "
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -8691,7 +8691,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721383757}
-  m_Text: "\n\n Enter to close popup\n\n "
+  m_Text: "\n\n Enter to continue\n\n "
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -12021,6 +12021,7 @@ MonoBehaviour:
   hitAnimTimer: 0
   damage: 0
   itemTaken: 0
+  cover: 0
   itemTakenGO: {fileID: 0}
   playerIdle: {fileID: 1005965518}
   playerMove: {fileID: 1149967895}
