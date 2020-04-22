@@ -20,7 +20,7 @@ public class intro : MonoBehaviour
         }
         if(time <= -12)
         {
-            SceneManager.LoadScene("Level_1");
+            SceneManager.LoadScene("sceneStage1");
         }
     }
 }

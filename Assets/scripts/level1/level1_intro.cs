@@ -6,6 +6,11 @@ public class level1_intro : MonoBehaviour
 {
     public float timer = 2;
 
+    private void Start()
+    {
+        AudioListener.volume = 1;
+    }
+
     // Update is called once per frame
     void Update()
     {
