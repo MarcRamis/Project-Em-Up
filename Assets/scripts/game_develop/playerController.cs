@@ -208,6 +208,7 @@ public class playerController : MonoBehaviour
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             if (!Input.GetKey(KeyCode.E)) 
             {
+                damage = false;
                 cover = false;
                 playerIdle.GetComponent<SpriteRenderer>().color = Color.white;
             }

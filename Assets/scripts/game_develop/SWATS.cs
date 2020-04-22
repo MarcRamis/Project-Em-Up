@@ -171,7 +171,7 @@ public class SWATS : MonoBehaviour
             }
             else if (playerIsClose && !damage)
             {
-                enemyIdle.SetActive(true);
+                //enemyIdle.SetActive(true);
                 enemyShoot.SetActive(false);
             }
             else
