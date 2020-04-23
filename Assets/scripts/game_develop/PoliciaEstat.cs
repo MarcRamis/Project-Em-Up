@@ -124,7 +124,7 @@ public class PoliciaEstat : MonoBehaviour
                     enemyAttack.SetActive(true);
                     if (player.GetComponent<playerController>().life > 0 && player.GetComponent<playerController>().inmunnity <= 0 && (this.transform.position.y - player.transform.position.y) > -0.18f && (this.transform.position.y - player.transform.position.y) < 0.18f)
                     {
-                        if(player.GetComponent<playerController>().cover == false)
+                        //if(player.GetComponent<playerController>().cover == false)
                         player.GetComponent<playerController>().damage = true;
                         if (timerAttack <= 0)
                             timerAttack = 2;
