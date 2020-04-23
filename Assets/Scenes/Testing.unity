@@ -8361,6 +8361,10 @@ PrefabInstance:
       propertyPath: enemyAttack
       value: 
       objectReference: {fileID: 1709100300}
+    - target: {fileID: 1694514339, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
+      propertyPath: timerAttack
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6818957819778328662, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_Center.x

@@ -59,20 +59,30 @@ public class SWATS : MonoBehaviour
             //Direccions respecte a la direcció del jugador 
             if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
             {
-                this.transform.rotation = new Quaternion(0, 0, 0, 0);
+                enemyRun.transform.rotation = new Quaternion(0, 0, 0, 0);
+                enemyIdle.transform.rotation = new Quaternion(0, 0, 0, 0);
+                enemyAttack.transform.rotation = new Quaternion(0, 0, 0, 0);
+                enemyShoot.transform.rotation = new Quaternion(0, 0, 0, 0);
+                enemyDamage.transform.rotation = new Quaternion(0, 0, 0, 0);
             }
             if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
             {
-                this.transform.rotation = new Quaternion(0, 180, 0, 0);
+                enemyRun.transform.rotation = new Quaternion(0, 180, 0, 0);
+                enemyIdle.transform.rotation = new Quaternion(0, 180, 0, 0);
+                enemyAttack.transform.rotation = new Quaternion(0, 180, 0, 0);
+                enemyShoot.transform.rotation = new Quaternion(0, 180, 0, 0);
+                enemyDamage.transform.rotation = new Quaternion(0, 180, 0, 0);
             }
 
-            // Condicions per controlar quan el jugador està a prop o en foraa
+            // Condicions per controlar quan el jugador està a prop o en fora
             if (Vector3.Distance(this.transform.position, player.transform.position) < 15 
                 && Vector3.Distance(this.transform.position, player.transform.position) >= 3.5f)
             {
+                timerAttack = 2;
                 enemyRun.SetActive(false);
                 enemyIdle.SetActive(false);
                 enemyAttack.SetActive(false);
+                enemyShoot.SetActive(true);
                 playerIsClose = false;
                 if (shootTimer >= 3.0f)
                 {
@@ -82,25 +92,35 @@ public class SWATS : MonoBehaviour
             }
             else if(Vector3.Distance(this.transform.position, player.transform.position) < 3.5f)
             {
+                timerAttack -= Time.deltaTime;
                 playerIsClose = true;
                 isClose = true;
 
-                if (moveWhenIsClose >= 1.0f && Vector3.Distance(this.transform.position, player.transform.position) > 1) 
-                {
-                    enemyRun.SetActive(true);
-                    enemyIdle.SetActive(false);
-                    move = (player.transform.position);
-                    this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
-                }
-                else if(timerAttack > 0)
+                if(moveWhenIsClose < 1.0f)
                 {
                     enemyRun.SetActive(false);
+                    enemyShoot.SetActive(false);
                     enemyIdle.SetActive(true);
                 }
 
-                timerAttack -= Time.deltaTime;
-
-                if (timerAttack <= 0)
+                if (moveWhenIsClose >= 1.0f && Vector3.Distance(this.transform.position, player.transform.position) > 1.2f && damage == false) 
+                {
+                    enemyShoot.SetActive(false);
+                    enemyAttack.SetActive(false);
+                    enemyIdle.SetActive(false);
+                    enemyRun.SetActive(true);
+                    move = (player.transform.position);
+                    this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
+                }
+                else if(moveWhenIsClose >= 1.0f && timerAttack > 0 && damage == false)
+                {
+                    enemyIdle.SetActive(true);
+                    enemyDamage.SetActive(false);
+                    enemyShoot.SetActive(false);
+                    enemyRun.SetActive(false);
+                    enemyAttack.SetActive(false);
+                }
+                else if (moveWhenIsClose >= 1.0f && timerAttack <= 0 && damage == false)
                 {
                     enemyIdle.SetActive(false);
                     enemyDamage.SetActive(false);
@@ -113,10 +133,10 @@ public class SWATS : MonoBehaviour
                         && (this.transform.position.y - player.transform.position.y) > -0.18f 
                         && (this.transform.position.y - player.transform.position.y) < 0.18f)
                     {
-                        if (player.GetComponent<playerController>().cover == false)
-                            player.GetComponent<playerController>().damage = true;
+                        //if (player.GetComponent<playerController>().cover == false)
+                        player.GetComponent<playerController>().damage = true;
 
-                        if (timerAttack <= 0)
+                        if (timerAttack <= -0.5f)
                             timerAttack = 2;
                     }
                     else if (player.GetComponent<playerController>().life > 0)
@@ -125,9 +145,25 @@ public class SWATS : MonoBehaviour
                         this.transform.position += ((move - transform.position).normalized * Time.deltaTime * speed);
                     }
                 }
-                else
+                //aquí es queda a l'espera del cooldown 'timerAttack' per atacar
+                if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false && damage == false && moveWhenIsClose >= 1.0f && Vector3.Distance(this.transform.position, player.transform.position) <= 1.3f && timerAttack > 0)
                 {
+                    enemyIdle.SetActive(true);
+                    enemyDamage.SetActive(false);
+                    enemyRun.SetActive(false);
                     enemyAttack.SetActive(false);
+                }
+                else if (Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false
+                    && player.GetComponent<playerController>().life > 0
+                    && enemyIdle.transform.rotation != player.GetComponent<playerController>().playerMove.transform.rotation
+                    && player.GetComponent<playerController>().hitTimer <= 0
+                    && (this.transform.position.y - player.transform.position.y) > -0.18f
+                    && (this.transform.position.y - player.transform.position.y) < 0.18f
+                    && player.GetComponent<playerController>().cover == false)
+                {
+                    damage = true;
+                    enemyDamage.SetActive(true);
+                    health -= 50;
                 }
             }
             if (isClose)
@@ -136,7 +172,7 @@ public class SWATS : MonoBehaviour
             }
 
             // Condicions per controlar el dany infringit
-            if (Vector3.Distance(this.transform.position, player.transform.position) < 2
+            /*if (Vector3.Distance(this.transform.position, player.transform.position) < 2
                 && player.GetComponent<playerController>().hitTimer <= 0
                 && Input.GetKeyDown(KeyCode.Mouse0)
                 && player.GetComponent<playerController>().damage == false
@@ -147,23 +183,28 @@ public class SWATS : MonoBehaviour
                 damage = true;
                 enemyDamage.SetActive(true);
             }
-            else if (damage == false)
+            */
+            if (damage == false)
             {
                 enemyDamage.SetActive(false);
             }
             if (damage == true)
             {
+                enemyIdle.SetActive(false);
+                enemyAttack.SetActive(false);
+                enemyShoot.SetActive(false);
+                enemyRun.SetActive(false);
+                enemyDamage.SetActive(true);
                 timerDamage -= Time.deltaTime;
                 if (timerDamage <= 0)
                 {
                     damage = false;
-                    health -= 50;
                     timerDamage = 0.8f;
                 }
             }
 
             // Condicions per controlar les anim es que el jugador està a prop
-            if (!playerIsClose && !damage)
+            /*if (!playerIsClose && !damage)
             {
                 enemyShoot.SetActive(true);
                 enemyIdle.SetActive(false);
@@ -178,7 +219,9 @@ public class SWATS : MonoBehaviour
             {
                 enemyIdle.SetActive(false);
                 enemyShoot.SetActive(false);
-            } 
+                enemyRun.SetActive(false);
+                enemyAttack.SetActive(false);
+            }*/
         }
 
         else
@@ -187,6 +230,9 @@ public class SWATS : MonoBehaviour
             enemyIdle.SetActive(false);
             enemyDamage.SetActive(false);
             enemyShoot.SetActive(false);
+            enemyAttack.SetActive(false);
+            enemyRun.SetActive(false);
+            enemyDeath.transform.rotation = enemyIdle.transform.rotation;
             enemyDeath.SetActive(true);
             
             if (timerDeath <= 0)
