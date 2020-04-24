@@ -299,7 +299,7 @@ public class playerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "bullet" && inmunnity <= 0)
+        if(other.gameObject.tag == "bullet" && inmunnity <= 0 && cover == false)
         {
             damage = true;
             life -= 20;
