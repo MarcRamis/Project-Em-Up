@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     public GameObject player;
 
     //Bullet components
-    public float bulletSpeed;
+    public float bulletSpeed = 5;
 
     Vector3 bulletDirection;
 

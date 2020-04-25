@@ -84,7 +84,7 @@ public class SWATS : MonoBehaviour
                 enemyAttack.SetActive(false);
                 enemyShoot.SetActive(true);
                 playerIsClose = false;
-                if (shootTimer >= 3.0f)
+                if (shootTimer >= 5.0f)
                 {
                     bulletAux = Instantiate(bulletPrefab, bullet.transform.position, bullet.transform.rotation);
                     shootTimer = 0.0f;
@@ -171,19 +171,6 @@ public class SWATS : MonoBehaviour
                 moveWhenIsClose += Time.deltaTime;
             }
 
-            // Condicions per controlar el dany infringit
-            /*if (Vector3.Distance(this.transform.position, player.transform.position) < 2
-                && player.GetComponent<playerController>().hitTimer <= 0
-                && Input.GetKeyDown(KeyCode.Mouse0)
-                && player.GetComponent<playerController>().damage == false
-                && damage == false && (this.transform.position.y - player.transform.position.y) > -0.18f
-                && (this.transform.position.y - player.transform.position.y) < 0.18f
-                && player.GetComponent<playerController>().cover == false)
-            {
-                damage = true;
-                enemyDamage.SetActive(true);
-            }
-            */
             if (damage == false)
             {
                 enemyDamage.SetActive(false);
@@ -202,26 +189,6 @@ public class SWATS : MonoBehaviour
                     timerDamage = 0.8f;
                 }
             }
-
-            // Condicions per controlar les anim es que el jugador està a prop
-            /*if (!playerIsClose && !damage)
-            {
-                enemyShoot.SetActive(true);
-                enemyIdle.SetActive(false);
-
-            }
-            else if (playerIsClose && !damage)
-            {
-                //enemyIdle.SetActive(true);
-                enemyShoot.SetActive(false);
-            }
-            else
-            {
-                enemyIdle.SetActive(false);
-                enemyShoot.SetActive(false);
-                enemyRun.SetActive(false);
-                enemyAttack.SetActive(false);
-            }*/
         }
 
         else

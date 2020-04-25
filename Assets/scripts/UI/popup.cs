@@ -8,7 +8,7 @@ public class popup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             Time.timeScale = 1;
             Destroy(this.gameObject);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour
 {
-    public float speed = 2;
+    public float speed = 3;
     public float timerdamage;
     public float timerDeath = 5;
     public int life;
@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour
     public bool damage;
     public bool itemTaken;
     public bool cover;
+    public bool lunge = false;
     public GameObject itemTakenGO;
 	public GameObject playerIdle;
 	public GameObject playerMove;
@@ -33,6 +34,9 @@ public class playerController : MonoBehaviour
 
     public float hitTimer = 0;
     public float inmunnity = 0.8f;
+
+    public float lungeTimer = 0.5f;
+    public float lungeCooldown = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +57,46 @@ public class playerController : MonoBehaviour
     {
 		if(hitting == false && damage == false && life > 0 && cover == false) 
 		{
+            if (lungeCooldown > 0)
+            {
+                lungeCooldown -= Time.deltaTime; 
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && lungeCooldown <= 0)
+            {
+                lunge = true;
+            }
+
+            if (lunge)
+            {
+                lungeCooldown = 10;
+                speed = 15;
+                lungeTimer -= Time.deltaTime;
+
+                if (playerIdle.transform.rotation == new Quaternion(0, 180, 0, 0))
+                {
+                    if (Cam2d.WorldToScreenPoint(this.transform.position).x < 1300)
+                        this.GetComponent<Rigidbody>().velocity = new Vector3(speed, 0, 0);
+                    else
+                        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
+
+                else
+                {
+                    if (Cam2d.WorldToScreenPoint(this.transform.position).x > 20)
+                     this.GetComponent<Rigidbody>().velocity = new Vector3(-speed, 0, 0);
+                    else
+                        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }                    
+
+                if (lungeTimer <= 0)
+                {
+                    speed = 4;
+                    lunge = false;
+                    lungeTimer = 0.5f;                    
+                }
+            }                
+
             if (Input.GetKey(KeyCode.E) && inmunnity <= 0)
             {
                 cover = true;
@@ -72,7 +116,7 @@ public class playerController : MonoBehaviour
                 playerMove.GetComponent<SpriteRenderer>().color = Color.white;
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.white;
             }
-            if(move == true)
+            if(move == true && lunge == false)
             {
                 if (!Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.D))
                 {
@@ -137,14 +181,6 @@ public class playerController : MonoBehaviour
                     playerMove.transform.rotation = new Quaternion(0, 180, 0, 0);
                     playerReceivesDamage.transform.rotation = new Quaternion(0, 180, 0, 0);
                 }
-            }
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                speed = 3;
-            }
-            else
-            {
-                speed = 2;
             }
             
             //Animació
@@ -237,6 +273,7 @@ public class playerController : MonoBehaviour
                 this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
         }
+
         //HIT  == CLICK ESQUERRA del mouse. 
         if (Input.GetKeyDown(KeyCode.Mouse0) && hitAnimTimer <= 0 && life > 0 && cover == false) 
 		{
@@ -247,17 +284,8 @@ public class playerController : MonoBehaviour
 		else 
 		{
 			hitting = false;
-			//playerHitNormal.SetActive(false);
 		}
-        //RUN : SHIFT
-		if(Input.GetKey(KeyCode.LeftShift)) 
-		{
-			speed = 4;
-		}
-		else 
-		{
-			speed = 2;
-		}
+
         if(hitAnim == true && life > 0)
         {
             playerHitNormal.transform.rotation = playerIdle.transform.rotation;
@@ -296,6 +324,8 @@ public class playerController : MonoBehaviour
             hitAnim = false;
         }
     }
+
+   
 
     private void OnCollisionEnter(Collision other)
     {

@@ -15,7 +15,7 @@ public class enablePopup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((this.transform.position.x - camera.transform.position.x) <= 10)
+        if ((this.transform.position.x - camera.transform.position.x) <= 15)
         {
             popup.SetActive(true);
             Destroy(this);
