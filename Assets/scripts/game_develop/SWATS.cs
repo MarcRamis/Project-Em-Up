@@ -133,7 +133,6 @@ public class SWATS : MonoBehaviour
                         && (this.transform.position.y - player.transform.position.y) > -0.18f 
                         && (this.transform.position.y - player.transform.position.y) < 0.18f)
                     {
-                        //if (player.GetComponent<playerController>().cover == false)
                         player.GetComponent<playerController>().damage = true;
 
                         if (timerAttack <= -0.5f)
@@ -231,5 +230,4 @@ public class SWATS : MonoBehaviour
             health = 0;
         }
     }
-
 }
