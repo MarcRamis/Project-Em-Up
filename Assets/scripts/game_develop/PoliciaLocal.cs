@@ -157,6 +157,13 @@ public class PoliciaLocal : MonoBehaviour
                     vida -= 50;
                 }
 
+                if (player.GetComponent<playerController>().lunge == true
+                    && (this.transform.position.y - player.transform.position.y) > -0.20f
+                    && (this.transform.position.y - player.transform.position.y) < 0.20f)
+                {
+                    vida = 0;
+                }
+
                 if (enemytakesDamage == true)
                 {
                     if (timerDamage > 0)

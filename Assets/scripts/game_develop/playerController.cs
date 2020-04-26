@@ -17,7 +17,7 @@ public class playerController : MonoBehaviour
     public bool damage;
     public bool itemTaken;
     public bool cover;
-    public bool lunge = false;
+    
     public GameObject itemTakenGO;
 	public GameObject playerIdle;
 	public GameObject playerMove;
@@ -35,6 +35,8 @@ public class playerController : MonoBehaviour
     public float hitTimer = 0;
     public float inmunnity = 0.8f;
 
+    // Variables per controlar l'habilitat embestida del jugador.
+    public bool lunge = false;
     public float lungeTimer = 0.5f;
     public float lungeCooldown = 0f;
 

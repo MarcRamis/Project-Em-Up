@@ -5342,6 +5342,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 940460462, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 124888535, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6818957820170952578, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_SortingOrder
@@ -5351,14 +5359,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 940460462, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 124888535, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
@@ -9350,9 +9350,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737220653}
-  m_Text: 'LEVEL 1
-
-    BEGIN!'
+  m_Text: BEGIN!
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -19572,6 +19570,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 940460462, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 124888535, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6818957820170952578, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_SortingOrder
@@ -19581,14 +19587,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 940460462, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 124888535, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55382806bfd53d44dad1d5593acaca2b, type: 3}

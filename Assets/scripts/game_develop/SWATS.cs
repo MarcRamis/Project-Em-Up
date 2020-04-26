@@ -146,7 +146,10 @@ public class SWATS : MonoBehaviour
                     }
                 }
                 //aquí es queda a l'espera del cooldown 'timerAttack' per atacar
-                if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false && damage == false && moveWhenIsClose >= 1.0f && Vector3.Distance(this.transform.position, player.transform.position) <= 1.3f && timerAttack > 0)
+                if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false 
+                    && damage == false && moveWhenIsClose >= 1.0f 
+                    && Vector3.Distance(this.transform.position, player.transform.position) <= 1.3f 
+                    && timerAttack > 0)
                 {
                     enemyIdle.SetActive(true);
                     enemyDamage.SetActive(false);
@@ -164,6 +167,14 @@ public class SWATS : MonoBehaviour
                     damage = true;
                     enemyDamage.SetActive(true);
                     health -= 50;
+                }
+
+                // Dany de l'embestida del jugador
+                if(player.GetComponent<playerController>().lunge == true
+                    && (this.transform.position.y - player.transform.position.y) > -0.20f
+                    && (this.transform.position.y - player.transform.position.y) < 0.20f)
+                {
+                    health = 0;
                 }
             }
             if (isClose)

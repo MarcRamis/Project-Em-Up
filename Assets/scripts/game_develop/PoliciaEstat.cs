@@ -155,6 +155,14 @@ public class PoliciaEstat : MonoBehaviour
                     enemytakesDamage = true;
                     vida -= 30;
                 }
+
+                // Dany de l'embestida del jugador
+                if (player.GetComponent<playerController>().lunge == true
+                    && (this.transform.position.y - player.transform.position.y) > -0.20f
+                    && (this.transform.position.y - player.transform.position.y) < 0.20f)
+                {
+                    vida = 0;
+                }
                 //temporitzador per l'animació de rebre mal
                 if (enemytakesDamage == true)
                 {
