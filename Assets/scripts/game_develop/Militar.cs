@@ -121,7 +121,7 @@ public class Militar : MonoBehaviour
             }
 
             // Condició per controlar la distancia a la que es tira la granada i en quin moment
-            if (Vector3.Distance(this.transform.position, player.transform.position) >= 4 && Vector3.Distance(this.transform.position, player.transform.position) <= 2)
+            if (Vector3.Distance(this.transform.position, player.transform.position) >= 4)
             {
                 print("distance");
                 if (throwGranadeTimer >= 10.0f)
