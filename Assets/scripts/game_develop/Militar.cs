@@ -12,6 +12,7 @@ public class Militar : MonoBehaviour
     public GameObject enemyAttack;
     public GameObject enemyTakingDamage;
     public GameObject enemyDeath;
+    public GameObject pow;
     public GameObject scene;
     public float timerAttack;
     public float timerdeath;
@@ -30,6 +31,7 @@ public class Militar : MonoBehaviour
     public GameObject granada;
     public GameObject granadaPrefab;
     public GameObject granadaAux;
+    public bool movement;
     public float throwGranadeTimer = 6.0f;
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class Militar : MonoBehaviour
                 move = new Vector3(player.transform.position.x - 1, player.transform.position.y, player.transform.position.z);
             }
             //activa les mecàniques de perseguir al jugador sempre i quant estigui dintre d'un rang
-            if (Vector3.Distance(this.transform.position, player.transform.position) > 1.5f && Vector3.Distance(this.transform.position, player.transform.position) < 15)
+            if (Vector3.Distance(this.transform.position, player.transform.position) > 1.5f && Vector3.Distance(this.transform.position, player.transform.position) < 15 && movement == true)
             {
                 //persegueix al jugador en el càs de no col.lisionar amb cap enemic
                 if (enemyCollision == false)
@@ -114,7 +116,7 @@ public class Militar : MonoBehaviour
                 }
             }
             //Es para en el càs d'estar molt lluny el jugador, i es queda en espera
-            else if (Vector3.Distance(this.transform.position, player.transform.position) >= 15)
+            else if (Vector3.Distance(this.transform.position, player.transform.position) >= 15 || movement == false)
             {
                 enemyRun.SetActive(false);
                 enemyIdle.SetActive(true);
@@ -124,15 +126,20 @@ public class Militar : MonoBehaviour
             if (Vector3.Distance(this.transform.position, player.transform.position) >= 4)
             {
                 print("distance");
-                if (throwGranadeTimer >= 10.0f)
+                if (throwGranadeTimer >= 10.0f && movement == true)
                 {
                     granadaAux = Instantiate(granadaPrefab, granada.transform.position, granada.transform.rotation);
-                    throwGranadeTimer = 0.0f;
+                    movement = false;
                     print("Timer");
+                }
+                else if(throwGranadeTimer >= 13.0f)
+                {
+                    movement = true;
+                    throwGranadeTimer = 0.0f;
                 }
             }
             //aquí s'activa el càs de que estigui molt a prop, això fa que s'activi el mecanisme de infringir mal al jugador o rebre mal
-            else
+            else if(Vector3.Distance(this.transform.position, player.transform.position) <= 1.5f)
             {
                 timerAttack -= Time.deltaTime;
                 if (timerAttack <= 0)
@@ -210,6 +217,7 @@ public class Militar : MonoBehaviour
             enemyTakingDamage.SetActive(false);
             enemyRun.SetActive(false);
             enemyAttack.SetActive(false);
+            pow.SetActive(true);
             enemyDeath.SetActive(true);
             if (timerdeath <= 0)
             {
