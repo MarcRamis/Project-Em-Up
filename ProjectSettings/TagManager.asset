@@ -10,6 +10,7 @@ TagManager:
   - Enemy_policia_local
   - bullet
   - barricada
+  - Enemy_Militar
   layers:
   - Default
   - TransparentFX

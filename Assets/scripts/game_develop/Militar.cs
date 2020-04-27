@@ -32,9 +32,13 @@ public class Militar : MonoBehaviour
     public GameObject granadaPrefab;
     public GameObject granadaAux;
     public bool movement;
-    public float throwGranadeTimer = 6.0f;
+    public float throwGranadeTimer;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        throwGranadeTimer = Random.Range(0, 10);
+    }
+
     void Update()
     {
         //Follow character
@@ -43,7 +47,8 @@ public class Militar : MonoBehaviour
         //Activa totes les mecàniques del enemic sempre i quant tingui vida
         if (vida > 0)
         {
-            throwGranadeTimer += Time.deltaTime;
+            if (Vector3.Distance(this.transform.position, player.transform.position) <= 15)
+                throwGranadeTimer += Time.deltaTime;
             //agafa la rotació de l'enemic i el jugador dintre del marge de la càmera per avaluar a quina direcció deu mirar l'enemic per encarar-se cap el jugador
             if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
             {
@@ -123,19 +128,18 @@ public class Militar : MonoBehaviour
             }
 
             // Condició per controlar la distancia a la que es tira la granada i en quin moment
-            if (Vector3.Distance(this.transform.position, player.transform.position) >= 4)
+            if (Vector3.Distance(this.transform.position, player.transform.position) >= 4 && Vector3.Distance(this.transform.position, player.transform.position) <= 8)
             {
                 print("distance");
                 if (throwGranadeTimer >= 10.0f && movement == true)
                 {
                     granadaAux = Instantiate(granadaPrefab, granada.transform.position, granada.transform.rotation);
                     movement = false;
-                    print("Timer");
                 }
                 else if(throwGranadeTimer >= 13.0f)
                 {
                     movement = true;
-                    throwGranadeTimer = 0.0f;
+                    throwGranadeTimer = Random.Range(0,8);
                 }
             }
             //aquí s'activa el càs de que estigui molt a prop, això fa que s'activi el mecanisme de infringir mal al jugador o rebre mal
@@ -241,7 +245,7 @@ public class Militar : MonoBehaviour
         if (other.tag == "Enemy_Policia_estat")
         {
             EnemyCollision = other.gameObject;
-            if (EnemyCollision.GetComponent<Militar>().vida > 0)
+            if (EnemyCollision.GetComponent<PoliciaEstat>().vida > 0)
                 enemyCollision = true;
         }
         //Detecta si està col.lisionant amb un policia local
@@ -249,6 +253,12 @@ public class Militar : MonoBehaviour
         {
             EnemyCollision = other.gameObject;
             if (EnemyCollision.GetComponent<PoliciaLocal>().vida > 0)
+                enemyCollision = true;
+        }
+        if (other.tag == "Enemy_Militar")
+        {
+            EnemyCollision = other.gameObject;
+            if (EnemyCollision.GetComponent<Militar>().vida > 0)
                 enemyCollision = true;
         }
     }

@@ -35,7 +35,7 @@ public class Granada : MonoBehaviour
 
     void explodeGranada()
     {
-        if(Vector3.Distance(this.transform.position, player.transform.position) < 3)
+        if(Vector3.Distance(this.transform.position, player.transform.position) < 3 && player.GetComponent<playerController>().cover == false)
         {
             player.GetComponent<playerController>().damage = true;
             player.GetComponent<playerController>().life -= 50;

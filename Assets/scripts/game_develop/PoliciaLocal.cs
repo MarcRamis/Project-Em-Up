@@ -222,5 +222,11 @@ public class PoliciaLocal : MonoBehaviour
             if (EnemyCollision.GetComponent<PoliciaLocal>().vida > 0)
                 enemyCollision = true;
         }
+        if (other.tag == "Enemy_Militar")
+        {
+            EnemyCollision = other.gameObject;
+            if (EnemyCollision.GetComponent<Militar>().vida > 0)
+                enemyCollision = true;
+        }
     }
 }
