@@ -270,6 +270,8 @@ public class playerController : MonoBehaviour
             }
             else
             {
+                lunge = false;
+                speed = 4;
                 life = 0;
                 playerDeath.gameObject.SetActive(true);
                 this.GetComponent<Rigidbody>().velocity = Vector3.zero;
