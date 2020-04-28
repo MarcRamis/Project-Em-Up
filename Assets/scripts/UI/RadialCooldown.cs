@@ -18,7 +18,7 @@ public class RadialCooldown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && player.GetComponent<playerController>().lunge == true)
         {
             isCooldown = true;
         }
@@ -27,11 +27,17 @@ public class RadialCooldown : MonoBehaviour
         {
             imageCooldown.fillAmount += 1 / cooldown * Time.deltaTime;
 
+
             if (imageCooldown.fillAmount >= 1)
             {
-                imageCooldown.fillAmount = 0;
+                imageCooldown.fillAmount = 0.0f;
+
+                // Miram que el temporizador del cooldown sigui el mateix del player
+                // D'aquesta forma ens evitam problemes a la de concordar els timings
+                player.GetComponent<playerController>().lungeCooldown = 0.0f;
                 isCooldown = false;
             }
+
         }
     }
 }

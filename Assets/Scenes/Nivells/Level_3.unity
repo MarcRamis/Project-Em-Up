@@ -5313,6 +5313,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 899467177, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1685825174}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
 --- !u!224 &398604067 stripped
@@ -7883,6 +7887,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1685825174}
+    - target: {fileID: 4212128634501247090, guid: 88ba94de80cf5a84e9852b699c347b54,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4212128634501247091, guid: 88ba94de80cf5a84e9852b699c347b54,
         type: 3}
       propertyPath: m_Size.y
@@ -7902,11 +7911,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: 0.9288873
-      objectReference: {fileID: 0}
-    - target: {fileID: 4212128634501247090, guid: 88ba94de80cf5a84e9852b699c347b54,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ba94de80cf5a84e9852b699c347b54, type: 3}
