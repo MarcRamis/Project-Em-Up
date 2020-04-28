@@ -1,21 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class lifeBar : MonoBehaviour
 {
-	public GameObject BarLife;
 	public GameObject player;
+    Scrollbar bar;
 	
     // Start is called before the first frame update
     void Start()
     {
-        
+        bar = this.GetComponent<Scrollbar>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        BarLife.GetComponent<RectTransform>().transform.localScale = new Vector3(player.GetComponent<playerController>().life/3, 0.2394248f, 0.025999f);
+        bar.size = player.GetComponent<playerController>().life / 100.0f;
     }
 }

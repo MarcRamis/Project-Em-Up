@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class playerController : MonoBehaviour
     public int life;
 	public int vidas;
     public Camera Cam2d;
-    public TextMesh lifestext;
+    public Text lifestext;
 	public bool hitting;
     public bool hitAnim;
     public float hitAnimTimer;
@@ -51,7 +52,7 @@ public class playerController : MonoBehaviour
         if (hitTimer > 0)
             hitTimer -= Time.deltaTime;
 
-        lifestext.text = "LIFES: " + vidas;
+        lifestext.text = "x" + vidas;
         playerMovement();
     }
 
