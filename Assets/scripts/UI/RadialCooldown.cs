@@ -7,8 +7,9 @@ public class RadialCooldown : MonoBehaviour
 {
     public Image imageCooldown;
     public float cooldown;
-    bool isCooldown;
+    public bool isCooldown;
     public GameObject player;
+    public GameObject imageNuñez;
 
     void Start()
     {
@@ -18,13 +19,14 @@ public class RadialCooldown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && player.GetComponent<playerController>().lunge == true)
+        if (player.GetComponent<playerController>().lunge == true)
         {
             isCooldown = true;
         }
 
         if (isCooldown)
         {
+            imageNuñez.SetActive(false);
             imageCooldown.fillAmount += 1 / cooldown * Time.deltaTime;
 
 
@@ -37,7 +39,10 @@ public class RadialCooldown : MonoBehaviour
                 player.GetComponent<playerController>().lungeCooldown = 0.0f;
                 isCooldown = false;
             }
-
+        }
+        else
+        {
+            imageNuñez.SetActive(true);
         }
     }
 }
