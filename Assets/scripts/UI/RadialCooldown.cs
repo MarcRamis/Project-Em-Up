@@ -9,7 +9,7 @@ public class RadialCooldown : MonoBehaviour
     public float cooldown;
     public bool isCooldown;
     public GameObject player;
-    public GameObject imageNuñez;
+    public Image image;
 
     void Start()
     {
@@ -26,23 +26,21 @@ public class RadialCooldown : MonoBehaviour
 
         if (isCooldown)
         {
-            imageNuñez.SetActive(false);
             imageCooldown.fillAmount += 1 / cooldown * Time.deltaTime;
 
+            image.color = Color.red;
 
             if (imageCooldown.fillAmount >= 1)
             {
                 imageCooldown.fillAmount = 0.0f;
 
-                // Miram que el temporizador del cooldown sigui el mateix del player
-                // D'aquesta forma ens evitam problemes a la de concordar els timings
+                // Mirem que el temporizador del cooldown sigui el mateix del player
+                // D'aquesta forma ens evitem problemes a l'hora     de concordar els timings
                 player.GetComponent<playerController>().lungeCooldown = 0.0f;
                 isCooldown = false;
             }
         }
         else
-        {
-            imageNuñez.SetActive(true);
-        }
+            image.color = Color.green;
     }
 }
