@@ -13,6 +13,7 @@ public class enemiesBehind : MonoBehaviour
     {
         if ((this.transform.position.x - camera.transform.position.x) <= 6)
         {
+            if(enemiesbehind != null)
             enemiesbehind.SetActive(true);
         }
     }

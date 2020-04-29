@@ -17,6 +17,7 @@ public class area : MonoBehaviour
     {
         if ((this.transform.position.x - camera.transform.position.x) <= 0)
         {
+            camera.GetComponent<screen_collision>().enableArrow = true;
             camera.GetComponent<screen_collision>().enemyCounter += enemyCounter;
             Destroy(this.gameObject);
         }
