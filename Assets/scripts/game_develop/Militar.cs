@@ -26,6 +26,7 @@ public class Militar : MonoBehaviour
     public GameObject EnemyCollision;
     Vector3 move;
     public bool enemytakesDamage;
+    bool assignPoints = true;
 
     //Variables per controlar la granada
     public GameObject granada;
@@ -89,7 +90,7 @@ public class Militar : MonoBehaviour
                     if (rotVectorEnemy.x - rotVectorEnemy2.x <= 0)
                         move = (new Vector3(this.transform.position.x + 1000, this.transform.position.y, this.transform.position.z));
                     if (EnemyCollision != null && EnemyCollision.tag == "Enemy_Policia_estat")
-                        EnemyCollision.GetComponent<Militar>().enemyCollision = false;
+                        EnemyCollision.GetComponent<PoliciaEstat>().enemyCollision = false;
                     if (EnemyCollision != null && EnemyCollision.tag == "Enemy_policia_local")
                         EnemyCollision.GetComponent<PoliciaLocal>().enemyCollision = false;
                     if (EnemyCollision != null)
@@ -230,6 +231,16 @@ public class Militar : MonoBehaviour
             {
                 scene.GetComponent<screen_collision>().enemyCounter -= 1;
                 Destroy(this.gameObject);
+            }
+
+            if (!player.GetComponent<playerController>().ultimateAttack && assignPoints)
+            {
+                player.GetComponent<playerController>().ultimateAttackPlus += 8.0f;
+                assignPoints = false;
+            }
+            else if (assignPoints)
+            {
+                assignPoints = false;
             }
         }
     }

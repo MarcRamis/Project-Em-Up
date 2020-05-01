@@ -10,7 +10,7 @@ public class lifeBar : MonoBehaviour
 	
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         bar = this.GetComponent<Scrollbar>();
     }
 

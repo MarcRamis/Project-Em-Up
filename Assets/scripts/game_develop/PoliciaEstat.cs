@@ -26,6 +26,8 @@ public class PoliciaEstat : MonoBehaviour
     Vector3 move;
     public bool enemytakesDamage;
 
+    bool assignPoints = true;
+
     // Update is called once per frame
     void Update()
     {
@@ -199,6 +201,16 @@ public class PoliciaEstat : MonoBehaviour
             {
                 scene.GetComponent<screen_collision>().enemyCounter -= 1;
                 Destroy(this.gameObject);
+            }
+
+            if (!player.GetComponent<playerController>().ultimateAttack && assignPoints)
+            {
+                player.GetComponent<playerController>().ultimateAttackPlus += 5.0f;
+                assignPoints = false;
+            }
+            else if (assignPoints)
+            {
+                assignPoints = false;
             }
         }
     }

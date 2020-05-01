@@ -38,6 +38,8 @@ public class SWATS : MonoBehaviour
 
     Vector3 move;
 
+    bool assignPoints = true;
+
     void Start()
     {
         enemyShoot.SetActive(true);
@@ -221,6 +223,17 @@ public class SWATS : MonoBehaviour
             {
                 screen.GetComponent<screen_collision>().enemyCounter -= 1;
                 Destroy(this.gameObject);
+            }
+
+            if (!player.GetComponent<playerController>().ultimateAttack && assignPoints)
+            {
+                player.GetComponent<playerController>().ultimateAttackPlus += 3.0f;
+                assignPoints = false;
+            }
+            
+            else if (assignPoints)
+            {
+                assignPoints = false;
             }
         }
 

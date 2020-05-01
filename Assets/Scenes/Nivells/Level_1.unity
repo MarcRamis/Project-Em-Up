@@ -436,7 +436,7 @@ Transform:
   m_GameObject: {fileID: 25375152}
   m_LocalRotation: {x: -0.0635827, y: -0, z: -0, w: 0.9979766}
   m_LocalPosition: {x: 6.23, y: 1, z: 7}
-  m_LocalScale: {x: 0.01898315, y: 0.01898315, z: 0.16835}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 606746173}
   m_RootOrder: 8
@@ -497,7 +497,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6060485de3a8e2943a1ce67786320f24, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35289794770ff6947a7bda43edb966ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1191,7 +1191,7 @@ TextMesh:
   m_Font: {fileID: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190335
 --- !u!23 &80671258
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6718,6 +6718,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 998384570, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 998384570, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1224667762, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
 --- !u!224 &534406036 stripped
@@ -12238,7 +12250,6 @@ GameObject:
   m_Component:
   - component: {fileID: 900827298}
   - component: {fileID: 900827297}
-  - component: {fileID: 900827296}
   - component: {fileID: 900827295}
   m_Layer: 0
   m_Name: CameraShake
@@ -12266,14 +12277,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!81 &900827296
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900827294}
-  m_Enabled: 1
 --- !u!20 &900827297
 Camera:
   m_ObjectHideFlags: 0
@@ -23483,7 +23486,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1730121793}
   - component: {fileID: 1730121791}
-  - component: {fileID: 1730121792}
   m_Layer: 0
   m_Name: 2dcamera
   m_TagString: MainCamera
@@ -23533,14 +23535,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1730121792
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1730121790}
-  m_Enabled: 1
 --- !u!4 &1730121793
 Transform:
   m_ObjectHideFlags: 0

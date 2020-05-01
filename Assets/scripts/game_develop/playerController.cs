@@ -19,16 +19,13 @@ public class playerController : MonoBehaviour
     public bool damage;
     public bool itemTaken;
     public bool cover;
-    public bool ultimateAttack;
-    
+     
     public GameObject itemTakenGO;
 	public GameObject playerIdle;
 	public GameObject playerMove;
 	public GameObject playerHitNormal;
     public GameObject playerReceivesDamage;
     public GameObject playerDeath;
-    public GameObject ultimateAttackAnim;
-    public GameObject ultimateAttackWindow;
     public GameObject textGameOver;
     public GameObject cameraShake;
 
@@ -46,8 +43,13 @@ public class playerController : MonoBehaviour
     public bool lunge = false;
     public float lungeTimer = 0.5f;
     public float lungeCooldown = 0f;
-    public float ultimateAttackCooldown;
+
+    // Variables per controlar l'ultimate
+    public bool ultimateAttack;
+    public float ultimateAttackPlus = 0.0f;
     public float ultimateAttackTimer = 3;
+    public GameObject ultimateAttackAnim;
+    public GameObject ultimateAttackWindow;
 
     // Start is called before the first frame update
     void Start()
@@ -73,17 +75,12 @@ public class playerController : MonoBehaviour
                 lungeCooldown -= Time.deltaTime; 
             }
 
-            if (ultimateAttackCooldown > 0)
-            {
-                ultimateAttackCooldown -= Time.deltaTime;
-            }
-
             if (Input.GetKeyDown(KeyCode.LeftShift) && lungeCooldown <= 0 && ultimateAttack == false)
             {
                 lunge = true;
             }
 
-            if(Input.GetKeyDown(KeyCode.R) && ultimateAttackCooldown <= 0 && lunge == false)
+            if(Input.GetKeyDown(KeyCode.R) && ultimateAttackPlus >= 100.0f && lunge == false)
             {
                 ultimateAttackWindow.SetActive(true);
                 ultimateAttack = true;
@@ -125,7 +122,7 @@ public class playerController : MonoBehaviour
                 playerIdle.SetActive(false);
                 playerMove.SetActive(false);
                 ultimateAttackAnim.SetActive(true);
-                ultimateAttackCooldown = 50;
+                ultimateAttackPlus = 0.0f;
                 ultimateAttackTimer -= Time.deltaTime;
                 ultimateAttackAnim.transform.rotation = playerIdle.transform.rotation;
 

@@ -25,6 +25,8 @@ public class PoliciaLocal : MonoBehaviour
     public bool enemytakesDamage;
     public float timerDamage;
 
+    bool assignPoints = true;
+
     // Update is called once per frame
     void Update()
     {
@@ -200,6 +202,16 @@ public class PoliciaLocal : MonoBehaviour
             {
                 scene.GetComponent<screen_collision>().enemyCounter -= 1;
                 Destroy(this.gameObject);
+            }
+
+            if (!player.GetComponent<playerController>().ultimateAttack && assignPoints)
+            {
+                player.GetComponent<playerController>().ultimateAttackPlus += 2.0f;
+                assignPoints = false;
+            }
+            else if (assignPoints)
+            {
+                assignPoints = false;
             }
         }
     }
