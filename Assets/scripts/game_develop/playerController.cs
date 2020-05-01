@@ -303,9 +303,11 @@ public class playerController : MonoBehaviour
         if(life <= 0)
         {
             //playerDeath
+            ultimateAttackTimer = 3;
             cameraShake.SetActive(false);
             playerIdle.SetActive(false);
             playerMove.SetActive(false);
+            ultimateAttackWindow.SetActive(false);
             ultimateAttackAnim.SetActive(false);
             //playerHitNormal.SetActive(false);
             playerReceivesDamage.SetActive(false);
