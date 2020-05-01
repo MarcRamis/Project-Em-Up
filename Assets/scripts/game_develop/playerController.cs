@@ -81,7 +81,7 @@ public class playerController : MonoBehaviour
                 lunge = true;
             }
 
-            if(Input.GetKeyDown(KeyCode.R) && ultimateAttackPlus >= 100.0f && lunge == false)
+            if(Input.GetKeyDown(KeyCode.R) && ultimateAttackPlus >= 100.0f && lunge == false && Time.timeScale != 0)
             {
                 ultimateAttackWindow.SetActive(true);
                 ultimateAttack = true;
