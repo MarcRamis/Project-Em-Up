@@ -5581,17 +5581,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6818957820422390377, guid: 55382806bfd53d44dad1d5593acaca2b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6818957820170952578, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6818957820355104958, guid: 55382806bfd53d44dad1d5593acaca2b,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6818957820422390377, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
@@ -6716,7 +6716,7 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 1086004995, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
@@ -20447,17 +20447,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6818957820422390377, guid: 55382806bfd53d44dad1d5593acaca2b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6818957820170952578, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6818957820355104958, guid: 55382806bfd53d44dad1d5593acaca2b,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6818957820422390377, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1

@@ -10,7 +10,7 @@ public class Life_item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(this.transform.position, player.transform.position) < 1 && Input.GetKeyDown(KeyCode.E))
+        if(Vector3.Distance(this.transform.position, player.transform.position) < 1)
         {
             if(player.GetComponent<playerController>().life + 40 <= 100)
             {
