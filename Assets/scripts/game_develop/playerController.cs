@@ -22,6 +22,7 @@ public class playerController : MonoBehaviour
      
     public GameObject itemTakenGO;
 	public GameObject playerIdle;
+    public GameObject playerCover;
 	public GameObject playerMove;
 	public GameObject playerHitNormal;
     public GameObject playerReceivesDamage;
@@ -129,7 +130,7 @@ public class playerController : MonoBehaviour
                 if (ultimateAttackTimer <= 0)
                 {
                     cameraShake.SetActive(false);
-                    this.transform.position = new Vector3(this.transform.position.x + 5, this.transform.position.y, this.transform.position.z);
+                   // this.transform.position = new Vector3(this.transform.position.x + 5, this.transform.position.y, this.transform.position.z);
                     ultimateAttack = false;
                     ultimateAttackTimer = 3;
                 }
@@ -157,7 +158,7 @@ public class playerController : MonoBehaviour
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.green;
             }
             //torna a la normalitat quant s'acaba el tamps de inmunitat
-            else if(playerIdle.GetComponent<SpriteRenderer>().color == Color.green || playerIdle.GetComponent<SpriteRenderer>().color == Color.yellow)
+            else if(playerIdle.GetComponent<SpriteRenderer>().color == Color.green)
             {
                 playerIdle.GetComponent<SpriteRenderer>().color = Color.white;
                 playerMove.GetComponent<SpriteRenderer>().color = Color.white;
@@ -286,13 +287,15 @@ public class playerController : MonoBehaviour
         else
         {
             playerMove.SetActive(false);
-            playerIdle.SetActive(true);
-            playerIdle.GetComponent<SpriteRenderer>().color = Color.yellow;
+            playerIdle.SetActive(false);
+            playerCover.transform.rotation = playerIdle.transform.rotation;
+            playerCover.SetActive(true);
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             if (!Input.GetKey(KeyCode.E)) 
             {
                 damage = false;
                 cover = false;
+                playerCover.SetActive(false);
                 playerIdle.GetComponent<SpriteRenderer>().color = Color.white;
             }
 
@@ -304,6 +307,7 @@ public class playerController : MonoBehaviour
             cameraShake.SetActive(false);
             playerIdle.SetActive(false);
             playerMove.SetActive(false);
+            playerCover.SetActive(false);
             ultimateAttackWindow.SetActive(false);
             ultimateAttackAnim.SetActive(false);
             //playerHitNormal.SetActive(false);

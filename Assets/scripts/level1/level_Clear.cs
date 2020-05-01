@@ -10,6 +10,7 @@ public class level_Clear : MonoBehaviour
     public GameObject stageClear;
     public float timerChangeLevel;
     public float timerStart = 0.5f;
+    public string levelName;
 
     // Update is called once per frame
     void Update()
@@ -18,6 +19,7 @@ public class level_Clear : MonoBehaviour
         {
             timerStart -= Time.deltaTime;
         }
+
         if(camera.GetComponent<screen_collision>().enemyCounter <= 0 && timerStart <= 0)
         {
             player.GetComponent<playerController>().move = false;
@@ -26,7 +28,7 @@ public class level_Clear : MonoBehaviour
             stageClear.SetActive(true);
             if(timerChangeLevel <= 0)
             {
-                SceneManager.LoadScene("Level_3");
+                SceneManager.LoadScene(levelName);
             }
         }
     }

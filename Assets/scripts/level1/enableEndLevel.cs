@@ -10,7 +10,7 @@ public class enableEndLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((this.transform.position.x - camera.transform.position.x) <= 0)
+        if((this.transform.position.x - camera.transform.position.x) <= 1)
         {
             endLevel.SetActive(true);
         }

@@ -172,8 +172,8 @@ public class SWATS : MonoBehaviour
 
                 // Dany de l'embestida del jugador
                 if(player.GetComponent<playerController>().lunge == true
-                    && (this.transform.position.y - player.transform.position.y) > -0.20f
-                    && (this.transform.position.y - player.transform.position.y) < 0.20f
+                    && (this.transform.position.y - player.transform.position.y) > -0.30f
+                    && (this.transform.position.y - player.transform.position.y) < 0.30f
                     && Vector3.Distance(this.transform.position, player.transform.position) < 1)
                 {
                     health = 0;
@@ -227,7 +227,7 @@ public class SWATS : MonoBehaviour
 
             if (!player.GetComponent<playerController>().ultimateAttack && assignPoints)
             {
-                player.GetComponent<playerController>().ultimateAttackPlus += 3.0f;
+                player.GetComponent<playerController>().ultimateAttackPlus += 8.0f;
                 assignPoints = false;
             }
             

@@ -160,8 +160,8 @@ public class PoliciaEstat : MonoBehaviour
 
                 // Dany de l'embestida del jugador
                 if (player.GetComponent<playerController>().lunge == true
-                    && (this.transform.position.y - player.transform.position.y) > -0.20f
-                    && (this.transform.position.y - player.transform.position.y) < 0.20f)
+                    && (this.transform.position.y - player.transform.position.y) > -0.30f
+                    && (this.transform.position.y - player.transform.position.y) < 0.30f)
                 {
                     vida = 0;
                 }
@@ -205,7 +205,7 @@ public class PoliciaEstat : MonoBehaviour
 
             if (!player.GetComponent<playerController>().ultimateAttack && assignPoints)
             {
-                player.GetComponent<playerController>().ultimateAttackPlus += 5.0f;
+                player.GetComponent<playerController>().ultimateAttackPlus += 10.0f;
                 assignPoints = false;
             }
             else if (assignPoints)

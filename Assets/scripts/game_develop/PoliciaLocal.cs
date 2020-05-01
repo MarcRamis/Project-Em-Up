@@ -158,10 +158,11 @@ public class PoliciaLocal : MonoBehaviour
                     enemytakesDamage = true;
                     vida -= 50;
                 }
-
+                
+                //Rang en el que l'embestida fa mal 
                 if (player.GetComponent<playerController>().lunge == true
-                    && (this.transform.position.y - player.transform.position.y) > -0.20f
-                    && (this.transform.position.y - player.transform.position.y) < 0.20f)
+                    && (this.transform.position.y - player.transform.position.y) > -0.30f
+                    && (this.transform.position.y - player.transform.position.y) < 0.30f)
                 {
                     vida = 0;
                 }
@@ -206,7 +207,7 @@ public class PoliciaLocal : MonoBehaviour
 
             if (!player.GetComponent<playerController>().ultimateAttack && assignPoints)
             {
-                player.GetComponent<playerController>().ultimateAttackPlus += 2.0f;
+                player.GetComponent<playerController>().ultimateAttackPlus += 5.0f;
                 assignPoints = false;
             }
             else if (assignPoints)
