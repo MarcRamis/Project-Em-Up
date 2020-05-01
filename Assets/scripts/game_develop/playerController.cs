@@ -288,6 +288,8 @@ public class playerController : MonoBehaviour
         {
             playerMove.SetActive(false);
             playerIdle.SetActive(false);
+            playerHitNormal.SetActive(false);
+            playerReceivesDamage.SetActive(false);
             playerCover.transform.rotation = playerIdle.transform.rotation;
             playerCover.SetActive(true);
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -355,7 +357,7 @@ public class playerController : MonoBehaviour
 			hitting = false;
 		}
 
-        if(hitAnim == true && life > 0)
+        if(hitAnim == true && life > 0 && cover == false)
         {
             playerHitNormal.transform.rotation = playerIdle.transform.rotation;
             hitAnimTimer -= Time.deltaTime;
@@ -383,10 +385,11 @@ public class playerController : MonoBehaviour
                 }
             }
         }
-        else if(hitAnim == true)
+        else if(hitAnim == true && life <= 0)
         {
             playerIdle.SetActive(false);
             playerMove.SetActive(false);
+            playerCover.SetActive(false);
             playerHitNormal.SetActive(false);
             playerDeath.SetActive(true);
             hitAnimTimer = 0;
