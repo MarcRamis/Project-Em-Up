@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
@@ -25,6 +26,7 @@ public class playerController : MonoBehaviour
 	public GameObject playerHitNormal;
     public GameObject playerReceivesDamage;
     public GameObject playerDeath;
+    public GameObject textGameOver;
 
     public bool W;
     public bool A;
@@ -264,10 +266,17 @@ public class playerController : MonoBehaviour
             timerDeath -= Time.deltaTime;
             if(timerDeath <= 0)
             {
-                vidas--;
-                playerDeath.SetActive(false);
-                life = 100;
-                timerDeath = 5;
+                if (vidas > 0)
+                {
+                    vidas--;
+                    playerDeath.SetActive(false);
+                    life = 100;
+                    timerDeath = 5;
+                }
+                else
+                {
+                    SceneManager.LoadScene("Menu");
+                }
             }
             else
             {
@@ -276,6 +285,10 @@ public class playerController : MonoBehaviour
                 life = 0;
                 playerDeath.gameObject.SetActive(true);
                 this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                if(vidas <= 0)
+                {
+                    textGameOver.SetActive(true);
+                }
             }
         }
 

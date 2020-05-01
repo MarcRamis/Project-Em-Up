@@ -6,6 +6,7 @@ public class Granada : MonoBehaviour
 {
     public GameObject Cam2d;
     public GameObject player;
+    public GameObject explodeSound;
 
     //Granada components
     public float granadaSpeed = 10;
@@ -30,6 +31,10 @@ public class Granada : MonoBehaviour
         if(granadaExplodeTimer <= 0)
         {
             explodeGranada();
+        }
+        else if(granadaExplodeTimer <= 1)
+        {
+            explodeSound.SetActive(true);
         }
     }
 
