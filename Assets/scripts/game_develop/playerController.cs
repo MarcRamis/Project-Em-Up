@@ -19,6 +19,7 @@ public class playerController : MonoBehaviour
     public bool damage;
     public bool itemTaken;
     public bool cover;
+    public bool ultimateAttack;
     
     public GameObject itemTakenGO;
 	public GameObject playerIdle;
@@ -26,7 +27,10 @@ public class playerController : MonoBehaviour
 	public GameObject playerHitNormal;
     public GameObject playerReceivesDamage;
     public GameObject playerDeath;
+    public GameObject ultimateAttackAnim;
+    public GameObject ultimateAttackWindow;
     public GameObject textGameOver;
+    public GameObject cameraShake;
 
     public bool W;
     public bool A;
@@ -42,6 +46,8 @@ public class playerController : MonoBehaviour
     public bool lunge = false;
     public float lungeTimer = 0.5f;
     public float lungeCooldown = 0f;
+    public float ultimateAttackCooldown;
+    public float ultimateAttackTimer = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -67,9 +73,20 @@ public class playerController : MonoBehaviour
                 lungeCooldown -= Time.deltaTime; 
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) && lungeCooldown <= 0)
+            if (ultimateAttackCooldown > 0)
+            {
+                ultimateAttackCooldown -= Time.deltaTime;
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && lungeCooldown <= 0 && ultimateAttack == false)
             {
                 lunge = true;
+            }
+
+            if(Input.GetKeyDown(KeyCode.Q) && ultimateAttackCooldown <= 0 && lunge == false)
+            {
+                ultimateAttackWindow.SetActive(true);
+                ultimateAttack = true;
             }
 
             if (lunge)
@@ -100,7 +117,35 @@ public class playerController : MonoBehaviour
                     lunge = false;
                     lungeTimer = 0.5f;                    
                 }
-            }                
+            }
+
+            if (ultimateAttack)
+            {
+                this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                playerIdle.SetActive(false);
+                playerMove.SetActive(false);
+                ultimateAttackAnim.SetActive(true);
+                ultimateAttackCooldown = 50;
+                ultimateAttackTimer -= Time.deltaTime;
+                ultimateAttackAnim.transform.rotation = playerIdle.transform.rotation;
+
+                if (ultimateAttackTimer <= 0)
+                {
+                    cameraShake.SetActive(false);
+                    this.transform.position = new Vector3(this.transform.position.x + 5, this.transform.position.y, this.transform.position.z);
+                    ultimateAttack = false;
+                    ultimateAttackTimer = 3;
+                }
+                else if(ultimateAttackTimer <= 2)
+                {
+                    cameraShake.SetActive(true);
+                    ultimateAttackWindow.SetActive(false);
+                }
+            }
+            else
+            {
+                ultimateAttackAnim.SetActive(false);
+            }
 
             if (Input.GetKey(KeyCode.E) && inmunnity <= 0)
             {
@@ -121,7 +166,7 @@ public class playerController : MonoBehaviour
                 playerMove.GetComponent<SpriteRenderer>().color = Color.white;
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.white;
             }
-            if(move == true && lunge == false)
+            if(move == true && lunge == false && ultimateAttack == false)
             {
                 if (!Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.D))
                 {
@@ -189,12 +234,12 @@ public class playerController : MonoBehaviour
             }
             
             //Animació
-            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && move == true)
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && move == true && ultimateAttack == false)
             {
                 playerIdle.SetActive(false);
                 playerMove.SetActive(true);
             }
-            else
+            else if(ultimateAttack == false)
             {
                 playerIdle.SetActive(true);
                 playerMove.SetActive(false);
@@ -258,8 +303,10 @@ public class playerController : MonoBehaviour
         if(life <= 0)
         {
             //playerDeath
+            cameraShake.SetActive(false);
             playerIdle.SetActive(false);
             playerMove.SetActive(false);
+            ultimateAttackAnim.SetActive(false);
             //playerHitNormal.SetActive(false);
             playerReceivesDamage.SetActive(false);
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -281,6 +328,7 @@ public class playerController : MonoBehaviour
             else
             {
                 lunge = false;
+                ultimateAttack = false;
                 speed = 4;
                 life = 0;
                 playerDeath.gameObject.SetActive(true);

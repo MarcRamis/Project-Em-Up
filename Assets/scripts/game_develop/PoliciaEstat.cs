@@ -181,6 +181,10 @@ public class PoliciaEstat : MonoBehaviour
                     }
                 }
             }
+            if (player.GetComponent<playerController>().ultimateAttack == true && Vector3.Distance(this.transform.position, player.transform.position) <= 13 && player.GetComponent<playerController>().ultimateAttackTimer <= 1.5f && player.GetComponent<playerController>().ultimateAttackTimer > 0)
+            {
+                vida = 0;
+            }
         }
         //En el càs de no tenir vida mor
         else

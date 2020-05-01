@@ -200,6 +200,10 @@ public class SWATS : MonoBehaviour
                     timerDamage = 0.8f;
                 }
             }
+            if (player.GetComponent<playerController>().ultimateAttack == true && Vector3.Distance(this.transform.position, player.transform.position) <= 13 && player.GetComponent<playerController>().ultimateAttackTimer <= 1.5f && player.GetComponent<playerController>().ultimateAttackTimer > 0)
+            {
+                health = 0;
+            }
         }
 
         else
