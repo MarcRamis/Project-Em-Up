@@ -3944,15 +3944,13 @@ MonoBehaviour:
   damage: 0
   itemTaken: 0
   cover: 0
-  ultimateAttack: 0
   itemTakenGO: {fileID: 0}
   playerIdle: {fileID: 2049906552}
+  playerCover: {fileID: 0}
   playerMove: {fileID: 1966881680}
   playerHitNormal: {fileID: 2081006868}
   playerReceivesDamage: {fileID: 364949183}
   playerDeath: {fileID: 1795709098}
-  ultimateAttackAnim: {fileID: 1868478058}
-  ultimateAttackWindow: {fileID: 1534751335}
   textGameOver: {fileID: 0}
   cameraShake: {fileID: 755642370}
   W: 1
@@ -3965,8 +3963,11 @@ MonoBehaviour:
   lunge: 0
   lungeTimer: 0.5
   lungeCooldown: 0
-  ultimateAttackCooldown: 0
+  ultimateAttack: 0
+  ultimateAttackPlus: 0
   ultimateAttackTimer: 3
+  ultimateAttackAnim: {fileID: 1868478058}
+  ultimateAttackWindow: {fileID: 1534751335}
 --- !u!54 &442655588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4760,6 +4761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7240c6ccf2f606d4ca4061de708d97b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 100
   player: {fileID: 442655586}
   lifeGainEffectSound: {fileID: 1507755463}
 --- !u!95 &593554017
@@ -18686,6 +18688,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9090214007245790466, guid: f35197dbe740f1f4fbf71582d0b191db,
         type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 998384570, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 998384570, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
