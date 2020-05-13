@@ -125,7 +125,11 @@ public class PoliciaLocal : MonoBehaviour
                     enemyTakingDamage.SetActive(false);
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(true);
-                    if (player.GetComponent<playerController>().life > 0 && player.GetComponent<playerController>().inmunnity <= 0 && (this.transform.position.y - player.transform.position.y) > -0.18f && (this.transform.position.y - player.transform.position.y) < 0.18f)
+
+                    if (player.GetComponent<playerController>().life > 0 
+                        && player.GetComponent<playerController>().inmunnity <= 0 
+                        && (this.transform.position.y - player.transform.position.y) > -0.18f 
+                        && (this.transform.position.y - player.transform.position.y) < 0.18f)
                     {
                         player.GetComponent<playerController>().damage = true;
                         if (timerAttack <= 0)
@@ -185,7 +189,10 @@ public class PoliciaLocal : MonoBehaviour
                     }
                 }
             }
-            if(player.GetComponent<playerController>().ultimateAttack == true && Vector3.Distance(this.transform.position, player.transform.position) <= 13 && player.GetComponent<playerController>().ultimateAttackTimer <= 1.5f && player.GetComponent<playerController>().ultimateAttackTimer > 0)
+            if(player.GetComponent<playerController>().ultimateAttack == true 
+                && Vector3.Distance(this.transform.position, player.transform.position) <= 13 
+                && player.GetComponent<playerController>().ultimateAttackTimer <= 1.5f 
+                && player.GetComponent<playerController>().ultimateAttackTimer > 0)
             {
                 vida = 0;
             }

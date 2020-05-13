@@ -18,7 +18,7 @@ public class playerController : MonoBehaviour
     public bool A;
     public bool S;
     public bool D;
-    public float speed = 3;
+    public float speed = 4;
     public bool move = true;
 
     // Agafar barril
@@ -84,13 +84,16 @@ public class playerController : MonoBehaviour
             {
                 lungeCooldown -= Time.deltaTime; 
             }
-
-            if (Input.GetKeyDown(KeyCode.LeftShift) && lungeCooldown <= 0 && ultimateAttack == false)
+            
+            // Comprobam el Time.timeScale perquè no volem que es puguin fer servir habilitats quan hi ha els popup
+            if (Input.GetKeyDown(KeyCode.LeftShift) && lungeCooldown <= 0 && ultimateAttack == false && Time.timeScale != 0)
             {
                 lunge = true;
             }
 
-            if(Input.GetKeyDown(KeyCode.R) && ultimateAttackPlus >= 100.0f && lunge == false && Time.timeScale != 0)
+            // Utilitzam un float per saber si la barra del POWER UP es major a 100
+            // Comprobam el Time.timeScale perquè no volem que es puguin fer servir habilitats quan hi ha els popup
+            if (Input.GetKeyDown(KeyCode.R) && ultimateAttackPlus >= 100.0f && lunge == false && Time.timeScale != 0)
             {
                 ultimateAttackWindow.SetActive(true);
                 ultimateAttack = true;
@@ -153,7 +156,8 @@ public class playerController : MonoBehaviour
                 ultimateAttackAnim.SetActive(false);
             }
 
-            if (Input.GetKey(KeyCode.E) && inmunnity <= 0)
+            // Comprobam el Time.timeScale perquè no volem que es puguin fer servir habilitats quan hi ha els popup
+            if (Input.GetKey(KeyCode.E) && inmunnity <= 0 && Time.timeScale != 0.0f)
             {
                 cover = true;
             }
@@ -173,8 +177,9 @@ public class playerController : MonoBehaviour
                 playerMove.GetComponent<SpriteRenderer>().color = Color.white;
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.white;
             }
-
-            if (move == true && lunge == false && ultimateAttack == false)
+            
+            // Comprobam el Time.timeScale perquè no volem que es puguin fer servir habilitats quan hi ha els popup
+            if (move == true && lunge == false && ultimateAttack == false && Time.timeScale != 0.0f)
             {
                 if (!Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.D))
                 {
@@ -242,7 +247,7 @@ public class playerController : MonoBehaviour
             }
             
             //Animació
-            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && move == true && ultimateAttack == false)
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && move == true && ultimateAttack == false && Time.timeScale != 0.0f)
             {
                 playerIdle.SetActive(false);
                 playerMove.SetActive(true);
@@ -276,7 +281,8 @@ public class playerController : MonoBehaviour
         else if(cover == false)
         {
             timerdamage -= Time.deltaTime;
-            //s'activa l'inmunitat al jugador després de l'animació de rebre mal
+
+            //s'activa l'inmunitat del jugador després de l'animació de rebre mal
             if(timerdamage <= 0)
             {
                 life -= 10;
@@ -289,7 +295,6 @@ public class playerController : MonoBehaviour
             {
                 playerIdle.SetActive(false);
                 playerMove.SetActive(false);
-                //playerHitNormal.SetActive(false);
                 playerReceivesDamage.SetActive(true);
             }
         }
@@ -315,7 +320,6 @@ public class playerController : MonoBehaviour
 
         if(life <= 0)
         {
-            //playerDeath
             ultimateAttackTimer = 3;
             cameraShake.SetActive(false);
             playerIdle.SetActive(false);
@@ -323,7 +327,6 @@ public class playerController : MonoBehaviour
             playerCover.SetActive(false);
             ultimateAttackWindow.SetActive(false);
             ultimateAttackAnim.SetActive(false);
-            //playerHitNormal.SetActive(false);
             playerReceivesDamage.SetActive(false);
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             timerDeath -= Time.deltaTime;
@@ -355,7 +358,7 @@ public class playerController : MonoBehaviour
                 }
             }
         }
-
+        
         //HIT  == CLICK ESQUERRA del mouse. 
         if (Input.GetKeyDown(KeyCode.Mouse0) && hitAnimTimer <= 0 && life > 0 && cover == false) 
 		{
