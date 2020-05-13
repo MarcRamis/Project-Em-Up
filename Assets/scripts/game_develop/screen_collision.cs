@@ -12,6 +12,7 @@ public class screen_collision : MonoBehaviour
     public float newPosX;
     public float speed = 1f;
     public bool enableArrow;
+    
     // Start is called before the first frame update
     void Start()
     {
