@@ -130,7 +130,6 @@ public class playerController : MonoBehaviour
                 if (ultimateAttackTimer <= 0)
                 {
                     cameraShake.SetActive(false);
-                   // this.transform.position = new Vector3(this.transform.position.x + 5, this.transform.position.y, this.transform.position.z);
                     ultimateAttack = false;
                     ultimateAttackTimer = 3;
                 }
@@ -171,14 +170,14 @@ public class playerController : MonoBehaviour
                     this.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }
 
-                if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A) && this.transform.position.y < -1f && Cam2d.WorldToScreenPoint(this.transform.position).x > 20)
+                if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A) && this.transform.position.y < 0f && Cam2d.WorldToScreenPoint(this.transform.position).x > 20)
                 {
                     this.GetComponent<Rigidbody>().velocity = speed * new Vector3(-1, 0.5f, 0.5f);
                     playerIdle.transform.rotation = new Quaternion(0, 0, 0, 0);
                     playerMove.transform.rotation = new Quaternion(0, 0, 0, 0);
                 }
 
-                if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D) && this.transform.position.y < -1f && Cam2d.WorldToScreenPoint(this.transform.position).x < 1300)
+                if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D) && this.transform.position.y < 0f && Cam2d.WorldToScreenPoint(this.transform.position).x < 1300)
                 {
                     this.GetComponent<Rigidbody>().velocity = speed * new Vector3(1, 0.5f, 0.5f);
                     playerIdle.transform.rotation = new Quaternion(0, 180, 0, 0);
@@ -200,7 +199,7 @@ public class playerController : MonoBehaviour
                 }
 
                 //Moviment cap amunt amb la Key: W
-                if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && this.transform.position.y < -1f && W == true)
+                if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && this.transform.position.y < 0f && W == true)
                 {
                     //this.GetComponent<Rigidbody>().MovePosition(this.GetComponent<Rigidbody>().position + new Vector3(0, 0.05f, 0.05f));
                     this.GetComponent<Rigidbody>().velocity = speed * new Vector3(0, 0.5f, 0.5f);
