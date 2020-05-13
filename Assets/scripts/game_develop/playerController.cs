@@ -6,39 +6,37 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
-    public float speed = 3;
-    public float timerdamage;
+    // Per UI + Control de càmera
+    public Text lifestext;
+    public Camera Cam2d;
     public float timerDeath = 5;
     public int life;
-	public int vidas;
-    public Camera Cam2d;
-    public Text lifestext;
-	public bool hitting;
-    public bool hitAnim;
-    public float hitAnimTimer;
-    public bool damage;
-    public bool itemTaken;
-    public bool cover;
-     
-    public GameObject itemTakenGO;
-	public GameObject playerIdle;
-    public GameObject playerCover;
-	public GameObject playerMove;
-	public GameObject playerHitNormal;
-    public GameObject playerReceivesDamage;
-    public GameObject playerDeath;
-    public GameObject textGameOver;
-    public GameObject cameraShake;
+    public int vidas;
 
+    // Moviment
     public bool W;
     public bool A;
     public bool S;
     public bool D;
-
+    public float speed = 3;
     public bool move = true;
 
-    public float hitTimer = 0;
+    // Agafar barril
+    public bool itemTaken;
+
+    // Immunitat
     public float inmunnity = 0.8f;
+
+    // Variables per controlar el cop de puny
+    public bool hitting;
+    public bool hitAnim;
+    public float hitTimer = 0;
+    public float hitAnimTimer = 0;
+    public float timerdamage;
+
+    // Taking damage + cover
+    public bool damage;
+    public bool cover;
 
     // Variables per controlar l'habilitat embestida del jugador.
     public bool lunge = false;
@@ -51,6 +49,17 @@ public class playerController : MonoBehaviour
     public float ultimateAttackTimer = 3;
     public GameObject ultimateAttackAnim;
     public GameObject ultimateAttackWindow;
+
+    // Animacions
+    public GameObject itemTakenGO;
+    public GameObject playerIdle;
+    public GameObject playerCover;
+    public GameObject playerMove;
+    public GameObject playerHitNormal;
+    public GameObject playerReceivesDamage;
+    public GameObject playerDeath;
+    public GameObject textGameOver;
+    public GameObject cameraShake;
 
     // Start is called before the first frame update
     void Start()
@@ -148,6 +157,7 @@ public class playerController : MonoBehaviour
             {
                 cover = true;
             }
+            
             //Sistema d'inmunitat que s'activa al respawn o rebre mal
             if(inmunnity > 0)
             {
@@ -163,7 +173,8 @@ public class playerController : MonoBehaviour
                 playerMove.GetComponent<SpriteRenderer>().color = Color.white;
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.white;
             }
-            if(move == true && lunge == false && ultimateAttack == false)
+
+            if (move == true && lunge == false && ultimateAttack == false)
             {
                 if (!Input.GetKey(KeyCode.W) || !Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.S) || !Input.GetKey(KeyCode.D))
                 {
@@ -242,7 +253,7 @@ public class playerController : MonoBehaviour
                 playerMove.SetActive(false);
             }
 		}
-
+        
         //HIT
 		else if(damage == false && cover == false)
 		{
@@ -251,18 +262,17 @@ public class playerController : MonoBehaviour
             {
                 playerIdle.SetActive(false);
                 playerMove.SetActive(false);
-                //playerHitNormal.SetActive(true);
             }
 
-            if (Input.GetKey(KeyCode.Mouse0) && hitTimer <= 0 && inmunnity > 0 && life > 0 && damage == false)
+            if (Input.GetKey(KeyCode.Mouse0) && hitTimer <= 0 && life > 0 && damage == false)
             {
-                hitTimer = 0.35f;
+                hitTimer = 0.5f;
                 playerHitNormal.transform.rotation = playerMove.transform.rotation;
                 playerIdle.SetActive(false);
                 playerMove.SetActive(false);
-                //playerHitNormal.SetActive(true);
             }
         }
+
         else if(cover == false)
         {
             timerdamage -= Time.deltaTime;
@@ -292,6 +302,7 @@ public class playerController : MonoBehaviour
             playerCover.transform.rotation = playerIdle.transform.rotation;
             playerCover.SetActive(true);
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
             if (!Input.GetKey(KeyCode.E)) 
             {
                 damage = false;
@@ -301,6 +312,7 @@ public class playerController : MonoBehaviour
             }
 
         }
+
         if(life <= 0)
         {
             //playerDeath
@@ -395,8 +407,6 @@ public class playerController : MonoBehaviour
             hitAnim = false;
         }
     }
-
-   
 
     private void OnCollisionEnter(Collision other)
     {
