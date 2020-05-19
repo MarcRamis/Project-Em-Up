@@ -252,7 +252,7 @@ public class playerController : MonoBehaviour
                 }
             }
             
-            //Animació
+            //Animació ---> Movement - Idle
             if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && move == true && ultimateAttack == false && Time.timeScale != 0.0f)
             {
                 playerIdle.SetActive(false);
@@ -288,7 +288,7 @@ public class playerController : MonoBehaviour
         {
             timerdamage -= Time.deltaTime;
 
-            //s'activa l'inmunitat del jugador després de l'animació de rebre mal
+            // S'activa l'inmunitat del jugador després de l'animació de rebre mal
             if(timerdamage <= 0)
             {
                 life -= 10;
