@@ -21,7 +21,8 @@ public class playerController : MonoBehaviour
     public float speed = 4;
     public bool move = true;
 
-    // Agafar barril
+    // Variable que utilitzam en el script del barril per saber si hem agafat 
+    // o no un objecte (en aquest cas només el barril)
     public bool itemTaken;
 
     // Immunitat
@@ -78,22 +79,26 @@ public class playerController : MonoBehaviour
 
     void playerMovement()
     {
-		if(hitting == false && damage == false && life > 0 && cover == false) 
+
+		if(!hitting && !damage && life > 0 && !cover) 
 		{
             if (lungeCooldown > 0)
             {
                 lungeCooldown -= Time.deltaTime; 
             }
-            
+
             // Comprobam el Time.timeScale perquè no volem que es puguin fer servir habilitats quan hi ha els popup
-            if (Input.GetKeyDown(KeyCode.LeftShift) && lungeCooldown <= 0 && ultimateAttack == false && Time.timeScale != 0)
+            // Comprobam que ultimateAttack sigui false perquè no volem que es pugui fer l'embestida al mateix que temps que es fa l'ultimate
+            // Comprobam que el cc de l'embestida sigui menor igual a 0 perquè l'embestida té un temporizador
+            // Compobam que no es tengui agafat un objecte (itemTaken)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && lungeCooldown <= 0 && !ultimateAttack && Time.timeScale != 0 && !itemTaken)
             {
                 lunge = true;
             }
-
+           
             // Utilitzam un float per saber si la barra del POWER UP es major a 100
             // Comprobam el Time.timeScale perquè no volem que es puguin fer servir habilitats quan hi ha els popup
-            if (Input.GetKeyDown(KeyCode.R) && ultimateAttackPlus >= 100.0f && lunge == false && Time.timeScale != 0)
+            if (Input.GetKeyDown(KeyCode.R) && ultimateAttackPlus >= 100.0f && lunge == false && Time.timeScale != 0 && !itemTaken)
             {
                 ultimateAttackWindow.SetActive(true);
                 ultimateAttack = true;
@@ -157,7 +162,8 @@ public class playerController : MonoBehaviour
             }
 
             // Comprobam el Time.timeScale perquè no volem que es puguin fer servir habilitats quan hi ha els popup
-            if (Input.GetKey(KeyCode.E) && inmunnity <= 0 && Time.timeScale != 0.0f)
+            // Compobam que no es tengui agafat un objecte quan es vulgui cubrir (itemTaken)
+            if (Input.GetKey(KeyCode.E) && inmunnity <= 0 && Time.timeScale != 0.0f && !itemTaken)
             {
                 cover = true;
             }
@@ -170,7 +176,7 @@ public class playerController : MonoBehaviour
                 playerMove.GetComponent<SpriteRenderer>().color = Color.green;
                 playerHitNormal.GetComponent<SpriteRenderer>().color = Color.green;
             }
-            //torna a la normalitat quant s'acaba el tamps de inmunitat
+            // Torna a la normalitat quant s'acaba el tamps de inmunitat
             else if(playerIdle.GetComponent<SpriteRenderer>().color == Color.green)
             {
                 playerIdle.GetComponent<SpriteRenderer>().color = Color.white;
@@ -252,7 +258,7 @@ public class playerController : MonoBehaviour
                 playerIdle.SetActive(false);
                 playerMove.SetActive(true);
             }
-            else if(ultimateAttack == false)
+            else if (!ultimateAttack)
             {
                 playerIdle.SetActive(true);
                 playerMove.SetActive(false);
@@ -358,9 +364,10 @@ public class playerController : MonoBehaviour
                 }
             }
         }
-        
+
         //HIT  == CLICK ESQUERRA del mouse. 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && hitAnimTimer <= 0 && life > 0 && cover == false) 
+        // Compobam que no es tengui agafat un objecte quan vulgui pegar (itemTaken)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && hitAnimTimer <= 0 && life > 0 && cover == false && !itemTaken) 
 		{
 			hitting = true;
             hitAnim = true;
