@@ -217,7 +217,8 @@ public class balrog : MonoBehaviour
                     && player.GetComponent<playerController>().hitTimer <= 0
                     && (this.transform.position.y - player.transform.position.y) > -0.58f
                     && (this.transform.position.y - player.transform.position.y) < 0.58f
-                    && player.GetComponent<playerController>().cover == false)
+                    && player.GetComponent<playerController>().cover == false
+                    && habilityCheck == false)
                 {
                     randomAttack = 0;
                     habilityCheck = false;
