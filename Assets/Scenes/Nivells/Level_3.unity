@@ -1739,7 +1739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &110234689
 Transform:
   m_ObjectHideFlags: 0
@@ -1748,11 +1748,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110234688}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -105.45316, y: -4.8154664, z: -2.74125}
+  m_LocalPosition: {x: 15.746834, y: -5.8854666, z: -0.03125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1272250802}
-  m_RootOrder: 7
+  m_Father: {fileID: 0}
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &110234690
 AudioSource:
@@ -1764,10 +1764,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: da290bf43713c4f498e657a9ba8c13f2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: db6bb68364ea9544399518f15889601b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
-  m_Pitch: 0.88
+  m_Volume: 0.6
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -12130,7 +12130,7 @@ Transform:
   m_Children:
   - {fileID: 1994321932}
   m_Father: {fileID: 0}
-  m_RootOrder: 41
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &493723206
 AudioSource:
@@ -21243,8 +21243,8 @@ MonoBehaviour:
   timerAttack: 0
   timerdeath: 10
   enemyCollision: 0
-  vida: 1000
-  speed: 2
+  vida: 1600
+  speed: 3
   changeSide: 0.8
   habilityParticles: {fileID: 435806629}
   hability: {fileID: 326790378}
@@ -21274,9 +21274,8 @@ Transform:
   - {fileID: 1768814081}
   - {fileID: 326790383}
   - {fileID: 435806633}
-  - {fileID: 110234689}
   m_Father: {fileID: 0}
-  m_RootOrder: 42
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1275047790
 GameObject:
@@ -26747,6 +26746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1685825174}
   bossIntro: {fileID: 493723202}
+  bossMusic: {fileID: 110234688}
   bossEnable: {fileID: 1272250798}
   music: {fileID: 698026596}
   bossTimer: 3.2
@@ -28419,7 +28419,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 43
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1928410362
 PrefabInstance:
