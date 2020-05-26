@@ -27,6 +27,9 @@ public class PoliciaLocal : MonoBehaviour
 
     bool assignPoints = true;
 
+    //Variables per recibir dany
+    float playerDmgRange = 0.30f;
+
     // Update is called once per frame
     void Update()
     {
@@ -155,8 +158,8 @@ public class PoliciaLocal : MonoBehaviour
                     && player.GetComponent<playerController>().life > 0
                     && this.transform.rotation != player.GetComponent<playerController>().playerMove.transform.rotation
                     && player.GetComponent<playerController>().hitTimer <= 0 
-                    && (this.transform.position.y - player.transform.position.y) > -0.18f 
-                    && (this.transform.position.y - player.transform.position.y) < 0.18f
+                    && (this.transform.position.y - player.transform.position.y) > -playerDmgRange
+                    && (this.transform.position.y - player.transform.position.y) < playerDmgRange
                     && player.GetComponent<playerController>().cover == false)
                 {
                     enemytakesDamage = true;
@@ -165,8 +168,8 @@ public class PoliciaLocal : MonoBehaviour
                 
                 //Rang en el que l'embestida fa mal 
                 if (player.GetComponent<playerController>().lunge == true
-                    && (this.transform.position.y - player.transform.position.y) > -0.30f
-                    && (this.transform.position.y - player.transform.position.y) < 0.30f)
+                    && (this.transform.position.y - player.transform.position.y) > -playerDmgRange
+                    && (this.transform.position.y - player.transform.position.y) < playerDmgRange)
                 {
                     vida = 0;
                 }
@@ -227,7 +230,11 @@ public class PoliciaLocal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //mort per un cop de barril
-        if (other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 && other.GetComponent<Barril>().taken == false && other.GetComponent<Barril>().destroyItem == false && (other.GetComponent<Barril>().right == true || other.GetComponent<Barril>().left == true))
+        if (other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 
+            && other.GetComponent<Barril>().taken == false 
+            && other.GetComponent<Barril>().destroyItem == false 
+            && (other.GetComponent<Barril>().right == true 
+            || other.GetComponent<Barril>().left == true))
         {
             other.GetComponent<Barril>().destroyItem = true;
             vida = 0;

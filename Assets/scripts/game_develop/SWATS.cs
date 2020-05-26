@@ -40,6 +40,9 @@ public class SWATS : MonoBehaviour
 
     bool assignPoints = true;
 
+    //Variables per recibir dany
+    float playerDmgRange = 0.30f;
+
     void Start()
     {
         enemyShoot.SetActive(true);
@@ -161,8 +164,8 @@ public class SWATS : MonoBehaviour
                     && player.GetComponent<playerController>().life > 0
                     && enemyIdle.transform.rotation != player.GetComponent<playerController>().playerMove.transform.rotation
                     && player.GetComponent<playerController>().hitTimer <= 0
-                    && (this.transform.position.y - player.transform.position.y) > -0.18f
-                    && (this.transform.position.y - player.transform.position.y) < 0.18f
+                    && (this.transform.position.y - player.transform.position.y) > -playerDmgRange
+                    && (this.transform.position.y - player.transform.position.y) < playerDmgRange
                     && player.GetComponent<playerController>().cover == false)
                 {
                     damage = true;
@@ -172,8 +175,8 @@ public class SWATS : MonoBehaviour
 
                 // Dany de l'embestida del jugador
                 if(player.GetComponent<playerController>().lunge == true
-                    && (this.transform.position.y - player.transform.position.y) > -0.30f
-                    && (this.transform.position.y - player.transform.position.y) < 0.30f
+                    && (this.transform.position.y - player.transform.position.y) > -playerDmgRange
+                    && (this.transform.position.y - player.transform.position.y) < playerDmgRange
                     && Vector3.Distance(this.transform.position, player.transform.position) < 1)
                 {
                     health = 0;
@@ -202,7 +205,10 @@ public class SWATS : MonoBehaviour
                     timerDamage = 0.8f;
                 }
             }
-            if (player.GetComponent<playerController>().ultimateAttack == true && Vector3.Distance(this.transform.position, player.transform.position) <= 13 && player.GetComponent<playerController>().ultimateAttackTimer <= 1.5f && player.GetComponent<playerController>().ultimateAttackTimer > 0)
+            if (player.GetComponent<playerController>().ultimateAttack == true 
+                && Vector3.Distance(this.transform.position, player.transform.position) <= 13 
+                && player.GetComponent<playerController>().ultimateAttackTimer <= 1.5f
+                && player.GetComponent<playerController>().ultimateAttackTimer > 0)
             {
                 health = 0;
             }

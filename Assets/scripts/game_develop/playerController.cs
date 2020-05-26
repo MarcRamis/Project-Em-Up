@@ -343,7 +343,7 @@ public class playerController : MonoBehaviour
                     vidas--;
                     playerDeath.SetActive(false);
                     life = 100;
-                    timerDeath = 5;
+                    timerDeath = 2;
                 }
                 else
                 {

@@ -35,6 +35,9 @@ public class Militar : MonoBehaviour
     public bool movement;
     public float throwGranadeTimer;
 
+    //Variables per recibir dany
+    float playerDmgRange = 0.30f;
+
     private void Start()
     {
         throwGranadeTimer = Random.Range(0, 10);
@@ -178,8 +181,8 @@ public class Militar : MonoBehaviour
                     && player.GetComponent<playerController>().damage == false
                     && this.transform.rotation != player.GetComponent<playerController>().playerMove.transform.rotation
                     && player.GetComponent<playerController>().hitTimer <= 0
-                    && (this.transform.position.y - player.transform.position.y) > -0.18f
-                    && (this.transform.position.y - player.transform.position.y) < 0.18f
+                    && (this.transform.position.y - player.transform.position.y) > -playerDmgRange
+                    && (this.transform.position.y - player.transform.position.y) < playerDmgRange
                     && player.GetComponent<playerController>().cover == false)
                 {
                     enemytakesDamage = true;
@@ -188,8 +191,8 @@ public class Militar : MonoBehaviour
 
                 // Dany de l'embestida del jugador
                 if (player.GetComponent<playerController>().lunge == true
-                    && (this.transform.position.y - player.transform.position.y) > -0.30f
-                    && (this.transform.position.y - player.transform.position.y) < 0.30f)
+                    && (this.transform.position.y - player.transform.position.y) > -playerDmgRange
+                    && (this.transform.position.y - player.transform.position.y) < playerDmgRange)
                 {
                     vida = 0;
                 }

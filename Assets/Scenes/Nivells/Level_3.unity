@@ -12956,6 +12956,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1685825174}
+    - target: {fileID: 4212128634501247090, guid: 88ba94de80cf5a84e9852b699c347b54,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4212128634501247091, guid: 88ba94de80cf5a84e9852b699c347b54,
         type: 3}
       propertyPath: m_Size.y
@@ -12975,11 +12980,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: 0.9288873
-      objectReference: {fileID: 0}
-    - target: {fileID: 4212128634501247090, guid: 88ba94de80cf5a84e9852b699c347b54,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88ba94de80cf5a84e9852b699c347b54, type: 3}
@@ -26187,6 +26187,11 @@ PrefabInstance:
       propertyPath: playerCover
       value: 
       objectReference: {fileID: 371690368}
+    - target: {fileID: 6393965655182094916, guid: c7275ab7d83775245bf8e7475542e53d,
+        type: 3}
+      propertyPath: timerDeath
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6393965654984418418, guid: c7275ab7d83775245bf8e7475542e53d,
         type: 3}
       propertyPath: m_IsActive
