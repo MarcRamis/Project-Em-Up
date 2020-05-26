@@ -7,11 +7,6 @@ public class Militar : MonoBehaviour
     public GameObject player;
     public TextMesh lifestext;
     public Camera cam2d;
-    public GameObject enemyIdle;
-    public GameObject enemyRun;
-    public GameObject enemyAttack;
-    public GameObject enemyTakingDamage;
-    public GameObject enemyDeath;
     public GameObject pow;
     public GameObject scene;
     public float timerAttack;
@@ -28,6 +23,13 @@ public class Militar : MonoBehaviour
     public bool enemytakesDamage;
     bool assignPoints = true;
 
+    //Variables per controlar les animacions
+    public GameObject enemyIdle;
+    public GameObject enemyRun;
+    public GameObject enemyAttack;
+    public GameObject enemyTakingDamage;
+    public GameObject enemyDeath;
+
     //Variables per controlar la granada
     public GameObject granada;
     public GameObject granadaPrefab;
@@ -37,6 +39,8 @@ public class Militar : MonoBehaviour
 
     //Variables per recibir dany
     float playerDmgRange = 0.30f;
+
+    
 
     private void Start()
     {
@@ -51,8 +55,8 @@ public class Militar : MonoBehaviour
         //Activa totes les mecàniques del enemic sempre i quant tingui vida
         if (vida > 0)
         {
-            if (Vector3.Distance(this.transform.position, player.transform.position) <= 15)
-                throwGranadeTimer += Time.deltaTime;
+            //if (Vector3.Distance(this.transform.position, player.transform.position) <= 15)
+            throwGranadeTimer += Time.deltaTime;
             //agafa la rotació de l'enemic i el jugador dintre del marge de la càmera per avaluar a quina direcció deu mirar l'enemic per encarar-se cap el jugador
             if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
             {
@@ -65,7 +69,9 @@ public class Militar : MonoBehaviour
                 move = new Vector3(player.transform.position.x - 1, player.transform.position.y, player.transform.position.z);
             }
             //activa les mecàniques de perseguir al jugador sempre i quant estigui dintre d'un rang
-            if (Vector3.Distance(this.transform.position, player.transform.position) > 1.5f && Vector3.Distance(this.transform.position, player.transform.position) < 15 && movement == true)
+            if (Vector3.Distance(this.transform.position, player.transform.position) > 1.5f 
+                && Vector3.Distance(this.transform.position, player.transform.position) < 15 
+                && movement == true)
             {
                 //persegueix al jugador en el càs de no col.lisionar amb cap enemic
                 if (enemyCollision == false)
@@ -155,7 +161,10 @@ public class Militar : MonoBehaviour
                     enemyTakingDamage.SetActive(false);
                     enemyRun.SetActive(false);
                     enemyAttack.SetActive(true);
-                    if (player.GetComponent<playerController>().life > 0 && player.GetComponent<playerController>().inmunnity <= 0 && (this.transform.position.y - player.transform.position.y) > -0.18f && (this.transform.position.y - player.transform.position.y) < 0.18f)
+                    if (player.GetComponent<playerController>().life > 0 
+                        && player.GetComponent<playerController>().inmunnity <= 0 
+                        && (this.transform.position.y - player.transform.position.y) > -0.18f 
+                        && (this.transform.position.y - player.transform.position.y) < 0.18f)
                     {
                         //if(player.GetComponent<playerController>().cover == false)
                         player.GetComponent<playerController>().damage = true;
@@ -214,7 +223,10 @@ public class Militar : MonoBehaviour
                     }
                 }
             }
-            if (player.GetComponent<playerController>().ultimateAttack == true && Vector3.Distance(this.transform.position, player.transform.position) <= 13 && player.GetComponent<playerController>().ultimateAttackTimer <= 1.5f && player.GetComponent<playerController>().ultimateAttackTimer > 0)
+            if (player.GetComponent<playerController>().ultimateAttack == true 
+                && Vector3.Distance(this.transform.position, player.transform.position) <= 13 
+                && player.GetComponent<playerController>().ultimateAttackTimer <= 1.5f 
+                && player.GetComponent<playerController>().ultimateAttackTimer > 0)
             {
                 vida = 0;
             }
@@ -251,8 +263,10 @@ public class Militar : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //mort per un cop de barril
-        if (other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 && other.GetComponent<Barril>().taken == false
-            && other.GetComponent<Barril>().destroyItem == false && (other.GetComponent<Barril>().right == true
+        if (other.tag == "barreel" && other.GetComponent<Barril>().timeThrow > 0 
+            && other.GetComponent<Barril>().taken == false
+            && other.GetComponent<Barril>().destroyItem == false 
+            && (other.GetComponent<Barril>().right == true
             || other.GetComponent<Barril>().left == true))
         {
             other.GetComponent<Barril>().destroyItem = true;
