@@ -292,6 +292,7 @@ public class balrog : MonoBehaviour
                     hability.SetActive(true);
                     if (Vector3.Distance(player.transform.position, this.transform.position) < 4 && player.GetComponent<playerController>().damage == false && player.GetComponent<playerController>().lunge == false && player.GetComponent<playerController>().inmunnity <= 0)
                     {
+                        player.GetComponent<playerController>().life -= 50;
                         player.GetComponent<playerController>().damage = true;
                     }
                 }
