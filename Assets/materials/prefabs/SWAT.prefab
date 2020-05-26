@@ -277,6 +277,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1567749273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567749274}
+  m_Layer: 0
+  m_Name: explosion_position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1567749274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567749273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.286, y: 0.223, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6818957819778328663}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6818957818940439484
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +654,7 @@ Transform:
   - {fileID: 425580154}
   - {fileID: 940460462}
   - {fileID: 124888535}
+  - {fileID: 1567749274}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -734,6 +765,9 @@ MonoBehaviour:
     type: 3}
   bulletAux: {fileID: 0}
   shootTimer: 0
+  explosion: {fileID: 1567749273}
+  explosionPrefab: {fileID: 1174918102034445632, guid: e47fe97b8ba499d4ab08c6641f9fc1bf,
+    type: 3}
   damage: 0
   playerIsClose: 0
   isClose: 0

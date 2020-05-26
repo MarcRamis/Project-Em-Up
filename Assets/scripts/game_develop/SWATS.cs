@@ -28,6 +28,8 @@ public class SWATS : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject bulletAux;
     public float shootTimer = 0.0f;
+    public GameObject explosion;
+    public GameObject explosionPrefab;
 
     //Booleans per controlar els estats
     public bool damage;
@@ -89,9 +91,11 @@ public class SWATS : MonoBehaviour
                 enemyAttack.SetActive(false);
                 enemyShoot.SetActive(true);
                 playerIsClose = false;
+
                 if (shootTimer >= 5.0f)
                 {
                     bulletAux = Instantiate(bulletPrefab, bullet.transform.position, bullet.transform.rotation);
+                    Instantiate(explosionPrefab, explosion.transform.position, explosion.transform.rotation);
                     shootTimer = 0.0f;
                 }
             }
