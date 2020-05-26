@@ -1178,7 +1178,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80193721}
-  m_Text: "\n\n\n\n Left click to continue\n\n "
+  m_Text: "\n\n\n\nPress Enter to continue\n\n "
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -2291,7 +2291,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207063202}
-  m_Text: "\n\n\n\n Left click to continue\n\n "
+  m_Text: "\n\n\n\nPress Enter to continue\n\n "
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -9585,7 +9585,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721383757}
-  m_Text: "\n\n\n\n'LeftClick' to continue\n\n "
+  m_Text: "\n\n\n\nPress Enter to continue\n\n "
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
