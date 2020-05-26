@@ -12,6 +12,7 @@ public class Barril : MonoBehaviour
     public bool right;
     public bool destroyItem;
     public bool thrown = false;
+    public bool checkNull;
     public GameObject barreelDestroy;
 
     // Update is called once per frame
@@ -111,7 +112,12 @@ public class Barril : MonoBehaviour
         //Codi per destruir el barril i eliminar l'sprite de l'escena després d'un temps definit per timerDestroy
         else
         {
-            player.GetComponent<playerController>().itemTaken = false;
+            if(checkNull == false)
+            {
+                player.GetComponent<playerController>().itemTakenGO = null;
+                player.GetComponent<playerController>().itemTaken = false;
+                checkNull = true;
+            }
             //player.GetComponent<playerController>().itemTakenGO = null;
             timerDestroy -= Time.deltaTime;
             this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
