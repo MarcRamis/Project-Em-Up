@@ -19,6 +19,7 @@ public class balrog : MonoBehaviour
     public int vida;
     public float speed;
     public float changeSide;
+    float enemyRange = 0.3f;
 
     //Habilitat del balrog
     public GameObject habilityParticles;
@@ -164,8 +165,8 @@ public class balrog : MonoBehaviour
 
                     if (player.GetComponent<playerController>().life > 0
                         && player.GetComponent<playerController>().inmunnity <= 0
-                        && (this.transform.position.y - player.transform.position.y) > -0.18f
-                        && (this.transform.position.y - player.transform.position.y) < 0.18f)
+                        && (this.transform.position.y - player.transform.position.y) > -enemyRange
+                        && (this.transform.position.y - player.transform.position.y) < enemyRange)
                     {
                         if (randomAttack < 8)
                             player.GetComponent<playerController>().damage = true;
