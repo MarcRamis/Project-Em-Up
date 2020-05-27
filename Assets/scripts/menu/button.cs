@@ -5,54 +5,42 @@ using UnityEngine.SceneManagement;
 
 public class button : MonoBehaviour
 {
-    public Camera cam;
+    public GameObject pauseMenu;
+    public GameObject MainOptionsMenu;
+    public GameObject optionsMenu;
 
-    public GameObject cursor;
-
+    public bool resume = false;
     public bool goMenu = false;
     public bool exit = false;
     public bool options = false;
     public bool press = false;
     public bool mousePosition = false;
-    public Vector3 vectorMousePosition;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (mousePosition)
-        {
-            vectorMousePosition = cam.WorldToScreenPoint(Input.mousePosition);
-            cursor.transform.position = new Vector3(vectorMousePosition.x / 6000, vectorMousePosition.y / 6000, 0);
-        }
-            
-
-        if (press && goMenu && Input.GetKeyDown(KeyCode.Mouse0))
+        if (press && goMenu)
             SceneManager.LoadScene("menu");
-
-       //else if (press && options)
-       //{
-       //
-       //}
-
-        else if (press && exit && Input.GetKeyDown(KeyCode.Mouse0))
+        else if (press && exit)
             Application.Quit();
-    }
-
-    void OnTriggerEnter(Collider Other)
-    {
-        if (Other.tag.Equals("mouse"))
-            press = true;
-    }            
-
-    void OnTriggerExit(Collider Other)
-    {
-        if (Other.tag.Equals("mouse"))
+        else if (press && resume)
+        {
+            Time.timeScale = 1;
             press = false;
-    }    
+            MainOptionsMenu.SetActive(true);
+            optionsMenu.SetActive(false);
+            pauseMenu.GetComponent<pause>().paused = false;
+        }
+        else if(press && options)
+        {
+            press = false;
+            optionsMenu.SetActive(true);
+            MainOptionsMenu.SetActive(false);
+        }
+    }  
+    
+    public void click()
+    {
+        press = true;
+    }
 }
