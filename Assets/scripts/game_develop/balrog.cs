@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class balrog : MonoBehaviour
 {
+    public GameObject scrollbarObject;
+    public Scrollbar bossLifeBar;
+    public int fullLife;
+
     public GameObject player;
     public TextMesh lifestext;
     public Camera cam2d;
@@ -42,9 +47,21 @@ public class balrog : MonoBehaviour
     //activar final nivell
     public GameObject endLevel;
 
+    private void Start()
+    {
+        scrollbarObject.SetActive(true);
+        fullLife = vida;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        bossLifeBar.size = float.Parse(vida.ToString()) / float.Parse(fullLife.ToString());
+        if(bossLifeBar.size <= 0)
+        {
+            bossLifeBar.colors = ColorBlock.defaultColorBlock;
+        }
+
         //Follow character
         Vector3 rotVectorEnemy = cam2d.WorldToScreenPoint(this.transform.position);
         Vector3 rotVectorEnemy2 = cam2d.WorldToScreenPoint(player.transform.position);
