@@ -233,8 +233,8 @@ public class balrog : MonoBehaviour
                     && player.GetComponent<playerController>().life > 0
                     && this.transform.rotation != player.GetComponent<playerController>().playerMove.transform.rotation
                     && player.GetComponent<playerController>().hitTimer <= 0
-                    && (this.transform.position.y - player.transform.position.y) > -0.58f
-                    && (this.transform.position.y - player.transform.position.y) < 0.58f
+                    && (this.transform.position.y - player.transform.position.y) > -1
+                    && (this.transform.position.y - player.transform.position.y) < 1
                     && player.GetComponent<playerController>().cover == false
                     && habilityCheck == false)
                 {
