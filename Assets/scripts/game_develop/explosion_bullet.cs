@@ -16,7 +16,7 @@ public class explosion_bullet : MonoBehaviour
     {
         destroyTimer += Time.deltaTime;
         
-        if (destroyTimer >= 0.2f)
+        if (destroyTimer >= 0.5f)
         {
             Destroy(this.gameObject);
             destroyTimer = 0.0f;

@@ -56,10 +56,14 @@ public class balrog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bossLifeBar.size = float.Parse(vida.ToString()) / float.Parse(fullLife.ToString());
-        if(bossLifeBar.size <= 0)
+        if(bossLifeBar.size < 1 && vida <= 0)
         {
             bossLifeBar.colors = ColorBlock.defaultColorBlock;
+            bossLifeBar.size = 1;
+        }
+        else if(vida > 0)
+        {
+            bossLifeBar.size = float.Parse(vida.ToString()) / float.Parse(fullLife.ToString());
         }
 
         //Follow character
