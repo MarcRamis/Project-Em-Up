@@ -4,18 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class menu : MonoBehaviour
-{
-
-    // Update is called once per frame
-    void Update()
+{   
+    public void startGame()
     {
-      if(Input.GetKeyDown(KeyCode.Space))
-      {
-            SceneManager.LoadScene("Intro");
-      }
-      if (Input.GetKeyDown(KeyCode.Escape))
-      {
-            Application.Quit();
-      }
+        SceneManager.LoadScene("Intro");
+    }
+
+    public void exitGame()
+    {
+        Application.Quit();
     }
 }
