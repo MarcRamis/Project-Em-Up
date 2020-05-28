@@ -55,8 +55,13 @@ public class Militar : MonoBehaviour
         //Activa totes les mecàniques del enemic sempre i quant tingui vida
         if (vida > 0)
         {
-            //if (Vector3.Distance(this.transform.position, player.transform.position) <= 15)
+            if (Vector3.Distance(this.transform.position, player.transform.position) <= 15)
             throwGranadeTimer += Time.deltaTime;
+            if (throwGranadeTimer >= 13.0f)
+            {
+                movement = true;
+                throwGranadeTimer = Random.Range(0, 8);
+            }
             //agafa la rotació de l'enemic i el jugador dintre del marge de la càmera per avaluar a quina direcció deu mirar l'enemic per encarar-se cap el jugador
             if (rotVectorEnemy.x - rotVectorEnemy2.x > 0)
             {
