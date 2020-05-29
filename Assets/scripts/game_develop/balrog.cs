@@ -260,7 +260,7 @@ public class balrog : MonoBehaviour
                     habilityParticles.SetActive(false);
                     hability.SetActive(false);
                     enemytakesDamage = true;
-                    vida -= 10;
+                    vida -= 20;
                 }
 
                 if (enemytakesDamage == true)

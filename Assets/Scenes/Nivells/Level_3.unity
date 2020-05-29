@@ -614,6 +614,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 657465146}
+    - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
+        type: 3}
+      propertyPath: vida
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
 --- !u!4 &33157977 stripped
@@ -2960,7 +2965,7 @@ PrefabInstance:
     - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
         type: 3}
       propertyPath: vida
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
@@ -3510,6 +3515,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 657465146}
+    - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
+        type: 3}
+      propertyPath: vida
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
 --- !u!4 &207259866 stripped
@@ -4970,6 +4980,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 657465146}
+    - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
+        type: 3}
+      propertyPath: vida
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
 --- !u!1 &326790378
@@ -5617,7 +5632,7 @@ PrefabInstance:
     - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
         type: 3}
       propertyPath: vida
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
@@ -5884,7 +5899,7 @@ PrefabInstance:
     - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
         type: 3}
       propertyPath: vida
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
@@ -6859,6 +6874,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 657465146}
+    - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
+        type: 3}
+      propertyPath: vida
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
 --- !u!4 &422796582 stripped
@@ -14205,7 +14225,7 @@ PrefabInstance:
     - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
         type: 3}
       propertyPath: vida
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
@@ -14381,6 +14401,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 657465146}
+    - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
+        type: 3}
+      propertyPath: vida
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
 --- !u!1 &624636030
@@ -22759,6 +22784,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 657465146}
+    - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
+        type: 3}
+      propertyPath: vida
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
 --- !u!1 &886211880
@@ -26623,6 +26653,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 657465146}
+    - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
+        type: 3}
+      propertyPath: vida
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
 --- !u!4 &1210414931 stripped
@@ -26805,7 +26840,7 @@ PrefabInstance:
     - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
         type: 3}
       propertyPath: vida
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
@@ -47613,6 +47648,11 @@ PrefabInstance:
       propertyPath: scene
       value: 
       objectReference: {fileID: 657465146}
+    - target: {fileID: 4551997161286837978, guid: 49055d4ef616bb44eb03eb563e330ddc,
+        type: 3}
+      propertyPath: vida
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49055d4ef616bb44eb03eb563e330ddc, type: 3}
 --- !u!4 &1707233628 stripped
