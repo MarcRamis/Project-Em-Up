@@ -98,7 +98,7 @@ public class playerController : MonoBehaviour
            
             // Utilitzam un float per saber si la barra del POWER UP es major a 100
             // Comprobam el Time.timeScale perquè no volem que es puguin fer servir habilitats quan hi ha els popup
-            if (Input.GetKeyDown(KeyCode.R) && ultimateAttackPlus >= 100.0f && lunge == false && Time.timeScale != 0 && !itemTaken)
+            if (Input.GetKeyDown(KeyCode.R) && ultimateAttackPlus >= 100.0f && lunge == false && Time.timeScale != 0 && !itemTaken && !lunge)
             {
                 ultimateAttackWindow.SetActive(true);
                 ultimateAttack = true;
