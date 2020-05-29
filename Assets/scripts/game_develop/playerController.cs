@@ -163,7 +163,7 @@ public class playerController : MonoBehaviour
 
             // Comprobam el Time.timeScale perquè no volem que es puguin fer servir habilitats quan hi ha els popup
             // Compobam que no es tengui agafat un objecte quan es vulgui cubrir (itemTaken)
-            if (Input.GetKey(KeyCode.E) && inmunnity <= 0 && Time.timeScale != 0.0f && !itemTaken && !lunge)
+            if (Input.GetKey(KeyCode.E) && inmunnity <= 0 && Time.timeScale != 0.0f && !itemTaken && !lunge && !ultimateAttack)
             {
                 cover = true;
             }
