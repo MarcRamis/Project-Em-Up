@@ -223,7 +223,7 @@ public class balrog : MonoBehaviour
                     randomAttack = Random.Range(0, 15);
                 }
                 //aquí es queda a l'espera del cooldown 'timerAttack' per atacar
-                if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false)
+                if (!Input.GetKeyDown(KeyCode.Mouse0) && player.GetComponent<playerController>().damage == false && player.GetComponent<playerController>().cover == false)
                 {
                     enemyIdle.SetActive(true);
                     enemyTakingDamage.SetActive(false);
@@ -247,7 +247,7 @@ public class balrog : MonoBehaviour
                     habilityParticles.SetActive(false);
                     hability.SetActive(false);
                     enemytakesDamage = true;
-                    vida -= 10;
+                    vida -= 50;
                 }
 
                 //Rang en el que l'embestida fa mal 
@@ -260,7 +260,7 @@ public class balrog : MonoBehaviour
                     habilityParticles.SetActive(false);
                     hability.SetActive(false);
                     enemytakesDamage = true;
-                    vida -= 30;
+                    vida -= 10;
                 }
 
                 if (enemytakesDamage == true)
@@ -294,7 +294,7 @@ public class balrog : MonoBehaviour
                 habilityParticles.SetActive(false);
                 hability.SetActive(false);
                 enemytakesDamage = true;
-                vida -= 1;
+                vida -= 5;
             }
             if(habilityCheck == true)
             {
@@ -391,7 +391,7 @@ public class balrog : MonoBehaviour
             enemyTakingDamage.SetActive(true);
             other.GetComponent<Barril>().destroyItem = true;
             enemytakesDamage = true;
-            vida -= 50;
+            vida -= 150;
         }
         //Detecta si està col.lisionant amb un policia estat
         if (other.tag == "Enemy_Policia_estat")

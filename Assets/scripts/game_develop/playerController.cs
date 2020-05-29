@@ -91,7 +91,7 @@ public class playerController : MonoBehaviour
             // Comprobam que ultimateAttack sigui false perquè no volem que es pugui fer l'embestida al mateix que temps que es fa l'ultimate
             // Comprobam que el cc de l'embestida sigui menor igual a 0 perquè l'embestida té un temporizador
             // Compobam que no es tengui agafat un objecte (itemTaken)
-            if (Input.GetKeyDown(KeyCode.LeftShift) && lungeCooldown <= 0 && !ultimateAttack && Time.timeScale != 0 && !itemTaken)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && lungeCooldown <= 0 && !ultimateAttack && Time.timeScale != 0 && !itemTaken && !cover)
             {
                 lunge = true;
             }

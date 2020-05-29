@@ -32054,7 +32054,7 @@ MonoBehaviour:
   timerAttack: 0
   timerdeath: 5
   enemyCollision: 0
-  vida: 1600
+  vida: 2000
   speed: 3
   changeSide: 0.8
   habilityParticles: {fileID: 435806629}
