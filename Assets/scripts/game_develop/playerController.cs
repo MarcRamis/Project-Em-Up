@@ -378,7 +378,7 @@ public class playerController : MonoBehaviour
 			hitting = false;
 		}
 
-        if(hitAnim == true && life > 0 && cover == false)
+        if(hitAnim == true && life > 0 && cover == false && ultimateAttack == false)
         {
             playerHitNormal.transform.rotation = playerIdle.transform.rotation;
             hitAnimTimer -= Time.deltaTime;
