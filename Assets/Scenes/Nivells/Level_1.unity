@@ -6131,17 +6131,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 6818957820422390377, guid: 55382806bfd53d44dad1d5593acaca2b,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 6818957820170952578, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6818957820355104958, guid: 55382806bfd53d44dad1d5593acaca2b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818957820422390377, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
@@ -7326,6 +7326,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 935069430}
+    - target: {fileID: 9090214008098303274, guid: f35197dbe740f1f4fbf71582d0b191db,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1086004995, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -7339,11 +7344,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 52d2f2ac6f9a4d34b971f2e344b75fdb,
         type: 3}
-    - target: {fileID: 9090214008098303274, guid: f35197dbe740f1f4fbf71582d0b191db,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f35197dbe740f1f4fbf71582d0b191db, type: 3}
 --- !u!224 &534406036 stripped
@@ -21718,17 +21718,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 6818957820422390377, guid: 55382806bfd53d44dad1d5593acaca2b,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 6818957820170952578, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6818957820355104958, guid: 55382806bfd53d44dad1d5593acaca2b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6818957820422390377, guid: 55382806bfd53d44dad1d5593acaca2b,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
@@ -28574,7 +28574,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 11fb5c96e82b30a4a905d6641eddd97c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a805c6ab7ef45443911597bdf4f544b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

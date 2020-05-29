@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class life_assigner : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class life_assigner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(SceneManager.GetActiveScene().name.Equals("Menu"))
+        {
+            Destroy(this.gameObject);
+        }
         if(endLevel != null && endLevel.active == true)
         {
             lifes = player.GetComponent<playerController>().vidas;
