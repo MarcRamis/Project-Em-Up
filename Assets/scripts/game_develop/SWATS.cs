@@ -170,7 +170,8 @@ public class SWATS : MonoBehaviour
                     && player.GetComponent<playerController>().hitTimer <= 0
                     && (this.transform.position.y - player.transform.position.y) > -playerDmgRange
                     && (this.transform.position.y - player.transform.position.y) < playerDmgRange
-                    && player.GetComponent<playerController>().cover == false)
+                    && player.GetComponent<playerController>().cover == false
+                    && Vector3.Distance(this.transform.position, player.transform.position) <= 1.3f)
                 {
                     damage = true;
                     enemyDamage.SetActive(true);
