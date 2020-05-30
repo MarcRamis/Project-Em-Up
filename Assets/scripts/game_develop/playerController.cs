@@ -62,6 +62,9 @@ public class playerController : MonoBehaviour
     public GameObject textGameOver;
     public GameObject cameraShake;
 
+    //cheat
+    public bool HPCheat;
+
     // Start is called before the first frame update
     void Start()
     {        
@@ -70,10 +73,15 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.H))
+            HPCheat = true;
+        if (HPCheat && vidas <= 0)
+            vidas = 1;
         if (hitTimer > 0)
             hitTimer -= Time.deltaTime;
 
         lifestext.text = "x" + vidas;
+
         playerMovement();
     }
 

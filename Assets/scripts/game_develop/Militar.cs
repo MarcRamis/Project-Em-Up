@@ -172,6 +172,7 @@ public class Militar : MonoBehaviour
                         && (this.transform.position.y - player.transform.position.y) < 0.18f)
                     {
                         //if(player.GetComponent<playerController>().cover == false)
+                        if(!enemytakesDamage)
                         player.GetComponent<playerController>().damage = true;
                         if (timerAttack <= 0)
                             timerAttack = 2;
