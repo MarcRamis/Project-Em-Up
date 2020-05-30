@@ -131,7 +131,7 @@ public class PoliciaEstat : MonoBehaviour
                     {
                         //if(player.GetComponent<playerController>().cover == false)
                         player.GetComponent<playerController>().damage = true;
-                        if (timerAttack <= 0)
+                        if (timerAttack <= -0.5f)
                             timerAttack = 2;
                     }
                     else if(player.GetComponent<playerController>().life > 0)
