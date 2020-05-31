@@ -31820,7 +31820,7 @@ MonoBehaviour:
   player: {fileID: 1685825174}
   stageClear: {fileID: 1508821725}
   timerChangeLevel: 5
-  levelName: Menu
+  levelName: credits
 --- !u!4 &1261036076
 Transform:
   m_ObjectHideFlags: 0
