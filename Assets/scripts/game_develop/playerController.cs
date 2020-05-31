@@ -73,6 +73,10 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Alpha3) && !SceneManager.GetActiveScene().name.Equals("Level_3"))
+        {
+            SceneManager.LoadScene("Level_3");
+        }
         if (Input.GetKeyDown(KeyCode.H))
             HPCheat = true;
         if (HPCheat && vidas <= 0)
